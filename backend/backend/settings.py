@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import jinja2
 from pathlib import Path
+
+from django_jinja.builtins import DEFAULT_EXTENSIONS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,14 +36,44 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
+    'django_jinja',
+    # 'jet',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    # 'rest_framework_swagger',
+    # 'drf_yasg',
+    'phonenumber_field',
+
     "accounts",
 ]
+
+CONSTANCE_IGNORE_ADMIN_VERSION_CHECK = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'EXCEPTION_HANDLER': 'shared.rest.exception_handler.exception_handler',
+}
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,21 +87,86 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backend.urls'
 
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
+
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'NAME': 'jinja2',
+        'APP_DIRS': True,
+        'DIRS': [],
+        'OPTIONS': {
+            # 'environment': 'shared.env.jinja2.environment',
+            'match_extension': '.jinja',
+            'newstyle_gettext': True,
+            'auto_reload': True,
+            # 'undefined': jinja2.Undefined,
+            'debug': True,
+
+            'filters': {},
+
+            'globals': {
+                # 'channels': 'shared.jinja_func.channels.channels',
+                # 'get_connection_token': 'shared.jinja_func.get_connection_token.get_connection_token',
+                # 'increment': 'shared.jinja_func.retarded_func.increment',
+                # 'get_presence': 'shared.jinja_func.get_connection_token.get_presence',
+            },
+
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+            ],
+
+            # 'extensions': DEFAULT_EXTENSIONS
+            #               + ['webpack_loader.contrib.jinja2ext.WebpackExtension'],
+
+            "bytecode_cache": {
+                "name": "default",
+                "backend": "django_jinja.cache.BytecodeCache",
+                "enabled": True,
+            },
+        },
+    },
+    {
         'DIRS': [],
         'APP_DIRS': True,
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.contrib.auth.context_processors.auth',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -109,6 +207,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+
+DATETIME_FORMAT = 'd.m.Y H:m:s'
 
 USE_I18N = True
 

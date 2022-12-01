@@ -5,6 +5,14 @@ name = "pypi"
 
 [packages]
 django = "*"
+djangorestframework = "*"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
+django-jinja = "*"
+jinja2 = "*"
+django-rest-swagger = "*"
+django-jet = "*"
+drf-yasg = "*"
+django-jet2 = "*"
 
 [dev-packages]
 
