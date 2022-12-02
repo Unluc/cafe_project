@@ -13,6 +13,8 @@ django-rest-swagger = "*"
 django-jet = "*"
 drf-yasg = "*"
 django-jet2 = "*"
+django-cors-headers = "*"
+django-filter = "*"
 
 [dev-packages]
 
