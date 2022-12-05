@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
 
     "accounts",
+    "contact",
 ]
 
 CONSTANCE_IGNORE_ADMIN_VERSION_CHECK = True

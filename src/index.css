@@ -51,16 +51,16 @@ section > p {
     background-color: #f7d771;
 }
 
-.page-header {
+/* .page-header { */
     /* background-color: #181818; */
-    display: flex;
+    /* display: flex; */
     /* flex-direction: column; */
-    align-items: center;
-}
+    /* align-items: center; */
+/* } */
 
-.page-logo img {
+/* .page-logo img {
     width: 200px;
-}
+} */
 
 .mobile-btn {
     margin-bottom: 1rem;
@@ -70,33 +70,33 @@ section > p {
     width: 3.5rem;
 }
 
-.page-navigation {
+/* .page-navigation {
     display: none;
     padding-bottom: 1rem;
     width: 100%;
-}
+} */
 
-.navigation-list {
+/* .navigation-list {
     list-style: none;
     text-align: center;
 }
 
 .navigation-list li {
     margin: 0.5rem 0;
-}
+} */
 
-.navigation-list a {
+/* .navigation-list a { */
     /* color: #EDEDED; */
-    color: #181818;
-    display: block;
-    font-size: 1.2rem;
-    padding: 0.5rem 2rem;
-    text-decoration: none;
-}
+    /* color: #181818; */
+    /* display: block; */
+    /* font-size: 1.2rem; */
+    /* padding: 0.5rem 2rem; */
+    /* text-decoration: none; */
+/* } */
 
-.navigation-list a:hover {
+/* .navigation-list a:hover {
     color: #e9bf34;
-}
+} */
 
 .show-navigation {
     display: block;
@@ -318,9 +318,9 @@ textarea:focus {
         align-items: center;
     }
 
-    .hero > .page-header {
+    /* .hero > .page-header {
         width: 1000px;
-    }
+    } */
 
     .hero > .btn-primary {
         margin: 0 auto;
@@ -331,17 +331,16 @@ textarea:focus {
         display: none;
     }
 
-    .page-navigation {
+    /* .page-navigation {
         display: flex;
         justify-content: center;
-        /* background-color: green; */
-    }
+    }*/
 
-    .navigation-list {
+    /* .navigation-list {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+    } */
 
     form {
         width: 50%;
@@ -351,10 +350,10 @@ textarea:focus {
         display: none;
     }
 
-    .page-logo {
+    /* .page-logo {
         display: flex;
         justify-content: flex-start;
-    }
+    } */
 
     .logo-img {
         display: block;

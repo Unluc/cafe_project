@@ -44,6 +44,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include([
         path('accounts/', include('api.accounts.urls')),
+        path("contact_us/", include('api.contact_us.urls')),
     ])),
 ]
 
