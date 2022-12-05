@@ -1,6 +1,7 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import ContactForm from './contact-us/ContactUs';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
@@ -25,6 +26,30 @@ function App() {
     // <a href="javascript:;" class="mobile-btn" id="nav-btn">
     //       <img src="#" alt="Mobile navigation reveal button" />
     //     </a>
+
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/contact-us">Contact Us</Link>
+          </li>
+        </ul>
+      </div>
+
+      <Switch>
+        <Route path='/contact-us'>
+          <ContactForm />
+        </Route>
+      </Switch>
+            
+
+    </Router>
+    
+  );
+}
+
+function Header() {
+  return (
     <div className='App'>
       <header className="Page-header">
         <a href="index.html" className="Page-logo">
@@ -40,9 +65,8 @@ function App() {
           </ul>
         </nav>
       </header>
-      <ContactForm />
     </div> 
-  );
+  )
 }
 
 export default App;

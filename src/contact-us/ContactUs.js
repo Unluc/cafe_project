@@ -38,7 +38,7 @@ const ContactForm = () => {
 
   return (
       <div className="container mt-5">
-    <h2 className="mb-3">React Contact Form Component Example</h2>
+    <h2 className="mb-3">Contact us form</h2>
     <form class="contact-form" onSubmit={onSubmit}>
       <div className="mb-3">
         <label className="form-label" htmlFor="name">
