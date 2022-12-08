@@ -1,7 +1,9 @@
 // import logo from './logo.svg';
 import './App.css';
-import ContactForm from './contact-us/ContactUs';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ContactForm from './contact-us/ContactUs.js';
+// import Header from "./components/header/Header.js";
+import HomePage from './pages/home/Home.js';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
@@ -27,22 +29,28 @@ function App() {
     //       <img src="#" alt="Mobile navigation reveal button" />
     //     </a>
 
+    
     <Router>
-      <div>
+      {/* <div>
         <ul>
           <li>
             <Link to="/contact-us">Contact Us</Link>
           </li>
         </ul>
-      </div>
+      </div> */}
 
-      <Switch>
-        <Route path='/contact-us'>
-          <ContactForm />
-        </Route>
-      </Switch>
-            
+      <div className='App'>
+        <Header />
+        {/* <HomePage /> */}
 
+      </div> 
+
+      <Routes>
+        <Route exact path='/contact-us' element={<ContactForm />} />
+        <Route exact path='/' element={<HomePage />}/>
+        {/* <Route exact path='/menu' element={<Menu />} /> */}
+        {/* <Route exact path='/about-us' element={<AboutUs />} /> */}
+      </Routes>
     </Router>
     
   );
@@ -50,22 +58,33 @@ function App() {
 
 function Header() {
   return (
-    <div className='App'>
+    // <div className='App'>
       <header className="Page-header">
-        <a href="index.html" className="Page-logo">
+        <Link to="/" className="Page-logo">
           <img className="Logo-img" src="logo2.jpg" alt="Logo" />
-        </a>
-       
+        </Link>
+    
         <nav className="Page-navigation" id="nav-list">
-          <ul className="Navigation-list">
-            <li><a href="index.html">Main</a></li>
-            <li><a href="index.html">About us</a></li>
-            <li><a href="index.html">Menu</a></li>
-            <li><a href="contact.html">Contact us</a></li>
-          </ul>
+        <ul className="Navigation-list">
+            <li>
+            {/* <a href="index.html">Home</a> */}
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+                {/* <a href="index.html">About us</a> */}
+                <Link to="/about-us">About us</Link>
+            </li>
+            <li>
+                {/* <a href="index.html">Menu</a> */}
+                <Link to="/menu">Menu</Link>
+            </li>
+            <li>
+              <Link to="/contact-us">Contact Us</Link>
+            </li>
+        </ul>
         </nav>
       </header>
-    </div> 
+    // </div> 
   )
 }
 
