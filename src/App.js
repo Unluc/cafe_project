@@ -1,8 +1,9 @@
 // import logo from './logo.svg';
 import './App.css';
-import ContactForm from './contact-us/ContactUs.js';
+import ContactForm from './pages/contact-us/ContactUs.js';
 // import Header from "./components/header/Header.js";
 import HomePage from './pages/home/Home.js';
+// import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -42,7 +43,6 @@ function App() {
       <div className='App'>
         <Header />
         {/* <HomePage /> */}
-
       </div> 
 
       <Routes>

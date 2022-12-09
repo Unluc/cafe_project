@@ -106,11 +106,11 @@ section > p {
     flex: 1;
 }
 
-.page-footer {
+/* .page-footer {
     background-color: #EDEDED;
-}
+} */
 
-.footer-content {
+/* .footer-content {
     padding: 3rem 0;
     text-align: center;
 }
@@ -130,7 +130,7 @@ section > p {
 
 .footer-links li {
     margin: 0.5rem 0;
-}
+} */
 
 .hero {
     background-color: #d32405;
@@ -231,10 +231,10 @@ th, td {
     padding: 1rem;
 }
 
-form {
+/* form {
     margin: 2rem auto;
     width: 100%;
-}
+} */
 
 label {
     font-weight: bold;
@@ -311,7 +311,7 @@ textarea:focus {
 
     .hero-text {
         padding: 1.5rem 2rem;
-        height: 400px;
+        /* height: 400px; */
     }
 
     .hero {
@@ -342,9 +342,9 @@ textarea:focus {
         align-items: center;
     } */
 
-    form {
+    /* form {
         width: 50%;
-    }
+    } */
 
     .hide-on-desctop {
         display: none;

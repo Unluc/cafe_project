@@ -1,0 +1,30 @@
+.page-footer {
+    background-color: #EDEDED;
+    /* position:absolute;
+    left:0;
+    bottom:0;
+    right:0; */
+}
+
+.footer-content {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.footer-content p {
+    color: #555;
+    margin: 2rem 0;
+}
+
+.footer-content a {
+    color: #181818;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin: 0.5rem 0;
+}
+

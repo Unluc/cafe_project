@@ -1,3 +1,4 @@
+import Footer from "../../components/footer/Footer.js"
 function HomePage() {
     return (
         <div className="Home-container">
@@ -5,11 +6,10 @@ function HomePage() {
      
 
       <div className="hero-text">
-        <h1 className="hero-title">Welcome to LOGO!</h1>
+        <h1 className="hero-title">Welcome to Coffee!</h1>
 
         <p className="hero-subtitle">
-          Premium fashion at affordable prices
-          
+          Premium coffee at affordable prices
         </p>
       </div>
 
@@ -138,18 +138,7 @@ function HomePage() {
       </section>
     </main>
     
-    <footer className="page-footer">
-      <div className="footer-content">
-        <a href="#top">Back to Top</a>
-
-        <p>LOGO &copy;2022</p>
-
-        <ul className="footer-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Site Map</a></li>
-        </ul>
-      </div>
-    </footer>
+    <Footer />
     </div>
     );
 }

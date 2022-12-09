@@ -1,0 +1,27 @@
+form {
+    margin: 2rem auto;
+    width: 100%;
+}
+
+.btn-submit {
+    width: 100%;
+}
+
+.content-section > h2,
+.content-section > p {
+    text-align: center;
+}
+
+@media only screen and (min-width: 550px) and (max-width: 1000px) {
+    form {
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1001px) {
+    form {
+        width: 50%;
+    }
+
+    
+}
