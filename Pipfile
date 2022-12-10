@@ -16,6 +16,8 @@ django-jet2 = "*"
 django-cors-headers = "*"
 django-filter = "*"
 pyautogui = "*"
+django-unique-slugify = "*"
+pillow = "*"
 
 [dev-packages]
 

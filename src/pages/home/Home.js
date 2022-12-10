@@ -1,4 +1,6 @@
-import Footer from "../../components/footer/Footer.js"
+import Footer from "../../components/footer/Footer.js";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 function HomePage() {
     return (
         <div className="Home-container">
@@ -48,7 +50,7 @@ function HomePage() {
           </a>
         </div>
 
-        <a href="#" className="btn-primary">Browse the Store</a>
+        <Link to="/menu" className="btn-primary">Browse the Menu</Link>
       </section>
 
       <section className="content-section">
@@ -134,7 +136,7 @@ function HomePage() {
           </tr>        
         </table>
         
-        <a href="contact.html" className="btn-primary">Want to get in touch?</a>
+        <Link to="/contact-us" className="btn-primary">Want to get in touch?</Link>
       </section>
     </main>
     
