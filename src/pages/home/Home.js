@@ -8,14 +8,14 @@ function HomePage() {
      
 
       <div className="hero-text">
-        <h1 className="hero-title">Welcome to Coffee!</h1>
+        <h1 className="hero-title">Welcome to Coffee Shop!</h1>
 
         <p className="hero-subtitle">
           Premium coffee at affordable prices
         </p>
       </div>
 
-      <a href="#" className="btn-primary">See our menu</a>
+      <Link to="/menu" className="btn-primary">See our menu</Link>
     </section>
     
     <main className="page-content">

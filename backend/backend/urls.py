@@ -47,7 +47,13 @@ urlpatterns = [
         path("contact_us/", include('api.contact_us.urls')),
         path("product/", include('api.product.urls')),
     ])),
-]
+]+ static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+) + static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
+)
 
 # urlpatterns = [
     # url('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

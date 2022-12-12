@@ -4,11 +4,14 @@ import ContactForm from './pages/contact-us/ContactUs.js';
 // import Header from "./components/header/Header.js";
 import HomePage from './pages/home/Home.js';
 import Menu from './pages/menu/Menu.js';
+import Product from './pages/product/Product.js';
 // import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+
 function App() {
   return (
+    
     // <div className="App">
     //   <header className="App-header">
     //     <p>
@@ -50,6 +53,7 @@ function App() {
         <Route exact path='/contact-us' element={<ContactForm />} />
         <Route exact path='/' element={<HomePage />}/>
         <Route exact path='/menu' element={<Menu />} />
+        <Route exact path='/menu/product/:slug' element={<Product />} />
         {/* <Route exact path='/about-us' element={<AboutUs />} /> */}
       </Routes>
     </Router>

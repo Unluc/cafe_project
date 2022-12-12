@@ -9,7 +9,7 @@ from django_unique_slugify import unique_slugify
 
 
 class Product(models.Model):
-    preview = models.ImageField(null=True, blank=True, verbose_name='Product preview')
+    preview = models.ImageField(upload_to="shared/media/", null=True, blank=True, verbose_name='Product preview')
     img_alt = models.CharField(
         max_length=25, 
         null=True, 
@@ -39,8 +39,8 @@ class Product(models.Model):
     related_products = models.ManyToManyField(
         'self',
         blank=True,
-        verbose_name='Related products',
-        # related_name='related_products'
+        verbose_name='related products',
+        related_name='related_products'
     )
     # product_average_rating = models.FloatField(
     #     blank=True,

@@ -10,7 +10,7 @@ body {
     font-family: "Noto Sans", sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh;  
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -134,7 +134,7 @@ section > p {
 
 .hero {
     background-color: #d32405;
-    background-image: url("../public/hero-index.jpg");
+    background-image: url("../public/hero-index2.webp");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -193,6 +193,7 @@ section > p {
 .product img,
 .gallery-card img {
     width: 100%;
+    height: 100%;
 }
 
 .product-title {
@@ -283,7 +284,12 @@ textarea:focus {
         width: 30%;
     }
 
-    .footer-content {
+    .product img,
+    .gallery-card img {
+        height: 70%;
+    }
+
+    /* .footer-content {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -293,7 +299,7 @@ textarea:focus {
     
     .footer-content > p {
         order: -1;
-    }
+    } */
 
     .content-section {
         margin-left: auto;
