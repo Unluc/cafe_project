@@ -7,12 +7,13 @@ from product.models import Product
 
 
 class RelatedProductSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Product
-        fields = ("id", "preview", "img_alt", "name", "slug", )
+        fields = ("preview", "img_alt", "name", "price" )
 
 class ProductSerializer(serializers.ModelSerializer):
-    # related_products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.filter(self.id).related_products)
+    related_products = serializers.StringRelatedField(many=True, read_only=True)
 
     # def to_representation(self, obj):
     #     representation = super().to_representation(obj)

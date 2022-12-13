@@ -5,6 +5,7 @@ import ContactForm from './pages/contact-us/ContactUs.js';
 import HomePage from './pages/home/Home.js';
 import Menu from './pages/menu/Menu.js';
 import Product from './pages/product/Product.js';
+import AboutUs from './pages/about-us/AboutUs.js';
 // import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -54,7 +55,7 @@ function App() {
         <Route exact path='/' element={<HomePage />}/>
         <Route exact path='/menu' element={<Menu />} />
         <Route exact path='/menu/product/:slug' element={<Product />} />
-        {/* <Route exact path='/about-us' element={<AboutUs />} /> */}
+        <Route exact path='/about-us' element={<AboutUs />} />
       </Routes>
     </Router>
     
@@ -77,7 +78,7 @@ function Header() {
             </li>
             <li>
                 {/* <a href="index.html">About us</a> */}
-                <Link to="/about-us">About us</Link>
+                <Link to="/about-us">About Us</Link>
             </li>
             <li>
                 {/* <a href="index.html">Menu</a> */}

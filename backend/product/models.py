@@ -40,7 +40,7 @@ class Product(models.Model):
         'self',
         blank=True,
         verbose_name='related products',
-        related_name='related_products'
+        # related_name='related_products'
     )
     # product_average_rating = models.FloatField(
     #     blank=True,
