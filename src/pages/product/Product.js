@@ -28,7 +28,7 @@ function Product() {
     }, []);
     // console.log(apiData)
     return(
-        <div className="product-containce">
+        <div className="product-containce height">
             <div className="content-section">
                 {state === "Loading" ? (<h1>Loading</h1>) : (
                     <div className="image-description">

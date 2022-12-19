@@ -48,7 +48,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="content-section">
+      {/* <section className="content-section">
         <h2>Product Categories</h2>
 
         <div className="gallery-container">
@@ -82,7 +82,7 @@ function HomePage() {
             <p className="product-title">Belts</p>
           </a>
         </div>
-      </section>
+      </section> */}
 
       <section className="content-section">
         <h2>Opening Times</h2>

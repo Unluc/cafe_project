@@ -29,7 +29,7 @@ function NewProducts() {
             {state === "Loading" ? (<h1>Loading</h1>) : (
                 Array.prototype.map.call(apiData, (product) => (
                     
-                    <Link to={"product/" + product.slug + "/"} className="product" params={{slug: product.slug}}>
+                    <Link to={"menu/product/" + product.slug + "/"} className="product" params={{slug: product.slug}}>
                         <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                         <p className="product-title">{product.name} £{product.price}</p>
                     </Link>

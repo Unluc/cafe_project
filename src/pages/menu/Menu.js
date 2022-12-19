@@ -30,7 +30,7 @@ function Menu() {
     // console.log(typeof apiData);
     // console.log("apiData");
     return(
-        <div class="menu">
+        <div className="menu height">
             <div className="content-section">
                 <h2>All products</h2>
                 <div className="products-container">

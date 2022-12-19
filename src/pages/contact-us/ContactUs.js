@@ -39,7 +39,7 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="page-content">
+    <div className="page-content height">
       <section className="content-section">
         <h2>Get in Touch</h2>
 
