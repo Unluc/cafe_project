@@ -6,6 +6,8 @@ import HomePage from './pages/home/Home.js';
 import Menu from './pages/menu/Menu.js';
 import Product from './pages/product/Product.js';
 import AboutUs from './pages/about-us/AboutUs.js';
+import Gallery from './pages/gallery/Gallery.js';
+import GalleryDetail from './pages/gallery-detail/GalleryDetail.js';
 // import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -56,6 +58,8 @@ function App() {
         <Route exact path='/menu' element={<Menu />} />
         <Route exact path='/menu/product/:slug' element={<Product />} />
         <Route exact path='/about-us' element={<AboutUs />} />
+        <Route exact path='/gallery' element={<Gallery />} />
+        <Route exact path='/gallery/:slug' element={<GalleryDetail />} />
       </Routes>
     </Router>
     
@@ -77,11 +81,12 @@ function Header() {
               <Link to="/">Home</Link>
             </li>
             <li>
-                {/* <a href="index.html">About us</a> */}
                 <Link to="/about-us">About Us</Link>
             </li>
             <li>
-                {/* <a href="index.html">Menu</a> */}
+                <Link to="/gallery">Gallery</Link>
+            </li>
+            <li>
                 <Link to="/menu">Menu</Link>
             </li>
             <li>

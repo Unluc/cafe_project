@@ -13,7 +13,7 @@ class RelatedProductSerializer(serializers.ModelSerializer):
         fields = ("preview", "img_alt", "name", "price" )
 
 class ProductSerializer(serializers.ModelSerializer):
-    related_products = serializers.StringRelatedField(many=True, read_only=True)
+    related_products = RelatedProductSerializer(many=True)
 
     # def to_representation(self, obj):
     #     representation = super().to_representation(obj)
@@ -25,9 +25,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        lookup_field = 'slug'
-        extra_kwargs = {
-            'url': {'lookup_field': 'slug'}
-        }
+        # lookup_field = 'slug'
+        # extra_kwargs = {
+        #     'url': {'lookup_field': 'slug'}
+        # }
         fields = ("id", "preview", "img_alt", "name", "slug", "price", "old_price", "overview", "related_products", "new_product", "created_at", "updated_at")
 

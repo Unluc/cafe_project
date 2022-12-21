@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "accounts",
     "contact",
     "product",
+    "gallery",
 ]
 
 CONSTANCE_IGNORE_ADMIN_VERSION_CHECK = True

@@ -9,6 +9,7 @@ function Product() {
 
     const [apiData, setApiData] = React.useState("");
     const [state, setState] = React.useState("");
+    const [apiRelatedProducts, setApiRelatedProducts] = React.useState("");
 
     // const { slug } = this.props.match.params;
     let slug = useParams().slug;
@@ -21,7 +22,7 @@ function Product() {
             console.log(res.data);
             setState("Success");
             setApiData(res.data);
-
+            setApiRelatedProducts(res.data.related_products)
           }).catch((err) => {
             console.log(err);
           });
@@ -36,11 +37,18 @@ function Product() {
                         <h2>Food name: {apiData.name}</h2>
                         <h2>Price: £{apiData.price}</h2>
                         <p>Description <br></br> {apiData.overview}</p>
+                    
+                        <div className="related-products">
+                            {state === "Loading" ? (<h1>Loading</h1>) : (
+                                Array.prototype.map.call(apiRelatedProducts, (gallery) => (
+                                    <div>
+                                        <img src={gallery.preview === null ? "/default-food-image.jpg" : gallery.preview} alt={gallery.img_alt} />
+                                        <p>{gallery.name} £{gallery.price}</p>
+                                    </div>
+                                ))
+                            )}                            
+                        </div>
                     </div>
-                        // <div className="related-products">
-                        //     <img />
-                        //     <p>sdfsdf</p>
-                        // </div>
                 )}
                 
             </div>
