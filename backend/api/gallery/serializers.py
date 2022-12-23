@@ -1,18 +1,18 @@
 from rest_framework import serializers
 from gallery.models import Gallery, Image
 
-class GallerySerializer(serializers.ModelSerializer):
+# class GalleryDetailSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Gallery
-        fields = "__all__"
+#     class Meta:
+#         model = Gallery
+#         fields = "__all__"
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = ["id", "image", "alt"]
 
-class GalleryDetailSerializer(serializers.ModelSerializer):
+class GallerySerializer(serializers.ModelSerializer):
     image_set = ImageSerializer(many=True)
 
     # def to_representation(self, obj):
@@ -26,4 +26,4 @@ class GalleryDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Gallery
-        fields = ["preview", "image_set"]
+        fields = ["id", "title", "slug", "preview", "image_set"]

@@ -12,8 +12,10 @@
 
 
 @media only screen and (min-width: 1001px) {
+
     .hero-abt-us > .btn-primary {
         margin: 0 auto;
         width: 275px;
     }
+    
 }

@@ -11,6 +11,21 @@ import GalleryDetail from './pages/gallery-detail/GalleryDetail.js';
 // import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+// const NAV_BUTTON = document.querySelector("#nav-btn");
+// const NAV_LIST = document.querySelector("#nav-list");
+
+// // Show/hide navigation on mobile if button is clicked
+// NAV_BUTTON.onClick = () => {
+//     NAV_LIST.classList.toggle("show-navigation");
+// }
+
+// // Hide the navigation if a link is clicked
+// NAV_LIST.onClick = () => {
+//   if (NAV_LIST.classList.contains("show-navigation")) {
+//       NAV_LIST.classList.remove("show-navigation");
+//   }
+// }
+
 
 function App() {
   return (
@@ -66,16 +81,62 @@ function App() {
   );
 }
 
+// function Header() {
+//   return (
+//     // <div className='App'>
+//       <header className="Page-header">
+//         <Link to="/" className="Page-logo">
+//           <img className="Logo-img" src="logo2.jpg" alt="Logo" />
+//         </Link>
+    
+//         <nav className="Page-navigation" id="nav-list">
+//         <ul className="Navigation-list">
+//             <li>
+//             {/* <a href="index.html">Home</a> */}
+//               <Link to="/">Home</Link>
+//             </li>
+//             <li>
+//                 <Link to="/about-us">About Us</Link>
+//             </li>
+//             <li>
+//                 <Link to="/gallery">Gallery</Link>
+//             </li>
+//             <li>
+//                 <Link to="/menu">Menu</Link>
+//             </li>
+//             <li>
+//               <Link to="/contact-us">Contact Us</Link>
+//             </li>
+//         </ul>
+//         </nav>
+//       </header>
+//     // </div> 
+//   )
+// }
 function Header() {
+
+  // function openNav() {
+  //   document.getElementById("myNav").style.width = "60%";
+  // }
+  
+  // function closeNav() {
+  //   document.getElementById("myNav").style.width = "0%";
+  // }
+  
   return (
-    // <div className='App'>
       <header className="Page-header">
         <Link to="/" className="Page-logo">
           <img className="Logo-img" src="logo2.jpg" alt="Logo" />
         </Link>
-    
+
+          {/* <a href="javascript:;" className="mobile-btn" id="nav-btn">
+            &#9776
+              <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
+          </a> */}
+          {/* <h2><span onclick="openNav()">&#9776</span>Welcome to my web page</h2> */}
         <nav className="Page-navigation" id="nav-list">
-        <ul className="Navigation-list">
+          {/* <a class="closebtn" onclick="closeNav()">&times;</a> */}
+          <ul className="Navigation-list">
             <li>
             {/* <a href="index.html">Home</a> */}
               <Link to="/">Home</Link>
@@ -92,11 +153,9 @@ function Header() {
             <li>
               <Link to="/contact-us">Contact Us</Link>
             </li>
-        </ul>
+          </ul>
         </nav>
       </header>
-    // </div> 
-  )
+  );
 }
-
 export default App;

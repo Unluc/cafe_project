@@ -8,7 +8,7 @@ from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 
-from api.gallery.serializers import GallerySerializer, GalleryDetailSerializer
+from api.gallery.serializers import GallerySerializer
 
 from gallery.models import Gallery
 
@@ -23,5 +23,5 @@ class GalleryListView(generics.ListAPIView):
 class GalleryDetailView(generics.RetrieveAPIView):
     queryset = Gallery.objects.all()
     lookup_field = 'slug'
-    serializer_class = GalleryDetailSerializer
+    serializer_class = GallerySerializer
     permission_classes = [AllowAny]
