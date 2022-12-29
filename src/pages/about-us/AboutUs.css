@@ -10,6 +10,9 @@
     justify-content: center;
 }
 
+.about-height {
+    height: 71vh;
+}
 
 @media only screen and (min-width: 1001px) {
 

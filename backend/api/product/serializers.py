@@ -10,7 +10,7 @@ class RelatedProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Product
-        fields = ("preview", "img_alt", "name", "price" )
+        fields = ("preview", "img_alt", "name", "price", "slug")
 
 class ProductSerializer(serializers.ModelSerializer):
     related_products = RelatedProductSerializer(many=True)

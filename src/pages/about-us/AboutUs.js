@@ -4,26 +4,26 @@ import "./AboutUs.css";
 
 function AboutUs() {
     return(
-        <div className="about-us-container height">
+        <div className="about-us-container">
+            <div className="about-height">
             <section className="hero-abt-us">
                 <div className="hero-text">
                     <h1 className="hero-title">About Us</h1>
 
                     <p className="hero-subtitle">
-                        
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
 
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
 
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
 
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi libero sed sequi deleniti aspernatur minus tempora nobis provident ipsa quae ratione repellendus reprehenderit beatae repudiandae ducimus explicabo nemo, eius sit.
                     </p>
                 </div>
 
                 <Link to="/menu" className="btn-primary">See our menu</Link>
             </section>
-
+            </div>
             <Footer />
         </div>
     );

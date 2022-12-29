@@ -24,7 +24,7 @@ function Gallery() {
 
     return(
         <div className="pics-container">
-            <div className="content-section">
+            <div className="content-section height">
                 <h2>All events</h2>
                 <div className="products-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (

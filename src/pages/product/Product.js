@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import Footer from "../../components/footer/Footer.js"
 import { useParams } from "react-router-dom";
+import "./Product.css"
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 
 function Product() {
     axios.defaults.xsrfCookieName = 'csrftoken';
@@ -30,24 +33,32 @@ function Product() {
     // console.log(apiData)
     return(
         <div className="product-containce height">
-            <div className="content-section">
+            <div className="content-section height">
                 {state === "Loading" ? (<h1>Loading</h1>) : (
-                    <div className="image-description">
-                        <img src={apiData.preview === null ? "/default-food-image.jpg" : apiData.preview} alt={apiData.img_alt} />
-                        <h2>Food name: {apiData.name}</h2>
-                        <h2>Price: £{apiData.price}</h2>
-                        <p>Description <br></br> {apiData.overview}</p>
-                    
-                        <div className="related-products">
-                            {state === "Loading" ? (<h1>Loading</h1>) : (
-                                Array.prototype.map.call(apiRelatedProducts, (gallery) => (
-                                    <div>
-                                        <img src={gallery.preview === null ? "/default-food-image.jpg" : gallery.preview} alt={gallery.img_alt} />
-                                        <p>{gallery.name} £{gallery.price}</p>
-                                    </div>
-                                ))
-                            )}                            
+                    <div>
+                        <div className="image-description">
+                            <img src={apiData.preview === null ? "/default-food-image.jpg" : apiData.preview} alt={apiData.img_alt} />
+                            <div className="product-description">
+                                <h2>{apiData.name}</h2>
+                                <p>Price: £{apiData.price}</p>
+                                <p>Description: <br></br> {apiData.overview}</p>
+                            </div>                       
                         </div>
+                        {apiRelatedProducts.length > 0 ? (
+                        <div>
+                            <h2 className="related-prod-title">Related Products</h2>
+                            <div className="related-products">
+                            {
+                                Array.prototype.map.call(apiRelatedProducts, (product) => (
+                                    <Link to={"../" + product.slug + "/"} onClick={() => window.location.href="../" + product.slug + "/"} className="product" params={{slug: product.slug}} relative="path">
+                                        <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
+                                        <p>{product.name} £{product.price}</p>
+                                    </Link>
+                                ))
+                            }                     
+                            </div>
+                        </div>)
+                        : ""}  
                     </div>
                 )}
                 

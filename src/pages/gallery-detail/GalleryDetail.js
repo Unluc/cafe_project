@@ -33,7 +33,7 @@ function GalleryDetail() {
     
     return(
         <div className="product-containce height">
-            <div className="content-section">
+            <div className="content-section height">
                 <h1>{apiDataObject.title}</h1>
                 <div className="gallery-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (

@@ -30,8 +30,8 @@ function Menu() {
     // console.log(typeof apiData);
     // console.log("apiData");
     return(
-        <div className="menu height">
-            <div className="content-section">
+        <div className="menu ">
+            <div className="content-section height">
                 <h2>All products</h2>
                 <div className="products-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (
