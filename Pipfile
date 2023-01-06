@@ -18,6 +18,7 @@ django-filter = "*"
 pyautogui = "*"
 django-unique-slugify = "*"
 pillow = "*"
+django-solo = "*"
 
 [dev-packages]
 

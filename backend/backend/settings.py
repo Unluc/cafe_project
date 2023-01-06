@@ -37,6 +37,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
     'django_jinja',
+    'solo',
     # 'jet',
 
     'django.contrib.admin',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     "contact",
     "product",
     "gallery",
+    "organization",
 ]
 
 CONSTANCE_IGNORE_ADMIN_VERSION_CHECK = True

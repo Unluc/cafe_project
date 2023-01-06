@@ -1,0 +1,7 @@
+.imap {
+    display: block;       /* iframes are inline by default */
+    border: none;         /* Reset default border */
+    position: absolute;
+    height: 84%;
+    width: 100%;
+}

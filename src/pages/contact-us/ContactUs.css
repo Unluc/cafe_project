@@ -7,9 +7,18 @@ form {
     width: 100%;
 }
 
-.content-section > h2,
-.content-section > p {
+.content-section > .contact-form > h2,
+.content-section > .contact-form > p {
     text-align: center;
+}
+
+.imap {
+    width: 500px;
+}
+.myset {
+    display: flex;
+    /* column-gap: ; */
+    /* justify-content: space-between; */
 }
 /* .height {
     height: 63.8vh;

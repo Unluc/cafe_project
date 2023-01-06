@@ -8,6 +8,7 @@ import Product from './pages/product/Product.js';
 import AboutUs from './pages/about-us/AboutUs.js';
 import Gallery from './pages/gallery/Gallery.js';
 import GalleryDetail from './pages/gallery-detail/GalleryDetail.js';
+import Location from './pages/location/Location.js';
 // import Footer from './components/footer/Footer.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -75,6 +76,7 @@ function App() {
         <Route exact path='/about-us' element={<AboutUs />} />
         <Route exact path='/gallery' element={<Gallery />} />
         <Route exact path='/gallery/:slug' element={<GalleryDetail />} />
+        <Route exact path='/location' element={<Location />} />
       </Routes>
     </Router>
     
@@ -115,13 +117,13 @@ function App() {
 // }
 function Header() {
 
-  // function openNav() {
-  //   document.getElementById("myNav").style.width = "60%";
-  // }
+  function openNav() {
+    document.getElementById("nav-list").style.width = "60%";
+  }
   
-  // function closeNav() {
-  //   document.getElementById("myNav").style.width = "0%";
-  // }
+  function closeNav() {
+    document.getElementById("nav-list").style.width = "0%";
+  }
   
   return (
       <header className="Page-header">
@@ -133,12 +135,11 @@ function Header() {
             &#9776
               <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
           </a> */}
-          {/* <h2><span onclick="openNav()">&#9776</span>Welcome to my web page</h2> */}
+        
         <nav className="Page-navigation" id="nav-list">
-          {/* <a class="closebtn" onclick="closeNav()">&times;</a> */}
+          <a className="closebtn" onClick="closeNav()">&times;</a>
           <ul className="Navigation-list">
             <li>
-            {/* <a href="index.html">Home</a> */}
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -153,8 +154,13 @@ function Header() {
             <li>
               <Link to="/contact-us">Contact Us</Link>
             </li>
+            <li>
+              <Link to="/location">Location</Link>
+            </li>
           </ul>
         </nav>
+
+        <img className="burger-menu" onClick="openNav()" src="menu-icon.svg"/>
       </header>
   );
 }
