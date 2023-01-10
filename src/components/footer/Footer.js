@@ -1,7 +1,6 @@
 import "./Footer.css";
 
 function Footer() {
-    
     return(
         <footer className="page-footer">
             <div className="footer-content">
