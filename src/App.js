@@ -183,7 +183,38 @@ const LoginForm = ({ isShowLogin }) => {
   );
 };
 
+
 function Header() {
+  axios.defaults.xsrfCookieName = 'csrftoken';
+  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+    
+  // const[formStatus, setFormStatus] = React.useState("Login");
+  
+  const handleLogoutClick = (e) => {
+
+    e.preventDefault();
+    // setFormStatus("Submiting...");
+  
+    axios.post("/api/v1/accounts/logout/", {}, {
+      "headers": {
+        'Content-Type': 'application/json',
+      }
+  }).then((res) => {
+      console.log(res);
+      // setFormStatus("Submited");
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+
+
+
+
+
+
+
+
   const [isShowLogin, setIsShowLogin] = useState(true);
 
   const handleLoginClick = () => {
@@ -240,6 +271,12 @@ function Header() {
         <div className='logfrm'>
           <span onClick={handleClick} className="loginicon">
             Sign In
+          </span>
+        </div>
+
+        <div className='logfrm'>
+          <span onClick={handleLogoutClick} className="loginicon">
+            Sign Out
           </span>
         </div>
 
