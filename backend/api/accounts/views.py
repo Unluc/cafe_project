@@ -25,16 +25,16 @@ class RegisterView(generics.CreateAPIView):
 
     # redirect_url = reverse_lazy('confirm')
 
-    def perform_create(self, serializer):
-        instance = serializer.save()
-        self.request.session['user_pk'] = instance.pk
+    # def perform_create(self, serializer):
+    #     instance = serializer.save()
+    #     self.request.session['user_pk'] = instance.pk
 
     def post(self, request, *args, **kwargs):
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid(raise_exception=True)
         self.create(request, *args, **kwargs)
         # self.serializer.create(request, *args, **kwargs)
-        print(self.request.session['verify'])
+        # print(self.request.session['verify'])
         return Response(status=status.HTTP_201_CREATED, data=self.request.data)
 
 

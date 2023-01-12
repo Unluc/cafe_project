@@ -107,4 +107,7 @@ class RegisterSerializer(serializers.Serializer):
     #     print(code)
     #     # print(instance.pk)
     #     # print(instance.role)
+        if User.objects.filter(email=validated_data["email"]):
+            return None
+        instance = User.objects.create_user(**validated_data)
         return instance
