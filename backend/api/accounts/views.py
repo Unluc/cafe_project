@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from api.accounts.serializers import RegisterSerializer, LoginSerializer
 
 from accounts.models import User
+import json
 # from shared.permissions.rest_view_permission import IsAnonymous, IsManager, IsDeactivated
 # from shared.rest.mixins import BaseAPIViewMixin
 
@@ -56,7 +57,7 @@ class LoginView(GenericAPIView):
         self.serializer = self.get_serializer(data=self.request.data, context={'request': request})
         self.serializer.is_valid(raise_exception=True)
         self.login()
-        return Response(status=status.HTTP_200_OK)
+        return Response(data=self.request.data, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):

@@ -1,9 +1,13 @@
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ isShowLogin }) => {
+
+    const navigate = useNavigate();
 
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -34,6 +38,8 @@ const LoginForm = ({ isShowLogin }) => {
         // console.log(isShowLogin);
         // isShowLogin = "true";
         // console.log(isShowLogin);
+        // <Navigate to="/menu" />
+        // navigate("/menu");
       }).catch((err) => {
         console.log(err);
       });
@@ -43,7 +49,7 @@ const LoginForm = ({ isShowLogin }) => {
         <div className="login-form">
           <div className="form-box solid">
             <form onSubmit={onSubmit}>
-              <h1 className="login-text">Sign In</h1>
+              <h1 className="login-text">Login</h1>
               <label>Email</label>
               <br></br>
               <input type="text" name="email" className="login-box" />

@@ -3,7 +3,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const SignUpForm = ({ isShowLogin }) => {
+const SignUpForm = ({ isShowSignUp }) => {
 
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -39,7 +39,7 @@ const SignUpForm = ({ isShowLogin }) => {
       });
     }
     return (
-      <div className={`${isShowLogin ? "active" : ""} show`}>
+      <div className={`${isShowSignUp ? "active" : ""} show`}>
         <div className="login-form">
           <div className="form-box solid">
             <form onSubmit={onSubmit}>

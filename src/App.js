@@ -161,14 +161,25 @@ function Header() {
 
 
   const [isShowLogin, setIsShowLogin] = useState(true);
+  const [isShowSignUp, setIsShowSignUp] = useState(true);
 
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin);
   };
 
+
+  const handleSignUpClick = () => {
+    setIsShowSignUp((isShowSignUp) => !isShowSignUp);
+  };
+
   const handleClick = () => {
     handleLoginClick();
   };
+
+  const handleSignClick = () => {
+    handleSignUpClick();
+  };
+  
 
   function openNav() {
     document.getElementById("nav-list").style.width = "60%";
@@ -218,6 +229,7 @@ function Header() {
             Login
           </span>
         </div>
+        <LoginForm isShowLogin={isShowLogin} />
 
         <div className='logfrm'>
           <span onClick={handleLogoutClick} className="loginicon">
@@ -226,13 +238,13 @@ function Header() {
         </div>
 
         <div className='logfrm'>
-          <span onClick={handleClick} className="loginicon">
+          <span onClick={handleSignClick} className="loginicon">
             Sign Up
           </span>
         </div>
-
-        <LoginForm isShowLogin={isShowLogin} />
-        <SignUpForm isShowLogin={isShowLogin} />
+        <SignUpForm isShowSignUp={isShowSignUp} />
+        
+        
 
         <img className="burger-menu" onClick="openNav()" src="menu-icon.svg"/>
       </header>
