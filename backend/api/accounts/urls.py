@@ -14,5 +14,4 @@ urlpatterns = [
     # path('data_social_create/<int:uid>/', ProfileDataSocialCreateView.as_view(), name='data_social_create'),
     # path('role_picking/', RolePickingView.as_view(), name='role_picking'),
     # path('user_profile/', UserProfileRetrieveView.as_view(), name='user_profile'),
-    # path('developer_or_manager/', GetDeveloperOrManagerView.as_view(), name='developer_or_manager'),
 ]

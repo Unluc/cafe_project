@@ -9,6 +9,7 @@ import AboutUs from './pages/about-us/AboutUs.js';
 import Gallery from './pages/gallery/Gallery.js';
 import GalleryDetail from './pages/gallery-detail/GalleryDetail.js';
 import Location from './pages/location/Location.js';
+import Profile from './pages/profile/Profile.js';
 // import Footer from './components/footer/Footer.js';
 import LoginForm from './components/login/Login.js';
 import SignUpForm from './components/signUp/SignUp.js';
@@ -87,6 +88,7 @@ function App() {
         <Route exact path='/gallery' element={<Gallery />} />
         <Route exact path='/gallery/:slug' element={<GalleryDetail />} />
         <Route exact path='/location' element={<Location />} />
+        <Route exact path='/profile' element={<Profile />} />
       </Routes>
     </Router>
     
@@ -244,7 +246,7 @@ function Header() {
         </div>
         <SignUpForm isShowSignUp={isShowSignUp} />
         
-        
+        {/* <Link to="/profile">Profile</Link> */}
 
         <img className="burger-menu" onClick="openNav()" src="menu-icon.svg"/>
       </header>
