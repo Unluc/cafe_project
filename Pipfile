@@ -19,6 +19,7 @@ pyautogui = "*"
 django-unique-slugify = "*"
 pillow = "*"
 django-solo = "*"
+django-treebeard = "*"
 
 [dev-packages]
 
