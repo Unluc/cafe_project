@@ -5,6 +5,7 @@ from django.db import models
 from django.urls import reverse
 
 from django_unique_slugify import unique_slugify
+from category.models import Category
 # from seo.mixins.models import SeoTagsMixin
 
 
@@ -63,13 +64,13 @@ class Product(models.Model):
     #     verbose_name=_('Product of the sale picture alternative name')
     # )
 
-    # category = models.ForeignKey(
-    #     Category,
-    #     null=True,
-    #     blank=True,
-    #     on_delete=models.CASCADE,
-    #     verbose_name=_('Product category')
-    # )
+    category = models.ForeignKey(
+        Category,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        verbose_name='Product category'
+    )
     my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     class Meta:
