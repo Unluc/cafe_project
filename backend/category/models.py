@@ -37,7 +37,7 @@ class Category(MP_Node):
         verbose_name='Category visibility on main page'
     )
 
-    node_order_by = ['category_name']
+    node_order_by = ['name']
 
     def move(self, target, pos=None):
         # if target.depth > 1:
@@ -47,7 +47,8 @@ class Category(MP_Node):
         #     raise PathOverflow(_("Category can only be nested 1 levels deep target"))
         # return MP_MoveHandler(self, target, pos).process()
         if target.depth > 2:
-            target = target.get_ancestors().first()
+            # target = target.get_ancestors().first()
+            target = target.get_parent()
             if self.get_descendants():
                 raise ValidationError('Category can only be nested 1 levels deep target')
         return MP_MoveHandler(self, target, pos).process()

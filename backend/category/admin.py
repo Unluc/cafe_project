@@ -14,3 +14,7 @@ class CategoryNodeForm(MoveNodeForm):
         model = Category
         fields = '__all__'
         search_fields = ('name',)
+
+@admin.register(Category)
+class CategoryAdmin(TreeAdmin):
+    form = movenodeform_factory(Category, CategoryNodeForm)
