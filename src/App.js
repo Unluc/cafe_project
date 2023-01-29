@@ -16,7 +16,7 @@ import SignUpForm from './components/signUp/SignUp.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // const NAV_BUTTON = document.querySelector("#nav-btn");
 // const NAV_LIST = document.querySelector("#nav-list");
@@ -137,6 +137,7 @@ function Header() {
     
   // const[formStatus, setFormStatus] = React.useState("Login");
   
+  
   const handleLogoutClick = (e) => {
 
     e.preventDefault();
@@ -149,6 +150,8 @@ function Header() {
   }).then((res) => {
       console.log(res);
       // setFormStatus("Submited");
+      localStorage.removeItem("user");
+      rerenderParentCallback();
     }).catch((err) => {
       console.log(err);
     });
@@ -164,6 +167,14 @@ function Header() {
 
   const [isShowLogin, setIsShowLogin] = useState(true);
   const [isShowSignUp, setIsShowSignUp] = useState(true);
+
+  
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [ignored, forceUpdate] = useState(0);
+
+  const rerenderParentCallback = () => {
+    forceUpdate(ignored + 1);
+  }
 
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin);
@@ -183,6 +194,8 @@ function Header() {
   };
   
 
+  
+
   function openNav() {
     document.getElementById("nav-list").style.width = "60%";
   }
@@ -192,64 +205,80 @@ function Header() {
   }
   
   return (
-      <header className="Page-header">
-        <Link to="/" className="Page-logo">
-          <img className="Logo-img" src="logo2.jpg" alt="Logo" />
-        </Link>
+    <header className="Page-header">
+      <Link to="/" className="Page-logo">
+        <img className="Logo-img" src="logo2.jpg" alt="Logo" />
+      </Link>
 
-          {/* <a href="javascript:;" className="mobile-btn" id="nav-btn">
-            &#9776
-              <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
-          </a> */}
-        
-        <nav className="Page-navigation" id="nav-list">
-          <a className="closebtn" onClick="closeNav()">&times;</a>
-          <ul className="Navigation-list">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/about-us">About Us</Link>
-            </li>
-            <li>
-                <Link to="/gallery">Gallery</Link>
-            </li>
-            <li>
-                <Link to="/menu">Menu</Link>
-            </li>
-            <li>
-              <Link to="/contact-us">Contact Us</Link>
-            </li>
-            <li>
-              <Link to="/location">Location</Link>
-            </li>
-          </ul>
-        </nav>
+        {/* <a href="javascript:;" className="mobile-btn" id="nav-btn">
+          &#9776
+            <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
+        </a> */}
+      
+      <nav className="Page-navigation" id="nav-list">
+        <a className="closebtn" onClick="closeNav()">&times;</a>
+        <ul className="Navigation-list">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+              <Link to="/about-us">About Us</Link>
+          </li>
+          <li>
+              <Link to="/gallery">Gallery</Link>
+          </li>
+          <li>
+              <Link to="/menu">Menu</Link>
+          </li>
+          <li>
+            <Link to="/contact-us">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/location">Location</Link>
+          </li>
+        </ul>
+      </nav>
+      
 
-        <div className='logfrm'>
-          <span onClick={handleClick} className="loginicon">
-            Login
-          </span>
-        </div>
-        <LoginForm isShowLogin={isShowLogin} />
+      {
+        user ? (
+          <>
+            {/* <Link to="/profile">Profile</Link>  */}
+          
+            <div className='logfrm'>
+              <span onClick={handleLogoutClick} className="loginicon">
+                Log Out
+              </span>
+            </div>
+          </>
 
-        <div className='logfrm'>
-          <span onClick={handleLogoutClick} className="loginicon">
-            Log Out
-          </span>
-        </div>
+          
+        ) : (
+          <>
+            <div className='logfrm'>
+            <span onClick={handleClick} className="loginicon">
+              Login
+            </span>
+          </div>
+          <LoginForm isShowLogin={isShowLogin} forceRerender={rerenderParentCallback}/>
 
-        <div className='logfrm'>
-          <span onClick={handleSignClick} className="loginicon">
-            Sign Up
-          </span>
-        </div>
-        <SignUpForm isShowSignUp={isShowSignUp} />
-        
-        {/* <Link to="/profile">Profile</Link> */}
+          
 
-        <img className="burger-menu" onClick="openNav()" src="menu-icon.svg"/>
-      </header>
+          <div className='logfrm'>
+            <span onClick={handleSignClick} className="loginicon">
+              Sign Up
+            </span>
+          </div>
+          <SignUpForm isShowSignUp={isShowSignUp} />
+          </>
+        )
+      }
+      
+      
+      
+
+      <img className="burger-menu" onClick="openNav()" src="menu-icon.svg"/>
+    </header>
   );
 }
 export default App;

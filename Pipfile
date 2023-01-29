@@ -20,6 +20,7 @@ django-unique-slugify = "*"
 pillow = "*"
 django-solo = "*"
 django-treebeard = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

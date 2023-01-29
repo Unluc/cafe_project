@@ -5,7 +5,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({ isShowLogin }) => {
+const LoginForm = ({ isShowLogin, forceRerender }) => {
 
     const navigate = useNavigate();
 
@@ -13,6 +13,7 @@ const LoginForm = ({ isShowLogin }) => {
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
       
     const[formStatus, setFormStatus] = React.useState("Login");
+    const [user, setUser] = useState();
     
     const onSubmit = (e) => {
   
@@ -35,6 +36,16 @@ const LoginForm = ({ isShowLogin }) => {
     }).then((res) => {
         console.log(res);
         setFormStatus("Submited");
+        setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        forceRerender();
+        // console.log("res data after locac storage");
+        // console.log(res.data);
+        // console.log("Now I`ll show you user data from storage");
+        // // console.log(localStorage.getItem("user"));
+        // console.log(JSON.parse(localStorage.getItem("user")));
+
+
         // console.log(isShowLogin);
         // isShowLogin = "true";
         // console.log(isShowLogin);
