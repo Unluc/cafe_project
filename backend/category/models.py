@@ -46,7 +46,7 @@ class Category(MP_Node):
         #     print(pos)
         #     raise PathOverflow(_("Category can only be nested 1 levels deep target"))
         # return MP_MoveHandler(self, target, pos).process()
-        if target.depth > 2:
+        if target.depth > 1:
             # target = target.get_ancestors().first()
             target = target.get_parent()
             if self.get_descendants():

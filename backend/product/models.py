@@ -69,7 +69,8 @@ class Product(models.Model):
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        verbose_name='Product category'
+        verbose_name='Product category',
+        related_name="product_set"
     )
     my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
 

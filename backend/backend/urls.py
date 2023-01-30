@@ -48,6 +48,7 @@ urlpatterns = [
         path("product/", include('api.product.urls')),
         path("gallery/", include('api.gallery.urls')),
         path("org/", include('api.organization.urls')),
+        path("category/", include('api.category.urls')),
     ])),
 ]+ static(
     settings.MEDIA_URL,
