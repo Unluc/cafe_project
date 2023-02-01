@@ -28,9 +28,9 @@ class CategoryParentSerializer(serializers.ModelSerializer):
     def get_child_categories(self, obj):
         """ self referral field """
         serializer = CategorySerializer(
-            instance=obj.get_children(),
+            instance=obj.get_children().exclude(product_set__isnull=True),
             many=True
         )
         return serializer.data
 
-        # .exclude(product_set__isnull=True)
+        # 
