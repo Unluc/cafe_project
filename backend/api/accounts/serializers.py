@@ -55,6 +55,21 @@ class LoginSerializer(serializers.Serializer):
         attrs['user'] = authenticate(
             email=attrs['email'], request=self.context['request'], password=attrs['password']
         )
+        if not attrs['user']:
+            if User.objects.filter(email=attrs['email']).first().check_password(attrs['password']):
+                raise ValidationError({'password': 'User is not active'})
+            raise ValidationError({'password': 'Wrong credentials'})
+        # attrs['user'] = User.objects.filter(
+        #     email=attrs['email'], 
+        #     # password=attrs['password']
+        # ).first()
+        # if attrs["user"] and not attrs['user'].check_password(attrs['password']):
+        #     raise ValidationError({'password': 'Wrong credentials'})
+        # # print(attrs['user'])
+        # if not attrs['user'].is_active():
+        #     raise ValidationError({'password': 'Wrong credentials'})
+        # if not attrs["user"]:
+        #     raise ValidationError({'password': 'Wrong credentials'})
     #     else:
     #         raise ValidationError({'username': 'Такого username не существует'})
     #     if not attrs['user']:

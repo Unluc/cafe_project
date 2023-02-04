@@ -12,6 +12,8 @@ import Location from './pages/location/Location.js';
 import Profile from './pages/profile/Profile.js';
 // import Footer from './components/footer/Footer.js';
 import LoginForm from './components/login/Login.js';
+import Login from './pages/login/Login.js';
+import SignUp from './pages/signUp/SignUp.js';
 import SignUpForm from './components/signUp/SignUp.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -36,6 +38,7 @@ import React, { useState } from "react";
 
 function App() {
   // const [isShowLogin, setIsShowLogin] = useState(true);
+  const [ignored, forceUpdate] = useState(false);
 
   // const handleLoginClick = () => {
   //   setIsShowLogin((isShowLogin) => !isShowLogin);
@@ -89,6 +92,8 @@ function App() {
         <Route exact path='/gallery/:slug' element={<GalleryDetail />} />
         <Route exact path='/location' element={<Location />} />
         <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/login' element={<Login forceUpdate={forceUpdate}/>} />
+        <Route exact path='/signup' element={<SignUp forceUpdate={forceUpdate}/>} />
       </Routes>
     </Router>
     
@@ -254,22 +259,26 @@ function Header() {
 
           
         ) : (
+          
           <>
+          
             <div className='logfrm'>
-            <span onClick={handleClick} className="loginicon">
+            <Link to="/login" className="loginicon">Login</Link>
+            {/* <span onClick={handleClick} className="loginicon">
               Login
-            </span>
+            </span> */}
           </div>
-          <LoginForm isShowLogin={isShowLogin} forceRerender={rerenderParentCallback}/>
+          {/* <LoginForm isShowLogin={isShowLogin} forceRerender={rerenderParentCallback}/> */}
 
           
 
           <div className='logfrm'>
-            <span onClick={handleSignClick} className="loginicon">
+          <Link to="/signup" className="loginicon">SignUp</Link>
+            {/* <span onClick={handleSignClick} className="loginicon">
               Sign Up
-            </span>
+            </span> */}
           </div>
-          <SignUpForm isShowSignUp={isShowSignUp} />
+          {/* <SignUpForm isShowSignUp={isShowSignUp} /> */}
           </>
         )
       }

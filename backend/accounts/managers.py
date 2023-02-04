@@ -29,8 +29,8 @@ class CustomUserManager(BaseUserManager):
         user.token = token
         if password:
             user.set_password(password)
-        else:
-            user.set_password(user_password_from_socials)
+        # else:
+        #     user.set_password(user_password_from_socials)
             #That was in shopshop
             # email_body = _(
             #     'Hello, \n This is your credentials \n' +

@@ -3,6 +3,10 @@ form {
     width: 100%;
 }
 
+form > label {
+    color: black;
+}
+
 .btn-submit {
     width: 100%;
 }
