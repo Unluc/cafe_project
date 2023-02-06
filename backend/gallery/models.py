@@ -28,7 +28,7 @@ class Gallery(models.Model):
 
     def save(self, *args, **kwargs) -> None:
         if self.slug == None:
-            unique_slugify(self, value=self.name, slug_field_name='slug')
+            unique_slugify(self, value=self.title, slug_field_name='slug')
         else:
             unique_slugify(self, value=self.slug, slug_field_name='slug')
         super().save(*args, **kwargs)

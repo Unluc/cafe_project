@@ -17,6 +17,23 @@ function GalleryDetail() {
     // console.log(useParams());
     // console.log(slug);
 
+
+
+
+
+    // let images = document.getElementsByClassName("picture");
+    let lightbox = document.getElementById("lightbox");
+    // let lightboxImage = "";
+    // let lightboxCaption = "";
+    const [lightboxImage, setLightboxImage] = React.useState("");
+    const [lightboxCaption, setLightboxCaption] = React.useState("");
+    const [lightboxIndex, setLightboxIndex] = React.useState(0);
+    // let lightboxImage = document.getElementById("lightbox-image");
+    // let lightboxCaption = document.getElementById("lightbox-caption");
+    // let index = 0;
+
+
+
     useEffect(() => {
         setState("Loading");
         axios.get(`http://localhost:8000/api/v1/gallery/${slug}/`, {responseType: "json"}).then((res) => {
@@ -30,6 +47,49 @@ function GalleryDetail() {
           });
     }, []);
 
+    function lightboxDisplay(obj, image, alt) {
+        console.log(image);
+        if(obj) {
+            // setLightboxObject(obj);
+            console.log(lightboxIndex);
+            setLightboxIndex(apiData.indexOf(obj));
+            console.log(lightboxIndex);
+            // console.log(apiData);
+            // console.log(obj);
+            // console.log(apiData.indexOf(obj));
+            setLightboxImage(image);
+            setLightboxCaption(alt);
+        }
+        // if(image) 
+        // if(alt) 
+        if(document.getElementById("lightbox")) {
+            lightbox.style.display = "block";
+            console.log("lightbox should work");
+            
+        }
+      }
+
+    function lightboxClose() {
+        if(document.getElementById("lightbox")) {
+            lightbox.style.display = "none";
+        }
+      }
+
+    function forward() {
+        console.log(lightboxIndex);
+        lightboxIndex === apiData.length - 1 ? setLightboxIndex(0) : setLightboxIndex(lightboxIndex++);
+        // lightboxImage.src = images[index].src;
+        // lightboxCaption.innerText = images[index].alt;
+        setLightboxImage(apiData[lightboxIndex].image);
+        setLightboxCaption(apiData[lightboxIndex].alt);
+      }
+      function backward() {
+        lightboxIndex === 0 ? lightboxIndex = apiData.length - 1 : lightboxIndex--;
+        // lightboxImage.src = images[index].src;
+        // lightboxCaption.innerText = images[index].alt;
+        setLightboxImage(apiData[lightboxIndex].image);
+        setLightboxCaption(apiData[lightboxIndex].alt);
+      }
     
     return(
         <div className="product-containce height">
@@ -38,9 +98,20 @@ function GalleryDetail() {
                 <div className="gallery-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (
                         Array.prototype.map.call(apiData, (gallery) => (
-                                <img className="gallery-card" src={gallery.image === null ? "/default-food-image.jpg" : gallery.image} alt={gallery.alt} />
+                                <img className="gallery-card" onClick={() => lightboxDisplay(gallery, gallery.image, gallery.alt)} src={gallery.image === null ? "/default-food-image.jpg" : gallery.image} alt={gallery.alt} key={gallery.id}/>
                         ))
                     )}
+
+                    <div className="lightbox" id="lightbox">
+                        <span className="close" onClick={() => lightboxClose()}>&times;</span>
+                        <figure>
+                            <button class="lightbox-btn" onclick={() => backward()}>&#x2190</button>
+                            <img id="lightbox-image" className="lightbox-image" src={lightboxImage} alt={lightboxCaption} />
+                            <button class="lightbox-btn" onclick={() => forward()}>&#x2192</button>
+                            <figcaption id="lightbox-caption">{lightboxCaption}</figcaption>
+                        </figure>
+                    </div>
+                    
                 </div>
             </div>
 

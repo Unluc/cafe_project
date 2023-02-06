@@ -32,7 +32,7 @@ function Gallery() {
                             
                             <Link to={gallery.slug + "/"} className="product" params={{slug: gallery.slug}}>
                                 <img src={gallery.preview === null ? "/default-food-image.jpg" : gallery.preview} alt={gallery.alt} />
-                                <p className="product-title">{gallery.title}</p>
+                                <p className="gallery-title">{gallery.title}</p>
                             </Link>
                         
                         ))
