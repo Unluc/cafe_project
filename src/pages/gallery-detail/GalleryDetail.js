@@ -104,10 +104,10 @@ function GalleryDetail() {
 
                     <div className="lightbox" id="lightbox">
                         <span className="close" onClick={() => lightboxClose()}>&times;</span>
-                        <figure>
-                            <button class="lightbox-btn" onclick={() => backward()}>&#x2190</button>
+                        <figure className="lightbox-figure">
+                            <button class="lightbox-btn" onclick={() => backward()}>&#x2190;</button>
                             <img id="lightbox-image" className="lightbox-image" src={lightboxImage} alt={lightboxCaption} />
-                            <button class="lightbox-btn" onclick={() => forward()}>&#x2192</button>
+                            <button class="lightbox-btn" onclick={() => forward()}>&#x2192;</button>
                             <figcaption id="lightbox-caption">{lightboxCaption}</figcaption>
                         </figure>
                     </div>

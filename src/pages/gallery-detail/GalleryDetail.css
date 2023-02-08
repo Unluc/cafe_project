@@ -40,8 +40,18 @@ h1 {
     border-radius: 20px;
   }
   
+  .lightbox-figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
   .lightbox-btn {
+    display: flex;
+    align-self: flex-end;
     max-width: 10%;
+    max-height: 30px;
   }
   
   #lightbox-caption {
