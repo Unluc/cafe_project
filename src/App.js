@@ -92,7 +92,7 @@ function App() {
         <Route exact path='/gallery/:slug' element={<GalleryDetail />} />
         <Route exact path='/location' element={<Location />} />
         <Route exact path='/profile' element={<Profile />} />
-        <Route exact path='/login' element={<Login forceUpdate={forceUpdate}/>} />
+        <Route exact path='/login' element={<Login forceUpdate={forceUpdate} ignored={ignored}/>} />
         <Route exact path='/signup' element={<SignUp forceUpdate={forceUpdate}/>} />
       </Routes>
     </Router>
@@ -157,6 +157,7 @@ function Header() {
       // setFormStatus("Submited");
       localStorage.removeItem("user");
       rerenderParentCallback();
+      console.log(JSON.parse(localStorage.getItem("user")))
     }).catch((err) => {
       console.log(err);
     });
@@ -175,10 +176,10 @@ function Header() {
 
   
   const user = JSON.parse(localStorage.getItem("user"));
-  const [ignored, forceUpdate] = useState(0);
+  const [ignored, forceUpdate] = useState(false);
 
   const rerenderParentCallback = () => {
-    forceUpdate(ignored + 1);
+    forceUpdate(!ignored);
   }
 
   const handleLoginClick = () => {

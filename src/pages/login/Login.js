@@ -2,7 +2,7 @@
 import { redirect, useParams } from "react-router-dom";
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../contact-us/ContactUs.css";
 
@@ -17,6 +17,21 @@ const Login = (props) => {
       
     const[formStatus, setFormStatus] = React.useState("Login");
     const [user, setUser] = useState();
+
+
+    const[emailError, setEmailError] = React.useState("");
+    const[passwordError, setPasswordError] = React.useState("");
+
+
+    useEffect(() => {
+      if(emailError[0]) {
+        console.log(emailError[0].message);
+      }
+      if(passwordError[0]) {
+        console.log(passwordError[0].message);
+      }
+    }, [emailError, passwordError])
+
     
     const onSubmit = (e) => {
   
@@ -41,8 +56,9 @@ const Login = (props) => {
         setFormStatus("Submited");
         setUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(JSON.parse(localStorage.getItem("user")))
         // rerenderParentCallback();
-        props.forceUpdate(true);
+        props.forceUpdate(!props.ignored);
         navigate("/");
     
         // console.log("res data after locac storage");
@@ -59,6 +75,19 @@ const Login = (props) => {
         // navigate("/menu");
       }).catch((err) => {
         console.log(err);
+
+        console.log(err.response.data.errors[0].state["email"]);
+        if(err.response.data.errors[0].state["email"]) {
+          setEmailError(err.response.data.errors[0].state["email"]) 
+        } else {
+          setEmailError("");
+        }
+        if(err.response.data.errors[0].state["password"]) {
+          setPasswordError(err.response.data.errors[0].state["password"]) 
+        } else {
+          setPasswordError("");
+        }
+        console.log(emailError);
       });
     }
     return (
@@ -73,10 +102,12 @@ const Login = (props) => {
               <label htmlFor="email">Email</label>
               <br></br>
               <input type="text" name="email" htmlFor="email" />
+              <label style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</label>
               <br></br>
               <label>Password</label>
               <br></br>
               <input type="password" name="password" htmlFor="email" />
+              <label style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</label>
               <br></br>
               <button className="btn-submit" type="submit" value="LOGIN">
                 {formStatus}
