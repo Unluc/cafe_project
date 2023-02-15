@@ -16,6 +16,9 @@ from phonenumber_field.validators import validate_international_phonenumber
 
 # from app.settings import POSTIE_TEMPLATE_CHOICES
 from accounts.models import User
+
+from django.core.mail import send_mail
+from des.models import DynamicEmailConfiguration
 # from shared.models.role_choices import USER_ROLE_CHOICES
 
 User = get_user_model()
@@ -125,6 +128,7 @@ class RegisterSerializer(serializers.Serializer):
     #     # print(instance.pk)
     #     # print(instance.role)
         if User.objects.filter(email=validated_data["email"]):
-            return None
+            raise ValidationError({'email': 'This email is already exist!!!'})
         instance = User.objects.create_user(**validated_data)
+        send_mail("Just testing email sending", "This is test message for resistration on website", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
         return instance

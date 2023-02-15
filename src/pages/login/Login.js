@@ -36,7 +36,7 @@ const Login = (props) => {
     const onSubmit = (e) => {
   
       e.preventDefault();
-      setFormStatus("Submiting...");
+      // setFormStatus("Submiting...");
       const { email, password } = e.target.elements;
       
       let conFom = {

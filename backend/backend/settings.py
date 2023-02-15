@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'solo',
     # 'jet',
 
+    'des',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -252,3 +254,18 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'des.backends.ConfiguredEmailBackend'
+DES_TEST_SUBJECT = "My New Subject"
+# DES_TEST_TEXT_TEMPLATE = "markup/templates/test_email.txt"
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'inappropriatesatisfaction@gmail.com'
+# EMAIL_HOST_PASSWORD = 'fsglxpfvcwpnpuiq'  # past the key or password app here
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+# DEFAULT_FROM_EMAIL = 'My blog sender'

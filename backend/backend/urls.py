@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 
 from django.conf import settings
-from django.conf.urls import include
+from django.conf.urls import url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.urls import path, re_path
 from rest_framework import permissions
+
+from des import urls as des_urls
 # from drf_yasg.views import get_schema_view
 # from drf_yasg import openapi
 
@@ -42,6 +44,7 @@ from rest_framework import permissions
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^django-des/', include(des_urls)),
     path('api/v1/', include([
         path('accounts/', include('api.accounts.urls')),
         path("contact_us/", include('api.contact_us.urls')),

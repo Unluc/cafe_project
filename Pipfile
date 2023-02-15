@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "==3.2.16"
 djangorestframework = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
 django-jinja = "*"
@@ -21,6 +21,7 @@ pillow = "*"
 django-solo = "*"
 django-treebeard = "*"
 djangorestframework-simplejwt = "*"
+django-des = "*"
 
 [dev-packages]
 
