@@ -1,4 +1,4 @@
-# from string import digits
+from string import digits
 
 from django.contrib.auth import authenticate
 from django.db.models import Q
@@ -107,7 +107,7 @@ class RegisterSerializer(serializers.Serializer):
 
     def create(self, validated_data):
     #     # validated_data['code']
-    #     code = get_random_string(length=6, allowed_chars=digits)
+        code = get_random_string(length=6, allowed_chars=digits)
     #     if '@' in validated_data['username'] and not User.objects.filter(email=validated_data['username']).exists():
     #         instance = User.objects.create_user(**validated_data, role=self.context['request'].session['role'],
     #                                             email=validated_data['username'])
@@ -124,11 +124,22 @@ class RegisterSerializer(serializers.Serializer):
     #         self.context['request'].session['verify'] = {'phone': phone.pk}
     #     else:
     #         raise ValidationError({'username': 'Этот username уже существует'})
-    #     print(code)
+        print("The code", code)
     #     # print(instance.pk)
     #     # print(instance.role)
         if User.objects.filter(email=validated_data["email"]):
             raise ValidationError({'email': 'This email is already exist!!!'})
-        instance = User.objects.create_user(**validated_data)
-        send_mail("Just testing email sending", "This is test message for resistration on website", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
+        instance = User.objects.create_user(**validated_data, code=code)
+        print("Instance code", instance.code)
+        link_to_api_confirm = f"http://localhost:8000/api/v1/accounts/confirm/{instance.id}"
+        send_mail("Just testing email sending", f"This is test message for resistration on website. If you want to verify user on website input \"{code}\" when you go on {link_to_api_confirm}", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
         return instance
+
+class CodeCheckSerializer(serializers.Serializer):
+    code = serializers.CharField(min_length=6, max_length=6)
+
+    # class Meta:
+    #     fields = ['code']
+    # def validate(self, attrs):
+    #     print(self.request.user)
+    #     return super().validate(attrs)

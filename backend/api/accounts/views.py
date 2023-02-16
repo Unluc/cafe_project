@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 
-from api.accounts.serializers import RegisterSerializer, LoginSerializer
+from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer
 
 from accounts.models import User
 import json
@@ -71,3 +71,45 @@ class LogoutView(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
+class ReceiveCodeView(generics.GenericAPIView):
+    serializer_class = CodeCheckSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        if not User.objects.filter(id=kwargs["pk"]):
+            raise ValidationError({'code': 'Wrong link'})
+        if User.objects.filter(id=kwargs["pk"]).first().code == self.request.data["code"]:
+            user = User.objects.filter(id=kwargs["pk"]).first()
+            user.is_active = True
+            user.code = ""
+            user.save()
+            return Response(data=self.request.data, status=status.HTTP_200_OK)
+
+        raise ValidationError({'code': 'Wrong code'})
+
+        # social = SocialFacebookVerification.objects.first()
+        # if request.data['code'] == social.code:
+        #     social.verified = True
+        #     social.save()
+        #     return Response(
+        #         {
+        #             'code': status.HTTP_200_OK,
+        #             'data': {
+        #                 'redirect': {
+        #                     'location': reverse_lazy('social:complete', kwargs={'backend': 'facebook'})
+        #                 },
+        #             }
+        #         }
+        #     )
+        # else:
+        #     return Response(
+        #         {
+        #             'data': {
+        #                 'message': {
+        #                     'error': {
+        #                         'title': _('Wrong code')
+        #                     }},
+        #             }
+        #         }
+        #     )

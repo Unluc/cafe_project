@@ -20,6 +20,7 @@ class User(AbstractUser):
     new_email = models.EmailField(_('Email address'), unique=True, null=True, blank=True)
     phone_number = PhoneNumberField(null=True, blank=True, unique=False, verbose_name=_('Phone number'))
     token = models.CharField(max_length=100, null=True, blank=True)
+    code = models.CharField(max_length=100, null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
