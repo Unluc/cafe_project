@@ -14,6 +14,7 @@ import Profile from './pages/profile/Profile.js';
 import LoginForm from './components/login/Login.js';
 import Login from './pages/login/Login.js';
 import SignUp from './pages/signUp/SignUp.js';
+import EmailVerification from './pages/email-verification/EmailVerification.js';
 import SignUpForm from './components/signUp/SignUp.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -94,6 +95,7 @@ function App() {
         <Route exact path='/profile' element={<Profile />} />
         <Route exact path='/login' element={<Login forceUpdate={forceUpdate} ignored={ignored}/>} />
         <Route exact path='/signup' element={<SignUp forceUpdate={forceUpdate}/>} />
+        <Route exact path='/email-verification' element={<EmailVerification />} />
       </Routes>
     </Router>
     

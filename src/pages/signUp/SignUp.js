@@ -2,12 +2,15 @@
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css"
 
 const SignUp = (props) => {
 
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+    const navigate = useNavigate();
       
     const[formStatus, setFormStatus] = React.useState("Register");
     const[validated, setValidated] = React.useState(false);
@@ -68,6 +71,8 @@ const SignUp = (props) => {
         }
     }).then((res) => {
         console.log(res);
+        localStorage.setItem("not-verified-user", JSON.stringify(res.data));
+        navigate("/email-verification");
         setFormStatus("Submited");
         // console.log(isShowLogin);
         // isShowLogin = "true";
@@ -87,6 +92,9 @@ const SignUp = (props) => {
           setPasswordError("");
         }
         console.log(emailError);
+
+        
+        
       });
     }
     return (

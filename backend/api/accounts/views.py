@@ -34,6 +34,11 @@ class RegisterView(generics.CreateAPIView):
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid(raise_exception=True)
         self.create(request, *args, **kwargs)
+        user = User.objects.filter(email=self.request.data["email"]).first()
+        # self.request.data._mutable = True        
+        self.request.data["id"] = user.id
+        self.request.data["is_active"] = user.is_active
+        # self.request.data._mutable = False
         # self.serializer.create(request, *args, **kwargs)
         # print(self.request.session['verify'])
         return Response(status=status.HTTP_201_CREATED, data=self.request.data)
@@ -58,7 +63,14 @@ class LoginView(GenericAPIView):
         self.serializer.is_valid(raise_exception=True)
         # self.login()
         # User.objects.filter(email=self.request.data["email"]).first()
-        login(request=self.request, user=self.serializer.validated_data['user'])
+        user = self.serializer.validated_data['user']
+        login(request=self.request, user=user)
+        # print(self.request.data)
+        self.request.data._mutable = True        
+        self.request.data["id"] = user.id
+        self.request.data["is_active"] = user.is_active
+        self.request.data._mutable = False
+        # print(self.request.data)
         return Response(data=self.request.data, status=status.HTTP_200_OK)
 
 
