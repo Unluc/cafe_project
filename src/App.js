@@ -16,7 +16,7 @@ import Login from './pages/login/Login.js';
 import SignUp from './pages/signUp/SignUp.js';
 import EmailVerification from './pages/email-verification/EmailVerification.js';
 import SignUpForm from './components/signUp/SignUp.js';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import axios from "axios";
 import React, { useState } from "react";
@@ -143,7 +143,7 @@ function Header() {
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
     
   // const[formStatus, setFormStatus] = React.useState("Login");
-  
+  const navigate = useNavigate();
   
   const handleLogoutClick = (e) => {
 
@@ -160,6 +160,7 @@ function Header() {
       localStorage.removeItem("user");
       rerenderParentCallback();
       console.log(JSON.parse(localStorage.getItem("user")))
+      navigate("/");
     }).catch((err) => {
       console.log(err);
     });
@@ -251,8 +252,9 @@ function Header() {
       {
         user ? (
           <>
-            {/* <Link to="/profile">Profile</Link>  */}
-          
+            <div className='logfrm'>
+              <Link className="loginicon" to="/profile">Profile</Link> 
+            </div>
             <div className='logfrm'>
               <span onClick={handleLogoutClick} className="loginicon">
                 Log Out

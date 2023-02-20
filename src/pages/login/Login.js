@@ -1,10 +1,11 @@
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { redirect, useParams } from "react-router-dom";
+import { Link, redirect, useParams } from "react-router-dom";
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../contact-us/ContactUs.css";
+import Footer from "../../components/footer/Footer.js"
 
 const Login = (props) => {
 
@@ -108,13 +109,17 @@ const Login = (props) => {
               <br></br>
               <input type="password" name="password" htmlFor="email" />
               <label style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</label>
+              
+              <p>No account? <Link to="/signup">Create one</Link></p>
               <br></br>
+              
               <button className="btn-submit" type="submit" value="LOGIN">
                 {formStatus}
               </button>
             </form>
           </div>
         </section>
+        <Footer />
       </div>
     );
   };

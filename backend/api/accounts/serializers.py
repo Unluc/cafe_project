@@ -132,7 +132,7 @@ class RegisterSerializer(serializers.Serializer):
         instance = User.objects.create_user(**validated_data, code=code)
         print("Instance code", instance.code)
         link_to_api_confirm = f"http://localhost:8000/api/v1/accounts/confirm/{instance.id}"
-        send_mail("Just testing email sending", f"This is test message for resistration on website. If you want to verify user on website input \"{code}\" when you go on {link_to_api_confirm}", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
+        send_mail("Just testing email sending", f"This is test message for registration on website. If you want to verify user on website input \"{code}\" when you go on {link_to_api_confirm}", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
         return instance
 
 class CodeCheckSerializer(serializers.Serializer):

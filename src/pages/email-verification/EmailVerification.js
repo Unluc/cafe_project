@@ -40,7 +40,7 @@ const EmailVerification = () => {
   }).then((res) => {
       console.log(res);
       localStorage.removeItem("not-verified-user");
-      navigate("/");
+      navigate("/login");
       setFormStatus("Submited");
     }).catch((err) => {
       console.log(err);
@@ -57,10 +57,10 @@ const EmailVerification = () => {
     <div className="page-content height">
       <section className="content-section height">
         <div className="contact-form">
-          <h2>Get in Touch</h2>
+          <h2>Input your verification code</h2>
 
           <p>
-            Use the form bellow to send us feedback or ask us a question. 
+            Use the form bellow to input code from your email to verificate email address. 
           </p>
 
           <form onSubmit={onSubmit}>

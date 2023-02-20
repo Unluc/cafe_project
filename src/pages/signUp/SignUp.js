@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css"
+import Footer from "../../components/footer/Footer.js"
 
 const SignUp = (props) => {
 
@@ -120,6 +121,7 @@ const SignUp = (props) => {
                     </form>
                 </div>
             </section>
+            <Footer />
         </div>
     );
   };
