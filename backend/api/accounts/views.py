@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 
-from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer
+from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer
 
 from accounts.models import User
 import json
@@ -125,3 +125,31 @@ class ReceiveCodeView(generics.GenericAPIView):
         #             }
         #         }
         #     )
+
+
+class ProfileRetrieveUpdateView(RetrieveUpdateAPIView):
+    """
+    An endpoint for changing personal data.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def put(self, request, *args, **kwargs):
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid()
+        self.update(request, *args, **kwargs)
+        return Response(
+            {
+                'code': status.HTTP_200_OK,
+                'data': {
+                    'redirect': {
+                        'location': '/'
+                    },
+                }
+            }
+        )

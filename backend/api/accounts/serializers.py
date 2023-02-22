@@ -143,3 +143,39 @@ class CodeCheckSerializer(serializers.Serializer):
     # def validate(self, attrs):
     #     print(self.request.user)
     #     return super().validate(attrs)
+
+
+# class UserBasicInfoSerializer(serializers.ModelSerializer):
+   
+#     class Meta:
+#         model = User
+#         fields = ['id', 'first_name', 'last_name', 'email' "phone_number", "password"]
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    # user = UserBasicInfoSerializer(many=True, read_only=True)
+    # phone_set = PhoneSerializer(many=True, read_only=True)
+
+    # def get_fields(self):
+    #     fields = super().get_fields()
+    #     user = self.context['request'].user
+    #     if user.role == 1:
+    #         fields.pop('manager')
+    #     elif user.role == 2:
+    #         fields.pop('developer')
+    #     else:
+    #         fields.pop('manager')
+    #         fields.pop('developer')
+    #     return fields
+
+    # password1 = serializers.CharField(validators=[validate_password], style={'input_type': 'password'})
+    # password2 = serializers.CharField(validators=[validate_password], style={'input_type': 'password'})
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email']
+
+    # def validate(self, attrs):
+    #     if not self.context['request'].user.check_password(attrs['old_password']):
+    #         raise ValidationError({'old_password': 'Неверный старый пароль'})
+    #     return attrs

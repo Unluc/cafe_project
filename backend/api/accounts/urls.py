@@ -1,6 +1,6 @@
 from django.urls import path
 
-from api.accounts.views import RegisterView, LoginView, LogoutView, ReceiveCodeView
+from api.accounts.views import RegisterView, LoginView, LogoutView, ReceiveCodeView, ProfileRetrieveUpdateView
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
@@ -14,4 +14,5 @@ urlpatterns = [
     # path('data_social_create/<int:uid>/', ProfileDataSocialCreateView.as_view(), name='data_social_create'),
     # path('role_picking/', RolePickingView.as_view(), name='role_picking'),
     # path('user_profile/', UserProfileRetrieveView.as_view(), name='user_profile'),
+    path('profile/', ProfileRetrieveUpdateView.as_view(), name='profile'),
 ]
