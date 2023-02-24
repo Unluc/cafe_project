@@ -173,7 +173,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email']
+        fields = ['id', 'first_name', 'last_name', 'email', "phone_number"]
 
     # def validate(self, attrs):
     #     if not self.context['request'].user.check_password(attrs['old_password']):

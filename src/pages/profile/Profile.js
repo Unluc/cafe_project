@@ -10,6 +10,7 @@ const Profile = () => {
     
   const[formStatus, setFormStatus] = React.useState("Update profile");
   const [apiData, setApiData] = React.useState("");
+  const apiDataCopy = [];
   const [state, setState] = React.useState("");
   const onSubmit = (e) => {
 
@@ -21,14 +22,14 @@ const Profile = () => {
       first_name: first_name.value,
       last_name: last_name.value,
       email: email.value,
-      // phone_number: phone_number.value,
+      phone_number: phone_number.value,
     }
     console.log(conFom);
-    axios.post("/api/v1/accounts/profile/", {
+    axios.put("/api/v1/accounts/profile/", {
       "first_name": conFom.first_name,
       "last_name": conFom.last_name,
       "email": conFom.email,
-      // "phone_number": conFom.phone_number
+      "phone_number": conFom.phone_number
     }, {
       "headers": {
         "Access-Control-Allow-Origin": "*",
@@ -51,6 +52,7 @@ const Profile = () => {
         setState("Success");
         
         setApiData(res.data);
+        apiDataCopy = res.data;
       }).catch((err) => {
         console.log(err);
       });
@@ -68,16 +70,16 @@ const Profile = () => {
 
           <form onSubmit={onSubmit}>
             <label htmlFor="name">First name</label>
-            <input type="text" id="first_name" value={apiData.first_name} required />
+            <input type="text" id="first_name" value={apiData.first_name} onChange={(e) => setApiData(apiDataCopy.first_name = e.target.value)} required />
 
             <label htmlFor="name">Last name</label>
-            <input type="text" id="last_name"  required />
+            <input type="text" id="last_name" value={apiData.last_name} onChange={(e) => setApiData(apiDataCopy.last_name = e.target.value)} required />
 
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={apiData.email} required />
+            <input type="email" id="email" value={apiData.email} onChange={(e) => setApiData(apiDataCopy.email = e.target.value)} required />
 
-            {/* <label htmlFor="message">Phone number</label>
-            <input type="name" id="phone_number" value={apiData.phone_number} required /> */}
+            <label htmlFor="message">Phone number</label>
+            <input type="name" id="phone_number" value={apiData.phone_number} onChange={(e) => setApiData(apiDataCopy.phone_number = e.target.value)} required />
 
             <button className="btn-submit" type="submit" value="Update profile">
               {formStatus}
