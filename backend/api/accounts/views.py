@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 
-from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer
+from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer, ChangePasswordSerializer
 
 from accounts.models import User
 import json
@@ -143,6 +143,36 @@ class ProfileRetrieveUpdateView(RetrieveUpdateAPIView):
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid()
         self.update(request, *args, **kwargs)
+        return Response(
+            {
+                'code': status.HTTP_200_OK,
+                'data': {
+                    'redirect': {
+                        'location': '/'
+                    },
+                }
+            }
+        )
+
+class ChangePasswordView(GenericAPIView):
+    """
+    An endpoint for changing personal data.
+    """
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+        self.object.set_password(request.data.get("new_password1"))
+        self.object.save()
+        login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
         return Response(
             {
                 'code': status.HTTP_200_OK,

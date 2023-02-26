@@ -179,3 +179,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
     #     if not self.context['request'].user.check_password(attrs['old_password']):
     #         raise ValidationError({'old_password': 'Неверный старый пароль'})
     #     return attrs
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(max_length=255, write_only=True, style={'input_type': 'password'})
+    new_password1 = serializers.CharField(required=True, validators=[validate_password], write_only=True,
+                                         style={'input_type': 'password'})
+    new_password2 = serializers.CharField(required=True, validators=[validate_password], write_only=True,
+                                         style={'input_type': 'password'})
+
+    def validate(self, attrs):
+        if not self.context['request'].user.check_password(attrs['old_password']):
+            raise ValidationError({'old_password': 'Wrong password'})
+        if attrs['new_password1'] != attrs['new_password2']:
+             raise ValidationError({'new_password1': 'New passwords are not equal'})
+        if attrs['old_password'] == attrs['new_password1']:
+             raise ValidationError({'new_password1': 'You cannot use your old password'})
+        return attrs

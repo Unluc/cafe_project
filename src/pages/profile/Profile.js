@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import Footer from "../../components/footer/Footer.js";
+import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const Profile = () => {
     
@@ -10,7 +11,7 @@ const Profile = () => {
     
   const[formStatus, setFormStatus] = React.useState("Update profile");
   const [apiData, setApiData] = React.useState("");
-  const apiDataCopy = [];
+  let apiDataCopy = [];
   const [state, setState] = React.useState("");
   const onSubmit = (e) => {
 
@@ -60,34 +61,40 @@ const Profile = () => {
 
   return (
     <div className="page-content height">
-      <section className="content-section height">
-        <div className="contact-form">
-          <h2>Profile</h2>
+      {
+      localStorage.getItem("user") ?
+        <section className="content-section height">
+          <div className="contact-form">
+            <h2>Profile</h2>
 
-          <p>
-            Use the form bellow to change your profile data.
-          </p>
+            <p>
+              Use the form bellow to change your profile data.
+            </p>
 
-          <form onSubmit={onSubmit}>
-            <label htmlFor="name">First name</label>
-            <input type="text" id="first_name" value={apiData.first_name} onChange={(e) => setApiData(apiDataCopy.first_name = e.target.value)} required />
+            <form onSubmit={onSubmit}>
+              <label htmlFor="name">First name</label>
+              <input type="text" id="first_name" value={apiData.first_name} onChange={(e) => setApiData(apiDataCopy.first_name = e.target.value)} required />
 
-            <label htmlFor="name">Last name</label>
-            <input type="text" id="last_name" value={apiData.last_name} onChange={(e) => setApiData(apiDataCopy.last_name = e.target.value)} required />
+              <label htmlFor="name">Last name</label>
+              <input type="text" id="last_name" value={apiData.last_name} onChange={(e) => setApiData(apiDataCopy.last_name = e.target.value)} required />
 
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={apiData.email} onChange={(e) => setApiData(apiDataCopy.email = e.target.value)} required />
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" value={apiData.email} onChange={(e) => setApiData(apiDataCopy.email = e.target.value)} required />
 
-            <label htmlFor="message">Phone number</label>
-            <input type="name" id="phone_number" value={apiData.phone_number} onChange={(e) => setApiData(apiDataCopy.phone_number = e.target.value)} required />
+              <label htmlFor="message">Phone number</label>
+              <input type="name" id="phone_number" value={apiData.phone_number} onChange={(e) => setApiData(apiDataCopy.phone_number = e.target.value)} required />
 
-            <button className="btn-submit" type="submit" value="Update profile">
-              {formStatus}
-            </button>
-          </form>
-        </div>
-        
-      </section>
+              <button className="btn-submit" type="submit" value="Update profile">
+                {formStatus}
+              </button>
+            </form>
+          </div>
+          
+        <Link to="/change-password">Change password</Link>
+        </section>
+      : <p>To see this page you have to <Link to="/login">Login</Link></p>
+      }
+      
       <Footer />
     </div>
     
