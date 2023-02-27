@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import Footer from "../../components/footer/Footer.js"
+import PayPal from "../../components/paypal/PayPal.js"
 import { useParams } from "react-router-dom";
 import "./Product.css"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -44,6 +45,9 @@ function Product() {
                                 <p>Description: <br></br> {apiData.overview}</p>
                             </div>                       
                         </div>
+                        <p>Paypal</p>
+                        <PayPal />
+                        <p>Paypal</p>
                         {apiRelatedProducts.length > 0 ? (
                         <div>
                             <h2 className="related-prod-title">Related Products</h2>
