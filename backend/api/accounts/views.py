@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 
-from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer, ChangePasswordSerializer
+from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer, ChangePasswordSerializer, ResetPasswordSerializer, InputEmailForResetingPasswordSerializer
 
 from accounts.models import User
 import json
@@ -83,7 +83,7 @@ class LogoutView(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
-class ReceiveCodeView(generics.GenericAPIView):
+class ReceiveCodeConfirmEmailView(generics.GenericAPIView):
     serializer_class = CodeCheckSerializer
 
     def post(self, request, *args, **kwargs):
@@ -173,6 +173,82 @@ class ChangePasswordView(GenericAPIView):
         self.object.set_password(request.data.get("new_password1"))
         self.object.save()
         login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
+        return Response(
+            {
+                'code': status.HTTP_200_OK,
+                'data': {
+                    'redirect': {
+                        'location': '/'
+                    },
+                }
+            }
+        )
+    
+
+class InputEmailForResetingPasswordView(GenericAPIView):
+    """
+    An endpoint for changing personal data.
+    """
+    serializer_class = InputEmailForResetingPasswordSerializer
+    model = User
+    # permission_classes = (IsAuthenticated,)
+
+    # def get_object(self, queryset=None):
+    #     obj = self.request.user
+    #     return obj
+
+    def post(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        if self.request.user.is_authenticated:
+            raise ValidationError({'new_password1': 'You cannot access this page while logged in'})
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+        # self.object.set_password(request.data.get("new_password1"))
+        # self.object.save()
+        # login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
+        return Response(
+            {
+                'code': status.HTTP_200_OK,
+                'data': {
+                    'redirect': {
+                        'location': '/'
+                    },
+                }
+            }
+        )
+
+
+class ResetPasswordView(GenericAPIView):
+    """
+    An endpoint for changing personal data.
+    """
+    serializer_class = ResetPasswordSerializer
+    model = User
+    # permission_classes = (IsAuthenticated,)
+
+    # def get_object(self, queryset=None):
+    #     obj = self.request.user
+    #     return obj
+
+    def post(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+        if not User.objects.filter(id=kwargs["pk"]):
+            raise ValidationError({'new_password1': 'Wrong link'})
+        if self.request.user.is_authenticated:
+            raise ValidationError({'new_password1': 'You cannot access this page while logged in'})
+        if User.objects.filter(id=kwargs["pk"]).first().code == self.kwargs["code"]:
+            user = User.objects.filter(id=kwargs["pk"]).first()
+            if user.check_password(request.data.get("new_password1")):
+                raise ValidationError({'new_password1': 'You cannot use old password for new password'})
+            user.set_password(request.data.get("new_password1"))
+            user.code = ""
+            user.save()
+            print(f"User password:{user.password}")
+        # print(f"User password:{request.data.get("new_password1")}")
+        # self.object.save()
+        # login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
         return Response(
             {
                 'code': status.HTTP_200_OK,

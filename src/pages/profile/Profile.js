@@ -17,19 +17,19 @@ const Profile = () => {
 
     e.preventDefault();
     setFormStatus("Submiting...");
-    const { first_name, last_name, email, phone_number } = e.target.elements;
+    const { first_name, last_name, phone_number } = e.target.elements;
     
     let conFom = {
       first_name: first_name.value,
       last_name: last_name.value,
-      email: email.value,
+      // email: email.value,
       phone_number: phone_number.value,
     }
     console.log(conFom);
     axios.put("/api/v1/accounts/profile/", {
       "first_name": conFom.first_name,
       "last_name": conFom.last_name,
-      "email": conFom.email,
+      // "email": conFom.email,
       "phone_number": conFom.phone_number
     }, {
       "headers": {
@@ -78,8 +78,8 @@ const Profile = () => {
               <label htmlFor="name">Last name</label>
               <input type="text" id="last_name" value={apiData.last_name} onChange={(e) => setApiData(apiDataCopy.last_name = e.target.value)} required />
 
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" value={apiData.email} onChange={(e) => setApiData(apiDataCopy.email = e.target.value)} required />
+              {/* <label htmlFor="email">Email</label>
+              <input type="email" id="email" value={apiData.email} onChange={(e) => setApiData(apiDataCopy.email = e.target.value)} required /> */}
 
               <label htmlFor="message">Phone number</label>
               <input type="name" id="phone_number" value={apiData.phone_number} onChange={(e) => setApiData(apiDataCopy.phone_number = e.target.value)} required />

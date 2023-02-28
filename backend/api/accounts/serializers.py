@@ -131,7 +131,7 @@ class RegisterSerializer(serializers.Serializer):
             raise ValidationError({'email': 'This email is already exist!!!'})
         instance = User.objects.create_user(**validated_data, code=code)
         print("Instance code", instance.code)
-        link_to_api_confirm = f"http://localhost:8000/api/v1/accounts/confirm/{instance.id}"
+        link_to_api_confirm = f"http://localhost:8000/api/v1/accounts/confirm_email/{instance.id}"
         send_mail("Just testing email sending", f"This is test message for registration on website. If you want to verify user on website input \"{code}\" when you go on {link_to_api_confirm}", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
         return instance
 
@@ -195,4 +195,44 @@ class ChangePasswordSerializer(serializers.Serializer):
              raise ValidationError({'new_password1': 'New passwords are not equal'})
         if attrs['old_password'] == attrs['new_password1']:
              raise ValidationError({'new_password1': 'You cannot use your old password'})
+        return attrs
+
+
+
+class InputEmailForResetingPasswordSerializer(serializers.Serializer):
+    email = serializers.CharField(
+        write_only=True,
+        required=True,
+        # validators=[
+        #     UniqueValidator(queryset=User.objects.all()),
+        #     # username_validator,
+        # ]
+    )
+
+    def validate(self, attrs):
+        code = get_random_string(length=6, allowed_chars=digits)
+        if not User.objects.filter(email=attrs["email"]):
+            raise ValidationError({'email': 'There is no such email'})
+        instance = User.objects.filter(email=attrs["email"]).first()
+        instance.code = code
+        instance.save()
+        link_to_api_change_password= f"http://localhost:8000/api/v1/accounts/reset_password/{instance.id}/{code}"
+        send_mail("Email for changing password", f"This is message for changing password on website. If you forgot your password and you wnat to change it click on {link_to_api_change_password}", DynamicEmailConfiguration.get_solo().from_email, [attrs["email"]])
+        return attrs
+
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    new_password1 = serializers.CharField(required=True, validators=[validate_password], write_only=True,
+                                         style={'input_type': 'password'})
+    new_password2 = serializers.CharField(required=True, validators=[validate_password], write_only=True,
+                                         style={'input_type': 'password'})
+
+    def validate(self, attrs):
+        # if not self.context['request'].user.check_password(attrs['old_password']):
+        #     raise ValidationError({'old_password': 'Wrong password'})
+        if attrs['new_password1'] != attrs['new_password2']:
+             raise ValidationError({'new_password1': 'New passwords are not equal'})
+        # if attrs['old_password'] == attrs['new_password1']:
+        #      raise ValidationError({'new_password1': 'You cannot use your old password'})
         return attrs
