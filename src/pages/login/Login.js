@@ -110,7 +110,7 @@ const Login = (props) => {
               <input type="password" name="password" htmlFor="email" />
               <label style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</label>
               
-              <p>No account? <Link to="/signup">Create one</Link></p>
+              <p>No account? <Link to="/signup">Create one</Link>. &emsp; Forgot your password? <Link to="/reset-password-request">Reset it</Link></p>
               <br></br>
               
               <button className="btn-submit" type="submit" value="LOGIN">

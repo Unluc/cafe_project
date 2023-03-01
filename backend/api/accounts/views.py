@@ -234,18 +234,32 @@ class ResetPasswordView(GenericAPIView):
         # self.object = self.get_object()
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid(raise_exception=True)
-        if not User.objects.filter(id=kwargs["pk"]):
+        if not User.objects.filter(id=kwargs["pk"]) or not User.objects.filter(id=kwargs["pk"]).first().code == self.kwargs["code"]:
+            # return Response({
+            #         'code': status.HTTP_400_BAD_REQUEST,
+            #         'status': status.HTTP_400_BAD_REQUEST,
+            #         'data': {
+            #             'errors': {
+            #                 'email': {
+            #                     "state": ('Wrong link')
+            #                 }
+            #             },
+            #         }
+            #     })
             raise ValidationError({'new_password1': 'Wrong link'})
         if self.request.user.is_authenticated:
             raise ValidationError({'new_password1': 'You cannot access this page while logged in'})
-        if User.objects.filter(id=kwargs["pk"]).first().code == self.kwargs["code"]:
-            user = User.objects.filter(id=kwargs["pk"]).first()
-            if user.check_password(request.data.get("new_password1")):
-                raise ValidationError({'new_password1': 'You cannot use old password for new password'})
-            user.set_password(request.data.get("new_password1"))
-            user.code = ""
-            user.save()
-            print(f"User password:{user.password}")
+        # if not User.objects.filter(id=kwargs["pk"]).first().code == self.kwargs["code"]:
+        #     raise ValidationError({'new_password1': 'Wrong url'})
+        user = User.objects.filter(id=kwargs["pk"]).first()
+        # user.set_password(request.data.get("new_password1"))
+        if user.check_password(request.data.get("new_password1")):
+            raise ValidationError({'new_password1': 'You cannot use old password for new password'})
+        user.set_password(request.data.get("new_password1"))
+        user.code = ""
+        user.save()
+        print(f"User password:{user.password}")
+        
         # print(f"User password:{request.data.get("new_password1")}")
         # self.object.save()
         # login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
