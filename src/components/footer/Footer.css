@@ -33,7 +33,33 @@
     margin: 0.5rem 0;
 }
 
+.social-media-links {
+    /* height: 180; */
+    width: 40px;
+}
 
+.social-container {
+    background: #eee;
+    padding: 25px 50px;
+}
+
+a.social {
+    margin: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+}
+
+a.social:hover {
+    transform: translateY(-2px);
+}
+
+.contact-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 980px;
+    margin: auto;
+}
 @media only screen and (min-width: 1001px) {
     
     .footer-content {
@@ -41,7 +67,7 @@
         align-items: center;
         justify-content: space-between;
         margin: auto;
-        width: 980px;
+        /* width: 980px; */
         /* height: 75px; */
     }
 

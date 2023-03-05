@@ -90,7 +90,9 @@ const Profile = () => {
             </form>
           </div>
           
-        <Link to="/change-password">Change password</Link>
+        <form><Link to="/change-password" className="btn-submit">Change password</Link></form>
+        
+        
         </section>
       : <p>To see this page you have to <Link to="/login">Login</Link></p>
       }
