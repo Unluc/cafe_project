@@ -14,7 +14,7 @@ function Footer() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`api/v1/org/1/`, {responseType: "json"}).then((res) => {
+        axios.get(`/api/v1/org/1/`, {responseType: "json"}).then((res) => {
             console.log(res.data);
             setState("Success");
             setApiData(res.data);
@@ -25,6 +25,8 @@ function Footer() {
           });
     }, []);
     return(
+        <>
+        <div className="phantom"></div>
         <footer className="page-footer">
             {state === "Loading" ? (<h1>Loading</h1>) : (
             <>
@@ -52,7 +54,7 @@ function Footer() {
                 <div class="social-container">{
                     apiData.socialmedia_set === undefined ? (console.log("Loading or there are not social media links")) : 
                         Array.prototype.map.call(apiData.socialmedia_set, (social) => (
-                        <a className="social" href={social.social_media_url} target="_blank">
+                        <a className="social" href={social.social_media_url} target="_blank" rel="noreferrer">
                             <img className="social-media-links" src={social.social_media_picture} alt={social.social_media_alt} />
                         </a>
                     ))}
@@ -84,6 +86,7 @@ function Footer() {
             </>
             )}
         </footer>
+        </>
     );
 }
 

@@ -10,12 +10,13 @@ body {
     font-family: "Noto Sans", sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;  
+    min-height: 100%;  
 }
 
-.height {
-    height: 63.8vh;
-}
+/* .height {
+    height: 60vh;
+    display: flex;
+} */
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Martel", serif;
@@ -107,7 +108,8 @@ section > p {
 }
 
 .page-content {
-    flex: 1;
+    flex: 1 0 auto;
+    /* min-height: 63vh; */
 }
 
 /* .page-footer {
@@ -163,6 +165,8 @@ section > p {
 
 .content-section {
     margin: 2rem 1rem 4rem;
+    flex: 1 0 auto;
+    /* min-height: 85%; */
 }
 
 .content-section > .btn-primary {

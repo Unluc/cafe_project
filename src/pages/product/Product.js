@@ -45,9 +45,9 @@ function Product() {
                                 <p>Description: <br></br> {apiData.overview}</p>
                             </div>                       
                         </div>
-                        <p>Paypal</p>
+                        {/* <p>Paypal</p>
                         <PayPal />
-                        <p>Paypal</p>
+                        <p>Paypal</p> */}
                         {apiRelatedProducts.length > 0 ? (
                         <div>
                             <h2 className="related-prod-title">Related Products</h2>

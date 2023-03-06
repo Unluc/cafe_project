@@ -1,7 +1,11 @@
 .page-footer {
     background-color: #EDEDED;
 
-    /* position: absolute; */
+    flex-shrink: 0;
+    /* height: 22vh; */
+    /* margin-top: -22vh; */
+
+    /* position: relative; */
     /* left:0; */
     /* top: 0; */
     /* bottom: 0; */
@@ -9,7 +13,17 @@
     /* right:0; */
     /* z-index: 1;
     transition: 1s; */
+    /* padding: '20px';
+    height: '60px';
+    width: '100%'; */
 }
+
+.phantom {
+    display: 'block';
+    padding: '20px';
+    height: '60px';
+    width: '100%';
+  }
 
 .footer-content {
     padding: 3rem 0;

@@ -63,6 +63,8 @@
 
 .Page-header {
   display: flex;
+  height: 15vh;
+  /* margin-bottom: -15vh; */
 }
 
 .Page-logo img {
