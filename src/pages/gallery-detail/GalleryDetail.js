@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import Footer from "../../components/footer/Footer.js"
 import { useParams } from "react-router-dom";
 import "./GalleryDetail.css"
 
@@ -114,8 +113,6 @@ function GalleryDetail() {
                     
                 </div>
             </div>
-
-            <Footer />
         </div>
         
     );

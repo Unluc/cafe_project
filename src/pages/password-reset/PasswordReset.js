@@ -5,7 +5,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../contact-us/ContactUs.css";
-import Footer from "../../components/footer/Footer.js"
 
 export default function PasswordReset() {
 
@@ -155,7 +154,6 @@ export default function PasswordReset() {
                     </form>
                 </div>
             </section>
-            <Footer />
         </div>
     );
   };

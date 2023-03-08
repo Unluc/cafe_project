@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import Footer from "../../components/footer/Footer.js";
 import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const Profile = () => {
@@ -97,7 +96,6 @@ const Profile = () => {
       : <p>To see this page you have to <Link to="/login">Login</Link></p>
       }
       
-      <Footer />
     </div>
     
   );

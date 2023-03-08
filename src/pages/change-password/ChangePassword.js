@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../signUp/SignUp.css"
-import Footer from "../../components/footer/Footer.js"
+
 
 const ChangePassword = () => {
 
@@ -146,7 +146,6 @@ const ChangePassword = () => {
                 </section>
             : <p>To see this page you have to <Link to="/login">Login</Link></p>
             }
-            <Footer />
         </div>
     );
   };

@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import Footer from "../../components/footer/Footer.js"
-import PayPal from "../../components/paypal/PayPal.js"
-import { useParams } from "react-router-dom";
 import "./Product.css"
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useParams, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
-function Product() {
+const Product = () => {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -15,14 +12,11 @@ function Product() {
     const [state, setState] = React.useState("");
     const [apiRelatedProducts, setApiRelatedProducts] = React.useState("");
 
-    // const { slug } = this.props.match.params;
     let slug = useParams().slug;
-    // console.log(useParams());
-    // console.log(slug);
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`http://localhost:8000/api/v1/product/${slug}/`, {responseType: "json"}).then((res) => {
+        axios.get(`/api/v1/product/${slug}/`, {responseType: "json"}).then((res) => {
             console.log(res.data);
             setState("Success");
             setApiData(res.data);
@@ -30,8 +24,8 @@ function Product() {
           }).catch((err) => {
             console.log(err);
           });
-    }, []);
-    // console.log(apiData)
+    }, [slug]);
+
     return(
         <div className="product-containce height">
             <div className="content-section height">
@@ -45,16 +39,14 @@ function Product() {
                                 <p>Description: <br></br> {apiData.overview}</p>
                             </div>                       
                         </div>
-                        {/* <p>Paypal</p>
-                        <PayPal />
-                        <p>Paypal</p> */}
                         {apiRelatedProducts.length > 0 ? (
                         <div>
                             <h2 className="related-prod-title">Related Products</h2>
                             <div className="related-products">
                             {
                                 Array.prototype.map.call(apiRelatedProducts, (product) => (
-                                    <Link to={"../" + product.slug + "/"} onClick={() => window.location.href="../" + product.slug + "/"} className="product" params={{slug: product.slug}} relative="path">
+                                    // <Link to={`../${product.slug}/`} onClick={() => window.location.href=`../${product.slug}/`} className="product" params={{slug: product.slug}} relative="path">
+                                    <Link to={`/menu/product/${product.slug}/`}  className="product" params={{slug: product.slug}}>
                                         <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                         <p>{product.name} £{product.price}</p>
                                     </Link>
@@ -67,8 +59,6 @@ function Product() {
                 )}
                 
             </div>
-
-            <Footer />
         </div>
         
     );

@@ -91,12 +91,3 @@ function Footer() {
 }
 
 export default Footer;
-
-// window.onload = () => {
-//     this.addEventListener("mousemove", (e) => {
-//       var y = e.pageY;
-//       let foot = document.querySelector(".page-footer");
-//       (y >= window.innerHeight - 75) ? foot.style.bottom = "0px" : foot.style.bottom = "75px";
-//       console.log("Its working");
-//     })
-//   }

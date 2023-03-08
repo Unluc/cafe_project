@@ -1,9 +1,9 @@
 .page-footer {
     background-color: #EDEDED;
 
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
     /* height: 22vh; */
-    /* margin-top: -22vh; */
+    margin-top: auto;
 
     /* position: relative; */
     /* left:0; */

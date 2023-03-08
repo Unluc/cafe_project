@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 // import Footer from "../../components/footer/Footer.js";
 import "./Location.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
 

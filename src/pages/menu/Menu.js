@@ -144,7 +144,6 @@ function Menu() {
                 </div> 
             </div>
                             
-            <Footer />
         </div>
         
     );

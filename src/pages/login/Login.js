@@ -1,11 +1,8 @@
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Link, redirect, useParams } from "react-router-dom";
-
+import { Link, useNavigate, redirect, useParams } from "react-router-dom";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "../contact-us/ContactUs.css";
-import Footer from "../../components/footer/Footer.js"
+
 
 const Login = (props) => {
 
@@ -119,7 +116,6 @@ const Login = (props) => {
             </form>
           </div>
         </section>
-        <Footer />
       </div>
     );
   };

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import Footer from "../../components/footer/Footer.js";
 import { useNavigate } from "react-router-dom";
 
 export default function PasswordResetRequest() {
@@ -99,7 +98,6 @@ export default function PasswordResetRequest() {
         </div>
         
       </section>
-      <Footer />
     </div>
     
   );
