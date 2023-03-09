@@ -27,8 +27,8 @@ const Product = () => {
     }, [slug]);
 
     return(
-        <div className="product-containce height">
-            <div className="content-section height">
+        <div className="product-containce">
+            <div className="content-section">
                 {state === "Loading" ? (<h1>Loading</h1>) : (
                     <div>
                         <div className="image-description">
@@ -36,7 +36,7 @@ const Product = () => {
                             <div className="product-description">
                                 <h2>{apiData.name}</h2>
                                 <p>Price: £{apiData.price}</p>
-                                <p>Description: <br></br> {apiData.overview}</p>
+                                <p className="text-description">Description: <br></br> {apiData.overview}</p>
                             </div>                       
                         </div>
                         {apiRelatedProducts.length > 0 ? (
@@ -46,7 +46,7 @@ const Product = () => {
                             {
                                 Array.prototype.map.call(apiRelatedProducts, (product) => (
                                     // <Link to={`../${product.slug}/`} onClick={() => window.location.href=`../${product.slug}/`} className="product" params={{slug: product.slug}} relative="path">
-                                    <Link to={`/menu/product/${product.slug}/`}  className="product" params={{slug: product.slug}}>
+                                    <Link to={`/menu/${product.slug}/`}  className="gallery-card" params={{slug: product.slug}}>
                                         <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                         <p>{product.name} £{product.price}</p>
                                     </Link>

@@ -24,9 +24,10 @@ function GalleryDetail() {
     let lightbox = document.getElementById("lightbox");
     // let lightboxImage = "";
     // let lightboxCaption = "";
-    const [lightboxImage, setLightboxImage] = React.useState("");
-    const [lightboxCaption, setLightboxCaption] = React.useState("");
+    // const [lightboxImage, setLightboxImage] = React.useState("");
+    // const [lightboxCaption, setLightboxCaption] = React.useState("");
     const [lightboxIndex, setLightboxIndex] = React.useState(0);
+    const [lightboxObj, setLightboxObj] = React.useState({});
     // let lightboxImage = document.getElementById("lightbox-image");
     // let lightboxCaption = document.getElementById("lightbox-caption");
     // let index = 0;
@@ -56,8 +57,8 @@ function GalleryDetail() {
             // console.log(apiData);
             // console.log(obj);
             // console.log(apiData.indexOf(obj));
-            setLightboxImage(image);
-            setLightboxCaption(alt);
+            setLightboxObj(obj);
+            // setLightboxCaption(alt);
         }
         // if(image) 
         // if(alt) 
@@ -76,23 +77,36 @@ function GalleryDetail() {
 
     function forward() {
         console.log(lightboxIndex);
-        lightboxIndex === apiData.length - 1 ? setLightboxIndex(0) : setLightboxIndex(lightboxIndex++);
-        // lightboxImage.src = images[index].src;
-        // lightboxCaption.innerText = images[index].alt;
-        setLightboxImage(apiData[lightboxIndex].image);
-        setLightboxCaption(apiData[lightboxIndex].alt);
+        console.log("forward");
+        console.log(apiData.length - 1);
+        if (lightboxIndex === apiData.length - 1) {
+            setLightboxIndex(0);
+            setLightboxObj(apiData[0]);
+            // setLightboxCaption(apiData[0].alt);
+        } else {
+            setLightboxIndex(lightboxIndex + 1);
+            setLightboxObj(apiData[lightboxIndex + 1]);
+            // setLightboxCaption(apiData[lightboxIndex + 1].alt);
+        }
       }
       function backward() {
-        lightboxIndex === 0 ? lightboxIndex = apiData.length - 1 : lightboxIndex--;
-        // lightboxImage.src = images[index].src;
-        // lightboxCaption.innerText = images[index].alt;
-        setLightboxImage(apiData[lightboxIndex].image);
-        setLightboxCaption(apiData[lightboxIndex].alt);
+        console.log(lightboxIndex);
+        console.log("backward");
+        console.log(apiData.length - 1);
+        if (lightboxIndex === 0) {
+            setLightboxIndex(apiData.length - 1);
+            setLightboxObj(apiData[apiData.length - 1]);
+            // setLightboxCaption(apiData[apiData.length - 1].alt);
+        } else {
+            setLightboxIndex(lightboxIndex - 1);
+            setLightboxObj(apiData[lightboxIndex - 1]);
+            // setLightboxCaption(apiData[lightboxIndex - 1].alt);
+        }
       }
     
     return(
-        <div className="product-containce height">
-            <div className="content-section height">
+        <div className="product-containce">
+            <div className="content-section">
                 <h1>{apiDataObject.title}</h1>
                 <div className="gallery-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (
@@ -104,10 +118,10 @@ function GalleryDetail() {
                     <div className="lightbox" id="lightbox">
                         <span className="close" onClick={() => lightboxClose()}>&times;</span>
                         <figure className="lightbox-figure">
-                            <button class="lightbox-btn" onclick={() => backward()}>&#x2190;</button>
-                            <img id="lightbox-image" className="lightbox-image" src={lightboxImage} alt={lightboxCaption} />
-                            <button class="lightbox-btn" onclick={() => forward()}>&#x2192;</button>
-                            <figcaption id="lightbox-caption">{lightboxCaption}</figcaption>
+                            <button class="lightbox-btn" onClick={() => backward()}>&#x2190;</button>
+                            <img id="lightbox-image" className="lightbox-image" src={lightboxObj.image} alt={lightboxObj.alt} />
+                            <button class="lightbox-btn" onClick={() => forward()}>&#x2192;</button>
+                            <figcaption id="lightbox-caption">{lightboxObj.alt}</figcaption>
                         </figure>
                     </div>
                     

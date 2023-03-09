@@ -57,7 +57,7 @@ function App() {
           <Route exact path='/contact-us' element={<ContactForm />} />
           <Route exact path='/' element={<HomePage />}/>
           <Route exact path='/menu' element={<Menu />} />
-          <Route exact path='/menu/product/:slug' element={<Product />} />
+          <Route exact path='/menu/:slug' element={<Product />} />
           <Route exact path='/about-us' element={<AboutUs />} />
           <Route exact path='/gallery' element={<Gallery />} />
           <Route exact path='/gallery/:slug' element={<GalleryDetail />} />

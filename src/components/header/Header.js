@@ -1,5 +1,5 @@
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import "./Header.css";
+import "./Header.css";
 
 import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -87,8 +87,8 @@ export default function Header() {
       });
     }
    
-    const [isShowLogin, setIsShowLogin] = useState(true);
-    const [isShowSignUp, setIsShowSignUp] = useState(true);
+    // const [isShowLogin, setIsShowLogin] = useState(true);
+    // const [isShowSignUp, setIsShowSignUp] = useState(true);
   
     
     const user = JSON.parse(localStorage.getItem("user"));
@@ -98,33 +98,44 @@ export default function Header() {
       forceUpdate(!ignored);
     }
   
-    const handleLoginClick = () => {
-      setIsShowLogin((isShowLogin) => !isShowLogin);
-    };
+    // const handleLoginClick = () => {
+    //   setIsShowLogin((isShowLogin) => !isShowLogin);
+    // };
   
   
-    const handleSignUpClick = () => {
-      setIsShowSignUp((isShowSignUp) => !isShowSignUp);
-    };
+    // const handleSignUpClick = () => {
+    //   setIsShowSignUp((isShowSignUp) => !isShowSignUp);
+    // };
   
-    const handleClick = () => {
-      handleLoginClick();
-    };
+    // const handleClick = () => {
+    //   handleLoginClick();
+    // };
   
-    const handleSignClick = () => {
-      handleSignUpClick();
-    };
-    
+    // const handleSignClick = () => {
+    //   handleSignUpClick();
+    // };
+    const NAV_BUTTON = document.querySelector("#nav-btn");
+    const NAV_LIST = document.querySelector("#nav-list");
   
-    
-  
-    function openNav() {
-      document.getElementById("nav-list").style.width = "60%";
+    NAV_BUTTON.onclick = () => {
+      NAV_LIST.classList.toggle("show-navigation");
     }
-    
-    function closeNav() {
-      document.getElementById("nav-list").style.width = "0%";
+  
+  NAV_LIST.onclick = () => {
+    if (NAV_LIST.classList.contains("show-navigation")) {
+      NAV_LIST.classList.remove("show-navigation");
     }
+  }
+  
+    // function openNav() {
+    //   NAV_BUTTON.onclick = () => {
+    //     NAV_LIST.classList.toggle("show-navigation");
+    // }
+    // }
+    
+    // function closeNav() {
+    //   document.getElementById("nav-list").style.width = "0%";
+    // }
     
     return (
       <header className="Page-header">
@@ -136,9 +147,13 @@ export default function Header() {
             &#9776
               <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
           </a> */}
+
+        <a href="javascript:;" className="mobile-btn" id="nav-btn">
+          <img src="menu-icon.svg" alt="Mobile navigation reveal button"/>
+        </a>
         
         <nav className="Page-navigation" id="nav-list">
-          <a className="closebtn" onClick="closeNav()">&times;</a>
+          {/* <a className="closebtn" onClick={() => closeNav()}>&times;</a> */}
           <ul className="Navigation-list">
             <li>
               <Link to="/">Home</Link>
@@ -201,10 +216,10 @@ export default function Header() {
           )
         }
         
-        
+       
         
   
-        <img className="burger-menu" onClick="openNav()" src="menu-icon.svg"/>
+        {/* <img className="burger-menu" id="nav-btn"  src="menu-icon.svg"/> */}
       </header>
     );
   }

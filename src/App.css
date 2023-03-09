@@ -74,11 +74,7 @@
   width: 200px;
 }
 
-.burger-menu {
-  width: 2rem;
-  height: 2rem;
-  /* float: right; */
-}
+
 
 .Page-navigation {
   /* display: none; */
@@ -147,9 +143,7 @@
     display: none;
   }
 
-  .burger-menu {
-    display: none;
-  }
+  
 
 }
 

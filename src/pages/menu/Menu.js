@@ -13,16 +13,10 @@ function Menu() {
 
     const [apiData, setApiData] = React.useState("");
     const [state, setState] = React.useState("");
-    const [topCategory, setTopCategory] = React.useState("True");
+    const [topCategory, setTopCategory] = React.useState({product_set: [], sub_categories: []});
     const [subCategory, setSubCategory] = React.useState("");
     const [cloneData, setClone_Data] = React.useState("");
 
-
-    // const categ = "";
-
-    // function chooseTOpCategory(input) {
-    //     return setTopCategory(input);
-    // }
 
     useEffect(() => {
         setState("Loading");
@@ -41,50 +35,38 @@ function Menu() {
           });
     }, []);
     
-    // console.log(products);
-    // console.log(typeof apiData);
-    // console.log("apiData");
     return(
         <div className="menu ">
             <div className="content-section height">
             <h2>All categories</h2>
-                <div className="products-container">
+                <div className="gallery-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (
                         Array.prototype.map.call(apiData, (category) => (
                             // category.sub_categories === undefined ? (console.log("Top category has no desendents")) : (
-                            <div onClick={() => setTopCategory(category)} className="product">
+                            <div onClick={() => setTopCategory(category)} className="gallery-card">
                                 <img src={category.preview === null ? "/default-food-image.jpg" : category.preview} alt={category.alt} />
                                 <p className="product-title">{category.name}</p>
                             </div>
-                        ))
-                        // )
-                        
-                        
-                        // console.log(cloneData)
-                        // Array.prototype.map.call(cloneData, (product) => (
-                        //     console.log(product)
-                        //     // <Link to={"product/" + product.slug + "/"} className="product" params={{slug: product.slug}}>
-                        //     //     <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
-                        //     //     <p className="product-title">{product.name} £{product.price}</p>
-                        //     // </Link>
-                        
-                        // ))
-                        
+                        ))                        
                         
                     )}
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
-                        topCategory.product_set === undefined ? (console.log("Top category has no products")) : (
+                        Object.keys(topCategory.product_set).length === 0 ? (console.log("Top category has no products")) : (
                             <>
-                                <h2 className="product-title">{topCategory.name}</h2>
+                            {console.log(typeof(topCategory.product_set))} 
+                            <div className="gallery-container">
+                            <h2 className="product-title category-title">{topCategory.name}</h2>
                             {
+                                    
                                 Array.prototype.map.call(topCategory.product_set, (product) => (
-                                <Link to={"product/" + product.slug + "/"} className="product" params={{slug: product.slug}}>
+                                <Link to={`${product.slug}/`} className="gallery-card" params={{slug: product.slug}}>
                                     <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                     <p className="product-title">{product.name} £{product.price}</p>
                                 </Link>
                             ))
                             }
+                            </div>
                             </> 
                         )
                     )
@@ -93,18 +75,18 @@ function Menu() {
                     state === "Loading" ? (<h1>Loading</h1>) : (
                         
                         
-                        topCategory.sub_categories === undefined ? (<p>Error click on another category</p>) : (
+                        Object.keys(topCategory.sub_categories).length === 0 ? (console.log("Error click on another category")) : (
                             Array.prototype.map.call(topCategory.sub_categories, (category) => (
                             // console.log(product)
                                 // category.products_set === undefined ? (console.log("Ooops")) : (
                                     <>
-                                        <h2 className="product-title">{category.name}</h2>
+                                        <h2 className="product-title category-title">{category.name}</h2>
                                         {
                                         category.product_set === undefined ? (<p className="product-title">No product in that category</p>) : (
                                             // console.log(category)
                                             // Object.entries(category.product_set).map(product => (
                                                 Array.prototype.map.call(category.product_set, (product) => (
-                                                <Link to={"product/" + product.slug + "/"} className="product" params={{slug: product.slug}}>
+                                                <Link to={`${product.slug}/`} className="gallery-card" params={{slug: product.slug}}>
                                                     <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                                     <p className="product-title">{product.name} £{product.price}</p>
                                                 </Link>
