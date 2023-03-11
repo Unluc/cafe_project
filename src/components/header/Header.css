@@ -54,7 +54,9 @@ to {
 }
 
 .show-navigation {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Navigation-list {
@@ -69,7 +71,7 @@ to {
 .Navigation-list a {
   /* color: #EDEDED; */
   color: #181818;
-  display: block;
+  display: flex;
   font-size: 1.2rem;
   padding: 0.5rem 2rem;
   text-decoration: none;
@@ -79,11 +81,26 @@ to {
   color: #e9bf34;
 }
 
-.burger-menu {
-  width: 2rem;
-  height: 2rem;
-  /* float: right; */
+
+.mobile-btn {
+  display: flex;
+  /* justify-content: end; */
+  align-self: center;
+  margin-bottom: 1rem;
+  height: 3.5rem;
+  order: 1;
+  margin-left: auto;
+  margin-right: 3rem;
 }
+
+.mobile-btn img {
+  width: 4rem;
+}
+
+.profile-settings {
+  align-items: flex-start;
+}
+
 
 @media only screen and (min-width: 1001px) {
   /* .App{
@@ -98,20 +115,43 @@ to {
 
   .Page-navigation {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    flex-direction: row;
   }
 
   .Navigation-list {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    /* margin-left: 25rem; */
   }
+
+
 
   /* .Page-navigation {
     display: block;
   } */
-  .burger-menu {
+  
+
+  .mobile-btn {
     display: none;
+  } 
+
+  .profile-settings {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5%;
+    gap: 30px;
+    /* background-color: green; */
+    /* justify-content: space-around; */
+    /* margin-left: auto; */
+    /* align-content: flex-end; */
   }
+
+  /* .Page-header > .Page-navigation > .profile-settings {
+    display: flex;
+    justify-content: flex-end;
+  } */
 }

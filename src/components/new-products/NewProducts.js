@@ -37,7 +37,8 @@ function NewProducts() {
                 ))
             )}
         </div>
-
+        <br></br>
+        <br></br>
         <Link to="/menu" className="btn-primary">Browse the Menu</Link>
       </section>
     );

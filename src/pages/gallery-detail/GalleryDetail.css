@@ -23,7 +23,7 @@ h1 {
   
   .close {
     color: white;
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 25px;
     font-size: 35px;
@@ -47,14 +47,26 @@ h1 {
 
   }
 
+  .top-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    /* background-color: green; */
+  }
+
   .lightbox-btn {
     display: flex;
-    align-self: flex-end;
-    max-width: 10%;
-    max-height: 30px;
+    /* top: 10px; */
+    /* left: 2%; */
+    /* align-self: flex-end; */
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
   }
   
   #lightbox-caption {
+    /* display: fixed; */
     text-align: center;
     font-size: 20px;
     color: white;

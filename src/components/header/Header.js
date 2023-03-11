@@ -4,7 +4,7 @@ import "./Header.css";
 import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 // function Header() {
@@ -114,19 +114,23 @@ export default function Header() {
     // const handleSignClick = () => {
     //   handleSignUpClick();
     // };
-    const NAV_BUTTON = document.querySelector("#nav-btn");
-    const NAV_LIST = document.querySelector("#nav-list");
-  
-    NAV_BUTTON.onclick = () => {
-      NAV_LIST.classList.toggle("show-navigation");
-    }
-  
-  NAV_LIST.onclick = () => {
-    if (NAV_LIST.classList.contains("show-navigation")) {
-      NAV_LIST.classList.remove("show-navigation");
-    }
-  }
-  
+
+    useEffect(() => {
+      const NAV_BUTTON = document.querySelector(".nav-btn");
+      const NAV_LIST = document.querySelector(".nav-list");
+
+      NAV_BUTTON.onclick = () => {
+        NAV_LIST.classList.toggle("show-navigation");
+      }
+
+      NAV_LIST.onclick = () => {
+        if (NAV_LIST.classList.contains("show-navigation")) {
+          NAV_LIST.classList.remove("show-navigation");
+        }
+      }
+    })
+    
+   
     // function openNav() {
     //   NAV_BUTTON.onclick = () => {
     //     NAV_LIST.classList.toggle("show-navigation");
@@ -148,12 +152,15 @@ export default function Header() {
               <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
           </a> */}
 
-        <a href="javascript:;" className="mobile-btn" id="nav-btn">
+        <a href="javascript:;" className="mobile-btn nav-btn" >
           <img src="menu-icon.svg" alt="Mobile navigation reveal button"/>
         </a>
+
         
-        <nav className="Page-navigation" id="nav-list">
+        
+        <nav className="Page-navigation nav-list" >
           {/* <a className="closebtn" onClick={() => closeNav()}>&times;</a> */}
+          
           <ul className="Navigation-list">
             <li>
               <Link to="/">Home</Link>
@@ -174,9 +181,9 @@ export default function Header() {
               <Link to="/location">Location</Link>
             </li>
           </ul>
-        </nav>
         
-  
+        
+        <div className="profile-settings">
         {
           user ? (
             <>
@@ -216,8 +223,8 @@ export default function Header() {
           )
         }
         
-       
-        
+        </div>
+        </nav>
   
         {/* <img className="burger-menu" id="nav-btn"  src="menu-icon.svg"/> */}
       </header>
