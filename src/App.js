@@ -17,6 +17,8 @@ import EmailVerification from './pages/email-verification/EmailVerification.js';
 import ChangePassword from './pages/change-password/ChangePassword.js';
 import PasswordResetRequest from './pages/password-reset-request/PasswordResetRequest.js';
 import PasswordReset from './pages/password-reset/PasswordReset.js';
+import EmailResetRequest from './pages/email-reset-request/EmailResetRequest.js';
+import EmailReset from './pages/email-reset/EmailReset.js';
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -69,6 +71,8 @@ function App() {
           <Route exact path='/change-password' element={<ChangePassword />} />
           <Route exact path='/reset-password-request' element={<PasswordResetRequest />} />
           <Route exact path='/reset-password/:id/:slug' element={<PasswordReset />} />
+          <Route exact path='/reset-email-request' element={<EmailResetRequest />} />
+          <Route exact path='/reset-email/:id/:slug' element={<EmailReset />} />
         </Routes>
         <Footer />
       </div> 

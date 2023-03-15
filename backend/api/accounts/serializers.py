@@ -216,10 +216,28 @@ class InputEmailForResetingPasswordSerializer(serializers.Serializer):
         instance = User.objects.filter(email=attrs["email"]).first()
         instance.code = code
         instance.save()
-        link_to_api_change_password= f"http://localhost:8000/api/v1/accounts/reset_password/{instance.id}/{code}"
+        link_to_api_change_password = f"http://localhost:3000/reset-password/{instance.id}/{code}"
         send_mail("Email for changing password", f"This is message for changing password on website. If you forgot your password and you wnat to change it click on {link_to_api_change_password}", DynamicEmailConfiguration.get_solo().from_email, [attrs["email"]])
         return attrs
 
+
+class InputEmailForResetingEmailSerializer(serializers.Serializer):
+    email = serializers.CharField(
+        write_only=True,
+        required=True,
+    )
+
+    def validate(self, attrs):
+        code = get_random_string(length=6, allowed_chars=digits)
+        if not User.objects.filter(email=attrs["email"]):
+            raise ValidationError({'email': 'There is no such email'})
+        instance = User.objects.filter(email=attrs["email"]).first()
+        instance.code = code
+        instance.save()
+        link_to_api_change_email = f"http://localhost:3000/reset-email/{instance.id}/{code}"
+        print(link_to_api_change_email)
+        send_mail("Email for changing email", f"This is message for changing email on website. If you wnat to change it click on {link_to_api_change_email}", DynamicEmailConfiguration.get_solo().from_email, [attrs["email"]])
+        return attrs
 
 
 class ResetPasswordSerializer(serializers.Serializer):
@@ -236,3 +254,19 @@ class ResetPasswordSerializer(serializers.Serializer):
         # if attrs['old_password'] == attrs['new_password1']:
         #      raise ValidationError({'new_password1': 'You cannot use your old password'})
         return attrs
+    
+
+class ResetEmailSerializer(serializers.Serializer):
+    new_email = serializers.CharField(
+        required=True, 
+        validators=[
+            UniqueValidator(queryset=User.objects.all()),
+        ], 
+        write_only=True)
+
+    # def validate(self, attrs):
+    #     if attrs['new_password1'] != attrs['new_password2']:
+    #          raise ValidationError({'new_password1': 'New passwords are not equal'})
+    #     # if attrs['old_password'] == attrs['new_password1']:
+    #     #      raise ValidationError({'new_password1': 'You cannot use your old password'})
+    #     return attrs

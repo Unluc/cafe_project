@@ -8,7 +8,8 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse_lazy
 from rest_framework.views import APIView
 
-from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer, ChangePasswordSerializer, ResetPasswordSerializer, InputEmailForResetingPasswordSerializer
+from api.accounts.serializers import RegisterSerializer, LoginSerializer, CodeCheckSerializer, UserProfileSerializer, ChangePasswordSerializer, \
+    ResetPasswordSerializer, InputEmailForResetingPasswordSerializer, InputEmailForResetingEmailSerializer, ResetEmailSerializer
 
 from accounts.models import User
 import json
@@ -218,6 +219,7 @@ class InputEmailForResetingPasswordView(GenericAPIView):
         )
 
 
+
 class ResetPasswordView(GenericAPIView):
     """
     An endpoint for changing personal data.
@@ -259,6 +261,96 @@ class ResetPasswordView(GenericAPIView):
         user.code = ""
         user.save()
         print(f"User password:{user.password}")
+        
+        # print(f"User password:{request.data.get("new_password1")}")
+        # self.object.save()
+        # login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
+        return Response(
+            {
+                'code': status.HTTP_200_OK,
+                'data': {
+                    'redirect': {
+                        'location': '/'
+                    },
+                }
+            }
+        )
+    
+
+class InputEmailForResetingEmailView(GenericAPIView):
+    """
+    An endpoint for changing personal data.
+    """
+    serializer_class = InputEmailForResetingEmailSerializer
+    model = User
+    # permission_classes = (IsAuthenticated,)
+
+    # def get_object(self, queryset=None):
+    #     obj = self.request.user
+    #     return obj
+
+    def post(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        # if self.request.user.is_authenticated:
+        #     raise ValidationError({'new_password1': 'You cannot access this page while logged in'})
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+        # self.object.set_password(request.data.get("new_password1"))
+        # self.object.save()
+        # login(request, self.object, backend='django.contrib.auth.backends.ModelBackend')
+        return Response(
+            {
+                'code': status.HTTP_200_OK,
+                'data': {
+                    'redirect': {
+                        'location': '/'
+                    },
+                }
+            }
+        )
+    
+class ResetEmailView(GenericAPIView):
+    """
+    An endpoint for changing personal data.
+    """
+    serializer_class = ResetEmailSerializer
+    model = User
+    # permission_classes = (IsAuthenticated,)
+
+    # def get_object(self, queryset=None):
+    #     obj = self.request.user
+    #     return obj
+
+    def post(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        self.serializer = self.get_serializer(data=self.request.data)
+        self.serializer.is_valid(raise_exception=True)
+        if not User.objects.filter(id=kwargs["pk"]) or not User.objects.filter(id=kwargs["pk"]).first().code == self.kwargs["code"]:
+            # return Response({
+            #         'code': status.HTTP_400_BAD_REQUEST,
+            #         'status': status.HTTP_400_BAD_REQUEST,
+            #         'data': {
+            #             'errors': {
+            #                 'email': {
+            #                     "state": ('Wrong link')
+            #                 }
+            #             },
+            #         }
+            #     })
+            raise ValidationError({'new_email': 'Wrong link'})
+        if not self.request.user.is_authenticated:
+            raise ValidationError({'new_email': 'You cannot access this page while logged in'})
+        # if not User.objects.filter(id=kwargs["pk"]).first().code == self.kwargs["code"]:
+        #     raise ValidationError({'new_password1': 'Wrong url'})
+        user = User.objects.filter(id=kwargs["pk"]).first()
+        # user.set_password(request.data.get("new_password1"))
+        # if user.check_password(request.data.get("new_password1")):
+        #     raise ValidationError({'new_password1': 'You cannot use old password for new password'})
+        # user.set_password(request.data.get("new_password1"))
+        user.email = request.data.get("new_email")
+        user.code = ""
+        user.save()
+        print(f"User new email:{user.email}")
         
         # print(f"User password:{request.data.get("new_password1")}")
         # self.object.save()

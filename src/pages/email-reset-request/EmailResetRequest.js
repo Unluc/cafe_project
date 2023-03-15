@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function PasswordResetRequest() {
+export default function EmailResetRequest() {
     
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -36,7 +36,7 @@ export default function PasswordResetRequest() {
     // console.log(user);
     // console.log(user.id);
     // console.log(conFom);
-    axios.post("/api/v1/accounts/request_for_password_reset/", {
+    axios.post("/api/v1/accounts/request_for_email_reset/", {
       "email": conFom.email,
       // "email": conFom.email,
       // "message": conFom.message
@@ -74,16 +74,16 @@ export default function PasswordResetRequest() {
   // console.log(mass[0]);
 
   return (
-    <div className="page-content height">
-      <section className="content-section height">
+    <div className="page-content">
+      <section className="content-section">
         <div className="contact-form">
-          <h2>Input your email for password reset</h2>
+          <h2>Input your email to change your current email</h2>
 
           
 
           <form onSubmit={onSubmit}>
           <p>
-            If your forgot your password use the form bellow  to input your email for passowrd reset. You will get an email with link for password reset. 
+            If you want to change email use the form bellow to input your current email. You will get an email with link for changing email. 
           </p>
           <br></br>
 

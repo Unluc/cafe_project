@@ -140,3 +140,7 @@ function GalleryDetail() {
 }
 
 export default GalleryDetail;
+
+// {state === "Loading" ? (<div className="loader-container">
+// <div className="spinner"></div>
+// </div>) : (

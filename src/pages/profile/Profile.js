@@ -62,7 +62,7 @@ const Profile = () => {
     <div className="page-content height">
       {
       localStorage.getItem("user") ?
-        <section className="content-section height">
+        <section className="content-section">
           <div className="contact-form">
             <h2>Profile</h2>
 
@@ -88,9 +88,12 @@ const Profile = () => {
               </button>
             </form>
           </div>
-          
-        <form><Link to="/change-password" className="btn-submit">Change password</Link></form>
         
+          <form className="reset-email">
+            <form className="change-password"><Link to="/change-password" className="btn-submit">Change password</Link></form>
+            <form className="reset-email"><Link to="/reset-email-request" className="btn-submit">Reset email</Link></form>
+          </form>
+          
         
         </section>
       : <p>To see this page you have to <Link to="/login">Login</Link></p>

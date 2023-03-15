@@ -37,7 +37,7 @@ function Menu() {
     
     return(
         <div className="menu ">
-            <div className="content-section height">
+            <div className="content-section">
             <h2>All categories</h2>
                 <div className="gallery-container">
                     {state === "Loading" ? (<h1>Loading</h1>) : (
@@ -50,6 +50,7 @@ function Menu() {
                         ))                        
                         
                     )}
+                    <></>
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
                         Object.keys(topCategory.product_set).length === 0 ? (console.log("Top category has no products")) : (
@@ -71,6 +72,7 @@ function Menu() {
                         )
                     )
                         }
+                    <></>
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
                         
