@@ -131,7 +131,7 @@ class RegisterSerializer(serializers.Serializer):
             raise ValidationError({'email': 'This email is already exist!!!'})
         instance = User.objects.create_user(**validated_data, code=code)
         print("Instance code", instance.code)
-        link_to_api_confirm = f"http://localhost:8000/api/v1/accounts/confirm_email/{instance.id}"
+        link_to_api_confirm = f"http://localhost:3000/confirm_email/{instance.id}"
         send_mail("Just testing email sending", f"This is test message for registration on website. If you want to verify user on website input \"{code}\" when you go on {link_to_api_confirm}", DynamicEmailConfiguration.get_solo().from_email, [validated_data["email"]])
         return instance
 
@@ -173,7 +173,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email', "phone_number"]
+        fields = ['id', 'first_name', 'last_name', "phone_number"]
 
     # def validate(self, attrs):
     #     if not self.context['request'].user.check_password(attrs['old_password']):

@@ -28,7 +28,7 @@ const EmailVerification = () => {
     console.log(user);
     console.log(user.id);
     console.log(conFom);
-    axios.post(`/api/v1/accounts/confirm/${user.id}`, {
+    axios.post(`/api/v1/accounts/confirm_email/${user.id}`, {
       "code": conFom.code,
       // "email": conFom.email,
       // "message": conFom.message
@@ -53,7 +53,7 @@ const EmailVerification = () => {
           <h2>Input your verification code</h2>
 
           <p>
-            Use the form bellow to input code from your email to verificate email address. 
+            Your account was created. Use the form bellow to input code from your email to verificate email address. 
           </p>
 
           <form onSubmit={onSubmit}>

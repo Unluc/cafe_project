@@ -143,9 +143,9 @@ export default function Header() {
     
     return (
       <header className="Page-header">
-        <Link to="/" className="Page-logo">
+        <button onClick={() => navigate("/")} className="Page-logo">
           <img className="Logo-img" src="logo2.jpg" alt="Logo" />
-        </Link>
+        </button>
   
           {/* <a href="javascript:;" className="mobile-btn" id="nav-btn">
             &#9776

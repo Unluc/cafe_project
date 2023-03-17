@@ -109,7 +109,7 @@ function GalleryDetail() {
             <div className="content-section">
                 <h1>{apiDataObject.title}</h1>
                 <div className="gallery-container">
-                    {state === "Loading" ? (<h1>Loading</h1>) : (
+                    {state === "Loading" ? (<div className="spinner"></div>) : (
                         Array.prototype.map.call(apiData, (gallery) => (
                                 <img className="gallery-card" onClick={() => lightboxDisplay(gallery, gallery.image, gallery.alt)} src={gallery.image === null ? "/default-food-image.jpg" : gallery.image} alt={gallery.alt} key={gallery.id}/>
                         ))

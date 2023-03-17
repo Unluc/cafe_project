@@ -81,11 +81,15 @@ const Login = (props) => {
           setEmailError("");
         }
         if(err.response.data.errors[0].state["password"]) {
-          setPasswordError(err.response.data.errors[0].state["password"]) 
+          setPasswordError(err.response.data.errors[0].state["password"])
+          if (err.response.data.errors[0].state["password"][0]["message"] == "User is not active") {
+            setTimeout(() => navigate("/email-verification"), 2000 )
+          }
         } else {
           setPasswordError("");
         }
         console.log(emailError);
+        
       });
     }
     return (

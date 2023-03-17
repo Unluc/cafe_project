@@ -111,6 +111,8 @@ to {
   .Page-header > .Page-logo {
     display: flex;
     justify-content: flex-start;
+    border: none;
+    cursor: pointer;
   }
 
   .Page-navigation {

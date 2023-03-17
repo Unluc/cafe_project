@@ -259,14 +259,11 @@ textarea:focus {
 /* loading animation */
 
 .loader-container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.834);
-    z-index: 1;
+    width: 980px;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
 }
 
 .spinner {
