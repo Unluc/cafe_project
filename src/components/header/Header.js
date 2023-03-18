@@ -115,20 +115,25 @@ export default function Header() {
     //   handleSignUpClick();
     // };
 
-    useEffect(() => {
-      const NAV_BUTTON = document.querySelector(".nav-btn");
-      const NAV_LIST = document.querySelector(".nav-list");
+    const [toggle, setToggle] = useState(false);
 
-      NAV_BUTTON.onclick = () => {
-        NAV_LIST.classList.toggle("show-navigation");
-      }
+    // const NAV_BUTTON = document.querySelector(".nav-btn");
+    // const NAV_LIST = document.querySelector(".nav-list");
+    
+    // useEffect(() => {
+      
 
-      NAV_LIST.onclick = () => {
-        if (NAV_LIST.classList.contains("show-navigation")) {
-          NAV_LIST.classList.remove("show-navigation");
-        }
-      }
-    })
+    //   NAV_BUTTON.onclick = () => {
+    //     NAV_LIST.classList.toggle("show-navigation");
+    //     // NAV_LIST.classList.toggle("show-navigation");
+    //   }
+
+    //   NAV_LIST.onclick = () => {
+    //     if (NAV_LIST.classList.contains("show-navigation")) {
+    //       NAV_LIST.classList.remove("show-navigation");
+    //     }
+    //   }
+    // })
     
    
     // function openNav() {
@@ -152,13 +157,12 @@ export default function Header() {
               <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
           </a> */}
 
-        <a href="javascript:;" className="mobile-btn nav-btn" >
+        <a href="javascript:;" onClick={() => setToggle(!toggle)} className="mobile-btn nav-btn" >
           <img src="menu-icon.svg" alt="Mobile navigation reveal button"/>
         </a>
 
         
-        
-        <nav className="Page-navigation nav-list" >
+        <nav className={"Page-navigation" + (toggle ? "navv-list show-navigation" : "")}>
           {/* <a className="closebtn" onClick={() => closeNav()}>&times;</a> */}
           
           <ul className="Navigation-list">
@@ -181,9 +185,9 @@ export default function Header() {
               <Link to="/location">Location</Link>
             </li>
           </ul>
+          </nav>
         
-        
-        <div className="profile-settings">
+        <div className={"profile-settings" + (toggle ? "navv-list show-navigation" : "")}>
         {
           user ? (
             <>
@@ -224,7 +228,7 @@ export default function Header() {
         }
         
         </div>
-        </nav>
+        
   
         {/* <img className="burger-menu" id="nav-btn"  src="menu-icon.svg"/> */}
       </header>

@@ -24,6 +24,8 @@ font-size: calc(10px + 2vmin);
 color: white;
 }
 
+
+
 .App-link {
 color: #61dafb;
 }
@@ -37,6 +39,17 @@ to {
 }
 } */
 
+
+
+
+
+.Page-header > .Page-logo {
+  border: none;
+  cursor: pointer;
+  /* margin-top: auto; */
+  margin-bottom: auto;
+  background: none;
+}
 
 .Page-header {
   display: flex;
@@ -98,8 +111,37 @@ to {
 }
 
 .profile-settings {
+  display: none;
   align-items: flex-start;
 }
+.navv-list {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.9;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+/* @media only screen and(min-width: 55px) and (max-width: 1000px) {
+  .nav-list {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.9;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+} */
 
 
 @media only screen and (min-width: 1001px) {
@@ -111,8 +153,6 @@ to {
   .Page-header > .Page-logo {
     display: flex;
     justify-content: flex-start;
-    border: none;
-    cursor: pointer;
   }
 
   .Page-navigation {
@@ -151,6 +191,10 @@ to {
     /* margin-left: auto; */
     /* align-content: flex-end; */
   }
+
+  /* .nav-list {
+    height: 0;
+  } */
 
   /* .Page-header > .Page-navigation > .profile-settings {
     display: flex;
