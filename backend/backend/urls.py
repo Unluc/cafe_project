@@ -45,6 +45,7 @@ from des import urls as des_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^django-des/', include(des_urls)),
+    url(r'^jet/', include('jet.urls', 'jet')),
     path('api/v1/', include([
         path('accounts/', include('api.accounts.urls')),
         path("contact_us/", include('api.contact_us.urls')),
@@ -66,7 +67,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     # url(r'', include('apps.frontend.urls')),
     # url('i18n', include('django.conf.urls.i18n')),
-    # url(r'^jet/', include('jet.urls', 'jet')),
+    
     # url(r'^django-des/', include(des_urls)),
 
 # if settings.DEBUG:

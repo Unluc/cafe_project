@@ -83,7 +83,7 @@ to {
 
 .Navigation-list a {
   /* color: #EDEDED; */
-  color: #181818;
+  color: white;
   display: flex;
   font-size: 1.2rem;
   padding: 0.5rem 2rem;
@@ -113,10 +113,11 @@ to {
 .profile-settings {
   display: none;
   align-items: flex-start;
+  padding: 0.5rem 2rem;
 }
 .navv-list {
   height: 100%;
-  width: 0;
+  width: 100%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -127,10 +128,14 @@ to {
   transition: 0.5s;
 }
 
+.logfrm {
+  padding: 0.5rem 2rem;
+}
+
 /* @media only screen and(min-width: 55px) and (max-width: 1000px) {
-  .nav-list {
+  .navv-list {
     height: 100%;
-    width: 0;
+    width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -145,6 +150,11 @@ to {
 
 
 @media only screen and (min-width: 1001px) {
+  .navv-list {
+    width: 0;
+  }
+
+
   /* .App{
     width: 1000px;
     align-self: center;
@@ -153,28 +163,25 @@ to {
   .Page-header > .Page-logo {
     display: flex;
     justify-content: flex-start;
+    /* margin-right: 20%; */
   }
 
   .Page-navigation {
+    position: relative;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
+    /* padding-left: 15%; */
   }
 
   .Navigation-list {
     display: flex;
     /* justify-content: center; */
-    align-items: center;
-    /* margin-left: 25rem; */
+    /* align-items: center; */
+    margin-right: 15%;
+    position: absolute;
   }
-
-
-
-  /* .Page-navigation {
-    display: block;
-  } */
-  
 
   .mobile-btn {
     display: none;
@@ -182,10 +189,13 @@ to {
 
   .profile-settings {
     display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 5%;
-    gap: 30px;
+    justify-content: flex-end; */
+    margin-left: auto;
+    
+    /* gap: 30px; */
+    /* padding-left: 5%; */
     /* background-color: green; */
     /* justify-content: space-around; */
     /* margin-left: auto; */
@@ -200,4 +210,9 @@ to {
     display: flex;
     justify-content: flex-end;
   } */
+
+  .Navigation-list a {
+    /* color: #EDEDED; */
+    color: #181818;
+  }
 }

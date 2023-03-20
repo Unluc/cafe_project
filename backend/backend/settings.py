@@ -38,7 +38,7 @@ AUTH_USER_MODEL = 'accounts.User'
 INSTALLED_APPS = [
     'django_jinja',
     'solo',
-    # 'jet',
+    'jet',
 
     'des',
 
@@ -268,6 +268,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'des.backends.ConfiguredEmailBackend'
 DES_TEST_SUBJECT = "My New Subject"
+
+
+JET_SIDE_MENU_COMPACT = True
 # DES_TEST_TEXT_TEMPLATE = "markup/templates/test_email.txt"
 
 # EMAIL_HOST = 'smtp.gmail.com'
