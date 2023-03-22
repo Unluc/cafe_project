@@ -40,7 +40,9 @@ to {
 } */
 
 
-
+.location-icon {
+  width: 50px;
+}
 
 
 .Page-header > .Page-logo {
@@ -172,6 +174,7 @@ to {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    /* flex-shrink: inherit; */
     /* padding-left: 15%; */
   }
 
@@ -179,7 +182,7 @@ to {
     display: flex;
     /* justify-content: center; */
     /* align-items: center; */
-    margin-right: 15%;
+    margin-right: 20%;
     position: absolute;
   }
 
@@ -214,5 +217,14 @@ to {
   .Navigation-list a {
     /* color: #EDEDED; */
     color: #181818;
+  }
+
+  .profile-column {
+    flex-direction: column;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    margin-top: 4rem;
   }
 }
