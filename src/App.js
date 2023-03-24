@@ -19,6 +19,8 @@ import PasswordResetRequest from './pages/password-reset-request/PasswordResetRe
 import PasswordReset from './pages/password-reset/PasswordReset.js';
 import EmailResetRequest from './pages/email-reset-request/EmailResetRequest.js';
 import EmailReset from './pages/email-reset/EmailReset.js';
+import TermsAndConditions from './pages/terms-and-conditions/TermsAndConditions.js';
+import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy.js';
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -73,6 +75,8 @@ function App() {
           <Route exact path='/reset-password/:id/:slug' element={<PasswordReset />} />
           <Route exact path='/reset-email-request' element={<EmailResetRequest />} />
           <Route exact path='/reset-email/:id/:slug' element={<EmailReset />} />
+          <Route exact path='/terms-and-conditions/' element={<TermsAndConditions />} />
+          <Route exact path='/privacy-policy/' element={<PrivacyPolicy />} />
         </Routes>
         <Footer />
       </div> 

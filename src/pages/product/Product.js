@@ -46,7 +46,7 @@ const Product = () => {
                             {
                                 Array.prototype.map.call(apiRelatedProducts, (product) => (
                                     // <Link to={`../${product.slug}/`} onClick={() => window.location.href=`../${product.slug}/`} className="product" params={{slug: product.slug}} relative="path">
-                                    <Link to={`/menu/${product.slug}/`}  className="gallery-card" params={{slug: product.slug}}>
+                                    <Link to={`/menu/${product.slug}/`}  className="gallery-card" params={{slug: product.slug}} key={product.id}>
                                         <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                         <p>{product.name} £{product.price}</p>
                                     </Link>

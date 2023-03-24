@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-function Footer() {
+export default function Footer() {
 
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -47,36 +47,36 @@ function Footer() {
                 <p>Coffee Shop &copy;2022</p>
 
                 <ul className="footer-links">
-                    <li><Link to="#">Privacy Policy</Link></li>
-                    <li><Link to="#">Terms and conditions</Link></li>
+                    <li><Link to="privacy-policy">Privacy Policy</Link></li>
+                    <li><Link to="/terms-and-conditions/">Terms and conditions</Link></li>
                 </ul>
                 {/* <div className="contact-links"> */}
-                <div class="social-container">{
+                <div className="social-container">{
                     apiData.socialmedia_set === undefined ? (console.log("Loading or there are not social media links")) : 
                         Array.prototype.map.call(apiData.socialmedia_set, (social) => (
-                        <a className="social" href={social.social_media_url} target="_blank" rel="noreferrer">
+                        <a className="social" href={social.social_media_url} target="_blank" rel="noreferrer" key={social.id}>
                             <img className="social-media-links" src={social.social_media_picture} alt={social.social_media_alt} />
                         </a>
                     ))}
                 </div>
-                <div class="social-container">Our emails: {
+                <div className="social-container">Our emails: {
                     apiData.email_set === undefined ? (console.log("Loading or there are not social media links")) : 
                         Array.prototype.map.call(apiData.email_set, (email) => (
-                        <>
-                    <a href={`mailto:${email.email_address}`}>{email.email_address}</a>
-                    <pre></pre>
-                    </>
-                    ))}
+                            <>
+                                <a href={`mailto:${email.email_address}`} key={email.id}>{email.email_address}</a>
+                                <pre></pre>
+                            </>
+                        ))}
                 </div>
 
-                <div class="social-container">Our phone numbers: {
+                <div className="social-container">Our phone numbers: {
                     apiData.phone_set === undefined ? (console.log("Loading or there are not social media links")) : 
                         Array.prototype.map.call(apiData.phone_set, (phone) => (
-                        <>
-                    <a href={`tel:${phone.phone_number}`}>{phone.phone_number}</a>
-                    <pre></pre>
-                    </>
-                    ))}
+                            <>
+                                <a href={`tel:${phone.phone_number}`} key={phone.id}>{phone.phone_number}</a>
+                                <pre></pre>
+                            </>
+                        ))}
                 </div>
             {/* </div> */}
             </div>
@@ -89,5 +89,3 @@ function Footer() {
         </>
     );
 }
-
-export default Footer;

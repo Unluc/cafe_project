@@ -41,68 +41,36 @@ function HomePage() {
           <iframe 
             src="https://www.youtube.com/embed/ScMzIvxBSi4"
             title="YouTube video player" 
-            frameborder="0"
+            frameBorder="0"
             allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
+            allowFullScreen
+            >
           </iframe>
         </div>
       </section>
-
-      {/* <section className="content-section">
-        <h2>Product Categories</h2>
-
-        <div className="gallery-container">
-          <a href="images/hoodie-green.jpg" className="gallery-card">
-            <img src="images/hoodie-green.jpg" alt="hoodies" />
-            <p className="product-title">Hoodies</p>
-          </a>
-
-          <a href="images/pullover-green.jpg" className="gallery-card">
-            <img src="images/pullover-green.jpg" alt="pullovers" />
-            <p className="product-title">Pullovers</p>
-          </a>
-
-          <a href="images/tshirt-grey.jpg" className="gallery-card">
-            <img src="images/tshirt-grey.jpg" alt="tshirts" />
-            <p className="product-title">T-shirts</p>
-          </a>
-
-          <a href="images/beanie-red.jpg" className="gallery-card">
-            <img src="images/beanie-red.jpg" alt="hats" />
-            <p className="product-title">Hats</p>
-          </a>
-
-          <a href="images/sunglasses.jpg" className="gallery-card">
-            <img src="images/sunglasses.jpg" alt="sunglasses" />
-            <p className="product-title">Sunglasses</p>
-          </a>
-
-          <a href="images/belt.jpg" className="gallery-card">
-            <img src="images/belt.jpg" alt="belts" />
-            <p className="product-title">Belts</p>
-          </a>
-        </div>
-      </section> */}
 
       <section className="content-section">
         <h2>Opening Times</h2>
 
         <table>
-          <tr>
-            <th>Day</th><th>Times</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Day</th><th>Times</th>
+            </tr>
 
-          <tr>
-            <td>Weekdays</td><td>8am - 5pm</td>
-          </tr>
+            <tr>
+              <td>Weekdays</td><td>8am - 5pm</td>
+            </tr>
 
-          <tr>
-            <td>Saturdays</td><td>9am - 4pm</td>
-          </tr>
+            <tr>
+              <td>Saturdays</td><td>9am - 4pm</td>
+            </tr>
 
-          <tr>
-            <td>Sundays</td><td>10am - 3pm</td>
-          </tr>        
+            <tr>
+              <td>Sundays</td><td>10am - 3pm</td>
+            </tr>  
+          </tbody>
+                
         </table>
         
         <Link to="/contact-us" className="btn-primary">Want to get in touch?</Link>

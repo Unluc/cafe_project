@@ -30,7 +30,7 @@ function Gallery() {
                     {state === "Loading" ? (<h1>Loading</h1>) : (
                         Array.prototype.map.call(apiData, (gallery) => (
                             
-                            <Link to={gallery.slug + "/"} className="product" params={{slug: gallery.slug}}>
+                            <Link to={gallery.slug + "/"} className="product" params={{slug: gallery.slug}} key={gallery.id}>
                                 <img src={gallery.preview === null ? "/default-food-image.jpg" : gallery.preview} alt={gallery.alt} />
                                 <p className="gallery-title">{gallery.title}</p>
                             </Link>

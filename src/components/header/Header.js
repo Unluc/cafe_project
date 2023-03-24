@@ -130,7 +130,7 @@ export default function Header() {
               <img src="images/nav-button.png" alt="Mobile navigation reveal button" />
           </a> */}
         {!toggle ? 
-          <a href="javascript:;" onClick={() => setToggle(!toggle)} className="mobile-btn nav-btn" >
+          <a href="#" onClick={() => setToggle(!toggle)} className="mobile-btn nav-btn" >
           <img src="menu-icon.svg" alt="Mobile navigation reveal button"/>
         </a> : ""}
         

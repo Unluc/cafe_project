@@ -7,19 +7,19 @@ class EmailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Email
-        fields = ("email_main", "email_active", "email_address")
+        fields = ("id", "email_main", "email_active", "email_address")
 
 class PhoneSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Phone
-        fields = ("phone_main", "phone_active", "phone_number")
+        fields = ("id", "phone_main", "phone_active", "phone_number")
 
 class SocialMediaSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = SocialMedia
-        fields = ("social_media_main", "social_media_active", "social_media_title", "social_media_url", "social_media_picture", "social_media_alt")
+        fields = ("id", "social_media_main", "social_media_active", "social_media_title", "social_media_url", "social_media_picture", "social_media_alt")
 
 class CommonInfoSerializer(serializers.ModelSerializer):
     phone_set = PhoneSerializer(many=True)

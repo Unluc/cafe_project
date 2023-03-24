@@ -43,7 +43,7 @@ function Menu() {
                     {state === "Loading" ? (<h1>Loading</h1>) : (
                         Array.prototype.map.call(apiData, (category) => (
                             // category.sub_categories === undefined ? (console.log("Top category has no desendents")) : (
-                            <div onClick={() => setTopCategory(category)} className="gallery-card">
+                            <div onClick={() => setTopCategory(category)} className="gallery-card" key={category.id}>
                                 <img src={category.preview === null ? "/default-food-image.jpg" : category.preview} alt={category.alt} />
                                 <p className="product-title">{category.name}</p>
                             </div>
@@ -61,7 +61,7 @@ function Menu() {
                             {
                                     
                                 Array.prototype.map.call(topCategory.product_set, (product) => (
-                                <Link to={`${product.slug}/`} className="gallery-card" params={{slug: product.slug}}>
+                                <Link to={`${product.slug}/`} className="gallery-card" params={{slug: product.slug}} key={product.id}>
                                     <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                     <p className="product-title">{product.name} £{product.price}</p>
                                 </Link>
@@ -88,7 +88,7 @@ function Menu() {
                                             // console.log(category)
                                             // Object.entries(category.product_set).map(product => (
                                                 Array.prototype.map.call(category.product_set, (product) => (
-                                                <Link to={`${product.slug}/`} className="gallery-card" params={{slug: product.slug}}>
+                                                <Link to={`${product.slug}/`} className="gallery-card" params={{slug: product.slug}} key={product.id}>
                                                     <img src={product.preview === null ? "/default-food-image.jpg" : product.preview} alt={product.img_alt} />
                                                     <p className="product-title">{product.name} £{product.price}</p>
                                                 </Link>

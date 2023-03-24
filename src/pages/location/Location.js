@@ -6,7 +6,7 @@ import "./Location.css";
 
 
 
-function Location() {
+export default function Location() {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -40,9 +40,10 @@ function Location() {
                         src={apiDGoogleMap[1]}
                         // width="100%" 
                         // height="100%" 
-                        allowfullscreen="" 
+                        allowFullScreen="" 
                         loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"/>
+                        referrerPolicy="no-referrer-when-downgrade"
+                    />
                 </div>
             )}
         </div>
@@ -50,11 +51,3 @@ function Location() {
     );
     
 }
-
-export default Location;
-
-
-
-
-
-
