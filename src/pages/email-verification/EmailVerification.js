@@ -25,9 +25,9 @@ const EmailVerification = () => {
     }
 
     let user = JSON.parse(localStorage.getItem("not-verified-user"));
-    console.log(user);
-    console.log(user.id);
-    console.log(conFom);
+    // console.log(user);
+    // console.log(user.id);
+    // console.log(conFom);
     axios.post(`/api/v1/accounts/confirm_email/${user.id}`, {
       "code": conFom.code,
       // "email": conFom.email,
@@ -37,12 +37,12 @@ const EmailVerification = () => {
         'Content-Type': 'application/json',
       }
   }).then((res) => {
-      console.log(res);
+      // console.log(res);
       localStorage.removeItem("not-verified-user");
       navigate("/login");
       setFormStatus("Submited");
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 
@@ -74,3 +74,5 @@ const EmailVerification = () => {
 }
 
 export default EmailVerification;
+
+// todo: Make errors for code

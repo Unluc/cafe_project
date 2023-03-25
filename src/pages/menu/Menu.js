@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
 
-function Menu() {
+export default function Menu() {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -21,41 +21,52 @@ function Menu() {
     useEffect(() => {
         setState("Loading");
         axios.get(`api/v1/category/all_categories/`, {responseType: "json"}).then((res) => {
-            console.log("Res data");
+            // console.log("Res data");
             setTopCategory(res.data[0]);
-            console.log(topCategory);
-            console.log("Res data");
+            // console.log(topCategory);
+            // console.log("Res data");
             setState("Success");
             setApiData(res.data);
             setClone_Data(res.data);
-            console.log(apiData);
+            // console.log(apiData);
 
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
     }, []);
     
     return(
-        <div className="menu ">
+        // <div className="menu ">
             <div className="content-section">
-            <h2>All categories</h2>
+                
+                <h2>All categories</h2>
+                
                 <div className="gallery-container">
+                
                     {state === "Loading" ? (<h1>Loading</h1>) : (
-                        Array.prototype.map.call(apiData, (category) => (
-                            // category.sub_categories === undefined ? (console.log("Top category has no desendents")) : (
+                        <>
+                        {
+                            Array.prototype.map.call(apiData, (category) => (
+                                // category.sub_categories === undefined ? (console.log("Top category has no desendents")) : (
                             <div onClick={() => setTopCategory(category)} className="gallery-card" key={category.id}>
                                 <img src={category.preview === null ? "/default-food-image.jpg" : category.preview} alt={category.alt} />
                                 <p className="product-title">{category.name}</p>
                             </div>
-                        ))                        
+                            )) 
+                        }
+                        
+                            
+                            
+                            
+                        
+                        </>                       
                         
                     )}
-                    <></>
+                
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
-                        Object.keys(topCategory.product_set).length === 0 ? (console.log("Top category has no products")) : (
+                        Object.keys(topCategory.product_set).length === 0 ? ("") : (
                             <>
-                            {console.log(typeof(topCategory.product_set))} 
                             <div className="gallery-container">
                             <h2 className="product-title category-title">{topCategory.name}</h2>
                             {
@@ -72,14 +83,13 @@ function Menu() {
                         )
                     )
                         }
-                    <></>
+                    
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
                         
                         
-                        Object.keys(topCategory.sub_categories).length === 0 ? (console.log("Error click on another category")) : (
+                        Object.keys(topCategory.sub_categories).length === 0 ? ("") : (
                             Array.prototype.map.call(topCategory.sub_categories, (category) => (
-                            // console.log(product)
                                 // category.products_set === undefined ? (console.log("Ooops")) : (
                                     <>
                                         <h2 className="product-title category-title">{category.name}</h2>
@@ -128,10 +138,8 @@ function Menu() {
                 </div> 
             </div>
                             
-        </div>
+        // </div>
         
     );
     
 }
-
-export default Menu;

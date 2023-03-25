@@ -17,12 +17,12 @@ const Product = () => {
     useEffect(() => {
         setState("Loading");
         axios.get(`/api/v1/product/${slug}/`, {responseType: "json"}).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setState("Success");
             setApiData(res.data);
             setApiRelatedProducts(res.data.related_products)
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
     }, [slug]);
 

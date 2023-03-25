@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./GalleryDetail.css"
 
-function GalleryDetail() {
+export default function GalleryDetail() {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -36,24 +36,24 @@ function GalleryDetail() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`http://localhost:8000/api/v1/gallery/${slug}/`, {responseType: "json"}).then((res) => {
-            console.log(res.data.image_set);
+        axios.get(`/api/v1/gallery/${slug}/`, {responseType: "json"}).then((res) => {
+            // console.log(res.data.image_set);
             setState("Success");
             
             setApiData(res.data.image_set);
             setApiDataObject(res.data)
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
     }, []);
 
     function lightboxDisplay(obj, image, alt) {
-        console.log(image);
+        // console.log(image);
         if(obj) {
             // setLightboxObject(obj);
-            console.log(lightboxIndex);
+            // console.log(lightboxIndex);
             setLightboxIndex(apiData.indexOf(obj));
-            console.log(lightboxIndex);
+            // console.log(lightboxIndex);
             // console.log(apiData);
             // console.log(obj);
             // console.log(apiData.indexOf(obj));
@@ -64,7 +64,7 @@ function GalleryDetail() {
         // if(alt) 
         if(document.getElementById("lightbox")) {
             lightbox.style.display = "block";
-            console.log("lightbox should work");
+            // console.log("lightbox should work");
             
         }
       }
@@ -76,9 +76,9 @@ function GalleryDetail() {
       }
 
     function forward() {
-        console.log(lightboxIndex);
-        console.log("forward");
-        console.log(apiData.length - 1);
+        // console.log(lightboxIndex);
+        // console.log("forward");
+        // console.log(apiData.length - 1);
         if (lightboxIndex === apiData.length - 1) {
             setLightboxIndex(0);
             setLightboxObj(apiData[0]);
@@ -90,9 +90,9 @@ function GalleryDetail() {
         }
       }
       function backward() {
-        console.log(lightboxIndex);
-        console.log("backward");
-        console.log(apiData.length - 1);
+        // console.log(lightboxIndex);
+        // console.log("backward");
+        // console.log(apiData.length - 1);
         if (lightboxIndex === 0) {
             setLightboxIndex(apiData.length - 1);
             setLightboxObj(apiData[apiData.length - 1]);
@@ -138,8 +138,6 @@ function GalleryDetail() {
         
     );
 }
-
-export default GalleryDetail;
 
 // {state === "Loading" ? (<div className="loader-container">
 // <div className="spinner"></div>

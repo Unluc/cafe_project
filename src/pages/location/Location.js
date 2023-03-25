@@ -17,13 +17,13 @@ export default function Location() {
     useEffect(() => {
         setState("Loading");
         axios.get(`api/v1/org/1/`, {responseType: "json"}).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setState("Success");
             // setApiData(res.data);
             setApiGoogleMap(res.data.google_link.match(/"([^"]*)"/));
 
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
     }, []);
     

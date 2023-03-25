@@ -21,14 +21,14 @@ const Login = (props) => {
     const[passwordError, setPasswordError] = React.useState("");
 
 
-    useEffect(() => {
-      if(emailError[0]) {
-        console.log(emailError[0].message);
-      }
-      if(passwordError[0]) {
-        console.log(passwordError[0].message);
-      }
-    }, [emailError, passwordError])
+    // useEffect(() => {
+    //   if(emailError[0]) {
+    //     console.log(emailError[0].message);
+    //   }
+    //   if(passwordError[0]) {
+    //     console.log(passwordError[0].message);
+    //   }
+    // }, [emailError, passwordError])
 
     
     const onSubmit = (e) => {
@@ -50,11 +50,11 @@ const Login = (props) => {
           'Content-Type': 'application/json',
         }
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
         setFormStatus("Submited");
-        setUser(res.data);
+        // setUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
-        console.log(JSON.parse(localStorage.getItem("user")))
+        // console.log(JSON.parse(localStorage.getItem("user")))
         // rerenderParentCallback();
         props.forceUpdate(!props.ignored);
         navigate("/");
@@ -72,9 +72,9 @@ const Login = (props) => {
         // <Navigate to="/menu" />
         // navigate("/menu");
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
 
-        console.log(err.response.data.errors[0].state["email"]);
+        // console.log(err.response.data.errors[0].state["email"]);
         if(err.response.data.errors[0].state["email"]) {
           setEmailError(err.response.data.errors[0].state["email"]) 
         } else {
@@ -88,7 +88,7 @@ const Login = (props) => {
         } else {
           setPasswordError("");
         }
-        console.log(emailError);
+        // console.log(emailError);
         
       });
     }
@@ -103,13 +103,13 @@ const Login = (props) => {
               <h1 >Login</h1>
               <label htmlFor="email">Email</label>
               <br></br>
-              <input type="text" name="email" htmlFor="email" />
-              <label style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</label>
+              <input type="text" name="email" id="email" aria-describedby="email-error" />
+              <span id="email-error" style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</span>
               <br></br>
-              <label>Password</label>
+              <label htmlFor="password">Password</label>
               <br></br>
-              <input type="password" name="password" htmlFor="email" />
-              <label style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</label>
+              <input type="password" name="password" id="password" aria-describedby="pass-error"/>
+              <span id="pass-error" style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</span>
               
               <p>No account? <Link to="/signup">Create one</Link>. &emsp; Forgot your password? <Link to="/reset-password-request">Reset it</Link></p>
               <br></br>

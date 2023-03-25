@@ -29,18 +29,18 @@ const SignUp = (props) => {
 
     useEffect(() => {
       if(email.match(validEmailRegex) && password.length > 7) {
-        console.log(`Email is ${email}`)
+        // console.log(`Email is ${email}`)
         setValidated(true);
-        console.log(validated)
+        // console.log(validated)
       } else {
         setValidated(false)
       }
-      if(emailError[0]) {
-        console.log(emailError[0].message);
-      }
-      if(passwordError[0]) {
-        console.log(passwordError[0].message);
-      }
+      // if(emailError[0]) {
+      //   console.log(emailError[0].message);
+      // }
+      // if(passwordError[0]) {
+      //   console.log(passwordError[0].message);
+      // }
     }, [email, validEmailRegex, password.length, validated, emailError, passwordError])
     
     const onSubmit = (e) => {
@@ -69,7 +69,7 @@ const SignUp = (props) => {
           'Content-Type': 'application/json',
         }
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem("not-verified-user", JSON.stringify(res.data));
         navigate("/email-verification");
         setFormStatus("Submited");
@@ -77,9 +77,9 @@ const SignUp = (props) => {
         // isShowLogin = "true";
         // console.log(isShowLogin);
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         
-        console.log(err.response.data.errors[0].state["email"]);
+        // console.log(err.response.data.errors[0].state["email"]);
         if(err.response.data.errors[0].state["email"]) {
           setEmailError(err.response.data.errors[0].state["email"]) 
         } else {
@@ -90,7 +90,7 @@ const SignUp = (props) => {
         } else {
           setPasswordError("");
         }
-        console.log(emailError);
+        // console.log(emailError);
 
         
         
@@ -102,15 +102,15 @@ const SignUp = (props) => {
                 <div className="contact-form">
                     <form onSubmit={onSubmit} >
                         <h1>Sign Up</h1>
-                        <label>Email</label>
+                        <label htmlFor="email">Email</label>
                         <br></br>
-                        <input type="text" name="email" htmlFor="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        <label style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</label>
+                        <input type="text" name="email" id="email" aria-describedby="email-error" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <span id="email-error" style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</span>
                         <br></br>
-                        <label>Password</label>
+                        <label htmlFor="password">Password</label>
                         <br></br>
-                        <input type="password" name="password" htmlFor="email" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                        <label style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</label>
+                        <input type="password" name="password" id="password" aria-describedby="pass-error" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <span id="pass-error" style={{color:"red"}}>{passwordError[0] ? passwordError[0].message : ""}</span>
                         <br></br>
                         <button disabled={!validated} className={validated? "btn-submit" : "disabled-btn"} type="submit" value="REGISTER">
                         {/* <button className={"btn-submit"} type="submit" value="REGISTER"> */}

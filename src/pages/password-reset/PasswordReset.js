@@ -36,21 +36,21 @@ export default function PasswordReset() {
 
     useEffect(() => {
       if(newPassword1 === newPassword2 && newPassword1.length > 7) {
-        console.log(`Passwords validated ${newPassword1}`)
+        // console.log(`Passwords validated ${newPassword1}`)
         setValidated(true);
-        console.log(validated)
+        // console.log(validated)
       } else {
         setValidated(false)
       }
     //   if(oldPasswordError[0]) {
     //     console.log(oldPasswordError[0].message);
     //   }
-      if(newPasswordError1[0]) {
-        console.log(newPasswordError1[0].message);
-      }
-      if(newPasswordError2[0]) {
-        console.log(newPasswordError2[0].message);
-      }
+      // if(newPasswordError1[0]) {
+      //   console.log(newPasswordError1[0].message);
+      // }
+      // if(newPasswordError2[0]) {
+      //   console.log(newPasswordError2[0].message);
+      // }
     }, [newPassword1, newPassword2, validated, newPasswordError1, newPasswordError2])
     
     const onSubmit = (e) => {
@@ -71,7 +71,7 @@ export default function PasswordReset() {
         newPassword1: e.target.elements[0].value,
         newPassword2: e.target.elements[1].value,
       }
-      console.log(conFom)
+      // console.log(conFom)
       
       // console.log(conFom);
       axios.post(`/api/v1/accounts/reset_password/${id}/${slug}`, {
@@ -84,7 +84,7 @@ export default function PasswordReset() {
           'Content-Type': 'application/json',
         }
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
         // let user = localStorage.getItem("user");
         // console.log(user["password"])
         // user["password"] = conFom.newPassword1
@@ -95,7 +95,7 @@ export default function PasswordReset() {
         // isShowLogin = "true";
         // console.log(isShowLogin);
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         
         // console.log(err.response.data.errors[0].state["email"]);
         // if(err.response.data.errors[0].state["old_password"]) {
@@ -103,10 +103,10 @@ export default function PasswordReset() {
         // } else {
         //   setOldPasswordError("");
         // }
-        console.log(err.response.status)
+        // console.log(err.response.status)
         if(err.response.status === 500){
             setNewPasswordError1("Error")
-            console.log("It shoud work")
+            // console.log("It shoud work")
         } else {
             if(err.response.data.errors[0].state["new_password1"]) {
                 setNewPasswordError1(err.response.data.errors[0].state["new_password1"]) 
@@ -137,20 +137,21 @@ export default function PasswordReset() {
                         <input type="text" name="old_password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
                         <label style={{color:"red"}}>{oldPasswordError[0] ? oldPasswordError[0].message : ""}</label>
                         <br></br> */}
-                        <label>New password</label>
+                        <label htmlFor="newpassword1">New password</label>
                         <br></br>
-                        <input type="password" name="new_password1" value={newPassword1} onChange={(e) => setNewPassword1(e.target.value)}/>
-                        <label style={{color:"red"}}>{newPasswordError1[0] ? newPasswordError1[0].message : ""}</label>
+                        <input type="password" name="new_password1" id="newpassword1" aria-describedby="pass1-error" value={newPassword1} onChange={(e) => setNewPassword1(e.target.value)}/>
+                        <span id="pass1-error" style={{color:"red"}}>{newPasswordError1[0] ? newPasswordError1[0].message : ""}</span>
                         <br></br>
-                        <label>New password</label>
+                        <label htmlFor="newpassword2">Repeat new password</label>
                         <br></br>
-                        <input type="password" name="new_password2" value={newPassword2} onChange={(e) => setNewPassword2(e.target.value)}/>
-                        <label style={{color:"red"}}>{newPasswordError2[0] ? newPasswordError2[0].message : ""}</label>
+                        <input type="password" name="new_password2" id="newpassword2" aria-describedby="pass2-error" value={newPassword2} onChange={(e) => setNewPassword2(e.target.value)}/>
+                        <span id="pass2-error" style={{color:"red"}}>{newPasswordError2[0] ? newPasswordError2[0].message : ""}</span>
                         <br></br>
-                        <button disabled={!validated} className={validated? "btn-submit" : "disabled-btn"} type="submit" value="Reset Password">
+                        <button disabled={!validated} className={validated? "btn-submit" : "disabled-btn"} type="submit" value="Reset Password" aria-describedby="submit">
                         {/* <button className={"btn-submit"} type="submit" value="REGISTER"> */}
                             {formStatus}
                         </button>
+                        {formStatus === "Submited" ? <span id="submit" style={{color:"green"}}>Your submit was a success!!!</span> : ""}
                     </form>
                 </div>
             </section>

@@ -45,12 +45,12 @@ export default function EmailResetRequest() {
         'Content-Type': 'application/json',
       }
   }).then((res) => {
-      console.log(res);
+      // console.log(res);
     //   localStorage.removeItem("not-verified-user");
     //   navigate("/login");
       setFormStatus("Submited");
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
 
       setFormStatus("Try again");
       if(err.response.data.errors[0].state["email"]) {
@@ -63,7 +63,7 @@ export default function EmailResetRequest() {
     //   } else {
     //     setPasswordError("");
     //   }
-      console.log(emailError);
+      // console.log(emailError);
     });
   }
 
@@ -88,12 +88,13 @@ export default function EmailResetRequest() {
           <br></br>
 
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" required />
-            <label style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</label>
+            <input type="email" id="email" aria-describedby="email-error" required />
+            <span id="email-error" style={{color:"red"}}>{emailError[0] ? emailError[0].message : ""}</span>
 
-            <button className="btn-submit" type="submit" value="Input email">
+            <button className="btn-submit" type="submit" value="Input email" aria-describedby="submit">
               {formStatus}
             </button>
+            {formStatus === "Submited" ? <span id="submit" style={{color:"green"}}>Your submit was a success!!!</span> : ""}
           </form>
         </div>
         

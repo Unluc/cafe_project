@@ -20,7 +20,7 @@ const ContactForm = () => {
         email: email.value,
         message: message.value,
     }
-    console.log(conFom);
+    // console.log(conFom);
     axios.post("/api/v1/contact_us/contact/", {
       "name": conFom.name,
       "email": conFom.email,
@@ -30,10 +30,10 @@ const ContactForm = () => {
         'Content-Type': 'application/json',
       }
   }).then((res) => {
-      console.log(res);
+      // console.log(res);
       setFormStatus("Submited");
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 
@@ -57,9 +57,10 @@ const ContactForm = () => {
             <label htmlFor="message">Message</label>
             <textarea id="message" required />
 
-            <button className="btn-submit" type="submit" value="Send Message">
+            <button className="btn-submit" type="submit" value="Send Message" aria-describedby="submit">
               {formStatus}
             </button>
+            {formStatus === "Submited" ? <span id="submit" style={{color:"green"}}>Your submit was a success!!!</span> : ""}
           </form>
         </div>
         

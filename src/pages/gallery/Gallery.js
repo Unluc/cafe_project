@@ -13,12 +13,12 @@ function Gallery() {
     useEffect(() => {
         setState("Loading");
         axios.get(`api/v1/gallery/all_gallery/`, {responseType: "json"}).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setState("Success");
             setApiData(res.data);
 
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
     }, []);
 

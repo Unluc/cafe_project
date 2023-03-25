@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const Profile = () => {
+export default function Profile () {
     
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -24,7 +24,7 @@ const Profile = () => {
       // email: email.value,
       phone_number: phone_number.value,
     }
-    console.log(conFom);
+    // console.log(conFom);
     axios.put("/api/v1/accounts/profile/", {
       "first_name": conFom.first_name,
       "last_name": conFom.last_name,
@@ -36,10 +36,10 @@ const Profile = () => {
         'Content-Type': 'application/json',
       }
   }).then((res) => {
-      console.log(res);
+      // console.log(res);
       setFormStatus("Submited");
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 
@@ -54,7 +54,7 @@ const Profile = () => {
         setApiData(res.data);
         apiDataCopy = res.data;
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
 }, []);
 
@@ -71,21 +71,22 @@ const Profile = () => {
             </p>
 
             <form onSubmit={onSubmit}>
-              <label htmlFor="name">First name</label>
+              <label htmlFor="first_name">First name</label>
               <input type="text" id="first_name" value={apiData.first_name} onChange={(e) => setApiData(apiDataCopy.first_name = e.target.value)} required />
 
-              <label htmlFor="name">Last name</label>
+              <label htmlFor="last_name">Last name</label>
               <input type="text" id="last_name" value={apiData.last_name} onChange={(e) => setApiData(apiDataCopy.last_name = e.target.value)} required />
 
               {/* <label htmlFor="email">Email</label>
               <input type="email" id="email" value={apiData.email} onChange={(e) => setApiData(apiDataCopy.email = e.target.value)} required /> */}
 
-              <label htmlFor="message">Phone number</label>
+              <label htmlFor="phone_number">Phone number</label>
               <input type="name" id="phone_number" value={apiData.phone_number} onChange={(e) => setApiData(apiDataCopy.phone_number = e.target.value)} required />
 
-              <button className="btn-submit" type="submit" value="Update profile">
+              <button className="btn-submit" type="submit" value="Update profile" aria-describedby="submit">
                 {formStatus}
               </button>
+              {formStatus === "Submited" ? <span id="submit" style={{color:"green"}}>Your submit was a success!!!</span> : ""}
             </form>
           </div>
         
@@ -103,5 +104,3 @@ const Profile = () => {
     
   );
 }
-
-export default Profile;

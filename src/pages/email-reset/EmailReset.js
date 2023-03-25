@@ -40,18 +40,18 @@ export default function EnailReset() {
 
     useEffect(() => {
       if(newEmail.match(validEmailRegex)) {
-        console.log(`Email validated ${newEmail}`)
+        // console.log(`Email validated ${newEmail}`)
         setValidated(true);
-        console.log(validated)
+        // console.log(validated)
       } else {
         setValidated(false)
       }
     //   if(oldPasswordError[0]) {
     //     console.log(oldPasswordError[0].message);
     //   }
-      if(newEmailError[0]) {
-        console.log(newEmailError[0].message);
-      }
+      // if(newEmailError[0]) {
+      //   console.log(newEmailError[0].message);
+      // }
     //   if(newPasswordError2[0]) {
     //     console.log(newPasswordError2[0].message);
     //   }
@@ -75,7 +75,7 @@ export default function EnailReset() {
         newEmail: e.target.elements[0].value,
         // newPassword2: e.target.elements[1].value,
       }
-      console.log(conFom)
+      // console.log(conFom)
       
       // console.log(conFom);
       axios.post(`/api/v1/accounts/reset_email/${id}/${slug}`, {
@@ -88,7 +88,7 @@ export default function EnailReset() {
           'Content-Type': 'application/json',
         }
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
         // let user = localStorage.getItem("user");
         // console.log(user["password"])
         // user["password"] = conFom.newPassword1
@@ -99,7 +99,7 @@ export default function EnailReset() {
         // isShowLogin = "true";
         // console.log(isShowLogin);
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         
         // console.log(err.response.data.errors[0].state["email"]);
         // if(err.response.data.errors[0].state["old_password"]) {
@@ -107,10 +107,10 @@ export default function EnailReset() {
         // } else {
         //   setOldPasswordError("");
         // }
-        console.log(err.response.status)
+        // console.log(err.response.status)
         if(err.response.status === 500){
             setNewEmailError("Error")
-            console.log("It shoud work")
+            // console.log("It shoud work")
         } else {
             if(err.response.data.errors[0].state["new_email"]) {
                 setNewEmailError(err.response.data.errors[0].state["new_email"]) 
@@ -141,20 +141,21 @@ export default function EnailReset() {
                         <input type="text" name="old_password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
                         <label style={{color:"red"}}>{oldPasswordError[0] ? oldPasswordError[0].message : ""}</label>
                         <br></br> */}
-                        <label>New email</label>
+                        <label htmlFor="email">New email</label>
                         <br></br>
-                        <input type="email" name="new_email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}/>
-                        <label style={{color:"red"}}>{newEmailError[0] ? newEmailError[0].message : ""}</label>
+                        <input type="email" name="new_email" id="email" aria-describedby="email-error" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}/>
+                        <span id="email-error" style={{color:"red"}}>{newEmailError[0] ? newEmailError[0].message : ""}</span>
                         {/* <br></br>
                         <label>New password</label>
                         <br></br>
                         <input type="password" name="new_password2" value={newPassword2} onChange={(e) => setNewPassword2(e.target.value)}/>
                         <label style={{color:"red"}}>{newPasswordError2[0] ? newPasswordError2[0].message : ""}</label> */}
                         <br></br>
-                        <button disabled={!validated} className={validated? "btn-submit" : "disabled-btn"} type="submit" value="Reset Email">
+                        <button disabled={!validated} className={validated? "btn-submit" : "disabled-btn"} type="submit" value="Reset Email" aria-describedby="submit">
                         {/* <button className={"btn-submit"} type="submit" value="REGISTER"> */}
                             {formStatus}
                         </button>
+                        {formStatus === "Submited" ? <span id="submit" style={{color:"green"}}>Your submit was a success!!!</span> : ""}
                     </form>
                 </div>
             </section>

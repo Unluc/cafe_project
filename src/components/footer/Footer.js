@@ -15,13 +15,13 @@ export default function Footer() {
     useEffect(() => {
         setState("Loading");
         axios.get(`/api/v1/org/1/`, {responseType: "json"}).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setState("Success");
             setApiData(res.data);
             // setApiGoogleMap(res.data.google_link.match(/"([^"]*)"/));
 
           }).catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
     }, []);
     return(
@@ -52,7 +52,7 @@ export default function Footer() {
                 </ul>
                 {/* <div className="contact-links"> */}
                 <div className="social-container">{
-                    apiData.socialmedia_set === undefined ? (console.log("Loading or there are not social media links")) : 
+                    apiData.socialmedia_set === undefined ? ("") : 
                         Array.prototype.map.call(apiData.socialmedia_set, (social) => (
                         <a className="social" href={social.social_media_url} target="_blank" rel="noreferrer" key={social.id}>
                             <img className="social-media-links" src={social.social_media_picture} alt={social.social_media_alt} />
@@ -60,7 +60,7 @@ export default function Footer() {
                     ))}
                 </div>
                 <div className="social-container">Our emails: {
-                    apiData.email_set === undefined ? (console.log("Loading or there are not social media links")) : 
+                    apiData.email_set === undefined ? ("") : 
                         Array.prototype.map.call(apiData.email_set, (email) => (
                             <>
                                 <a href={`mailto:${email.email_address}`} key={email.id}>{email.email_address}</a>
@@ -70,7 +70,7 @@ export default function Footer() {
                 </div>
 
                 <div className="social-container">Our phone numbers: {
-                    apiData.phone_set === undefined ? (console.log("Loading or there are not social media links")) : 
+                    apiData.phone_set === undefined ? ("") : 
                         Array.prototype.map.call(apiData.phone_set, (phone) => (
                             <>
                                 <a href={`tel:${phone.phone_number}`} key={phone.id}>{phone.phone_number}</a>

@@ -153,7 +153,10 @@ to {
 
 @media only screen and (min-width: 1001px) {
   .navv-list {
+    /* display: none; */
     width: 0;
+    /* height: 0; */
+    
   }
 
 

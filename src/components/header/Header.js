@@ -24,15 +24,15 @@ export default function Header() {
           'Content-Type': 'application/json',
         }
     }).then((res) => {
-        console.log(res);
+        // console.log(res);
         // setFormStatus("Submited");
         localStorage.removeItem("user");
         rerenderParentCallback();
-        console.log(JSON.parse(localStorage.getItem("user")))
-        setToggle(!toggle)
+        // console.log(JSON.parse(localStorage.getItem("user")))
+        checkToggle()
         navigate("/");
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     }
    
@@ -74,18 +74,24 @@ export default function Header() {
     const [width, setWidth]   = useState(window.innerWidth);
     // const [height, setHeight] = useState(window.innerHeight);
     const updateDimensions = () => {
-        setWidth(window.innerWidth);
+      if (window.innerWidth > 1001 && toggle) {
+        setToggle(!toggle);
+      }
         // setHeight(window.innerHeight);
     }
     useEffect(() => {
       window.addEventListener("resize", updateDimensions);
       
       return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-    console.log(width)
-    if (width > 1001 && toggle) {
-      setToggle(!toggle);
+  }, [window]);
+
+    function checkToggle() {
+      if (window.innerWidth < 1001) {
+        setToggle(!toggle);
+      }   
     }
+    // console.log(width)
+    
     // const focusRef = useRef(document.querySelector(".profile-column"));
     // console.log(focusRef)
     
@@ -139,123 +145,95 @@ export default function Header() {
 
         
         <nav className={"Page-navigation" + (toggle ? "show-navigation navv-list " : "")}>
-        {toggle ? <a className="close" onClick={() => setToggle(!toggle)}>&times;</a> : ""}
-        {width < 1001 ? 
+          {toggle ? <a className="close" onClick={() => checkToggle()}>&times;</a> : ""}
+        
           <ul className="Navigation-list">
             <li>
-              <Link onClick={() => setToggle(!toggle)} to="/">Home</Link>
+              <Link onClick={() => checkToggle()} to="/">Home</Link>
             </li>
             <li>
-                <Link onClick={() => setToggle(!toggle)} to="/about-us">About Us</Link>
+                <Link onClick={() => checkToggle()} to="/about-us">About Us</Link>
             </li>
             <li>
-                <Link onClick={() => setToggle(!toggle)} to="/gallery">Gallery</Link>
+                <Link onClick={() => checkToggle()} to="/gallery">Gallery</Link>
             </li>
             <li>
-                <Link onClick={() => setToggle(!toggle)} to="/menu">Menu</Link>
+                <Link onClick={() => checkToggle()} to="/menu">Menu</Link>
             </li>
             <li>
-              <Link onClick={() => setToggle(!toggle)} to="/contact-us">Contact Us</Link>
+              <Link onClick={() => checkToggle()} to="/contact-us">Contact Us</Link>
             </li>
-            <li>
-              <Link onClick={() => setToggle(!toggle)} to="/location">Location</Link>
-            </li>
-          </ul>
-           : 
-           <ul className="Navigation-list">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/about-us">About Us</Link>
-            </li>
-            <li>
-                <Link to="/gallery">Gallery</Link>
-            </li>
-            <li>
-                <Link to="/menu">Menu</Link>
-            </li>
-            <li>
-              <Link to="/contact-us">Contact Us</Link>
-            </li>
-
-          </ul>
-           } 
-        
-        <div className={"profile-settings" + (toggle ? "show-navigation" : "")}>
-          {width > 1001 ? 
-            <Link to="/location"><img className="location-icon" src="location-icon.png"/></Link>
-          :
-            ""
-          }
-        {
-          user ? (
-            width < 1001 ? 
-            <div>
-            
-              <div className='logfrm'>
-              
-                <Link onClick={() => setToggle(!toggle)} className="loginicon" to="/profile">Profile</Link> 
-                
-              </div>
-              <div className='logfrm'>
-                <span onClick={handleLogoutClick} className="loginicon">
-                  Log Out
-                </span>
-              </div>
-            </div>
-
+            {toggle ? 
+              <li>
+                <Link onClick={() => checkToggle()} to="/location">Location</Link>
+              </li>
             :
-              <div className='logfrm profile-column' onClick={() => setProfileToggle(!profileToggle)}>
-                <img className="location-icon" src="profile.png"/>
-                {profileToggle ? 
-                <div className="profile-dropdown">
-                  <Link className="loginicon" to="/profile">Profile</Link>
-                  <span onClick={handleLogoutClick} className="loginicon">
-                    Log Out
-                  </span>
+              ""
+            }
+          </ul>
+          
+        
+          <div className={"profile-settings" + (toggle ? "show-navigation" : "")}>
+            {!toggle ? 
+              <Link to="/location"><img className="location-icon" src="location-icon.png"/></Link>
+            :
+              ""
+            }
+          {
+            user ? (
+              toggle ? 
+                <div>
+                  <div className='logfrm'>
+                    <Link onClick={() => checkToggle()} className="loginicon" to="/profile">Profile</Link> 
+                  </div>
+                  <div className='logfrm'>
+                    <p onClick={handleLogoutClick} className="loginicon">
+                      Log Out
+                    </p>
+                  </div>
                 </div>
-                :
-                ""}                
-              </div>
-           
-            
-          ) : (
+              :
+                <div className='logfrm profile-column' onClick={() => setProfileToggle(!profileToggle)}>
+                  <img className="location-icon" src="profile.png"/>
+                  {profileToggle ? 
+                  <div className="profile-dropdown">
+                    <Link className="loginicon" to="/profile">Profile</Link>
+                    <span onClick={handleLogoutClick} className="loginicon">
+                      Log Out
+                    </span>
+                  </div>
+                  :
+                  ""}                
+                </div>            
+            ) : (
+              toggle ? 
+              <>
+                <div className='logfrm'>
+                    <Link onClick={() => checkToggle()} to="/login" className="loginicon">Login</Link>
+                </div>  
 
-            width < 1001 ? 
-            
-            <>
-            
-              <div className='logfrm'>
+                <div className='logfrm'>
+                    <Link onClick={() => checkToggle()} to="/signup" className="loginicon">SignUp</Link>
+                </div>
+              </>
 
-                <Link onClick={() => setToggle(!toggle)} to="/login" className="loginicon">Login</Link>
-
-            </div>  
-            
-  
-            <div className='logfrm'>
-                <Link onClick={() => setToggle(!toggle)} to="/signup" className="loginicon">SignUp</Link>
-            </div>
-            </>
-
-          :
-
-          <div className='logfrm profile-column' onClick={() => setProfileToggle(!profileToggle)}>
-            <img className="location-icon" src="profile.png"/>
-            {profileToggle ? 
-              <div className="profile-dropdown">
-                <Link to="/login" className="loginicon">Login</Link>
-                <Link to="/signup" className="loginicon">SignUp</Link>
-              </div>
             :
-              ""}                
+            <div className='logfrm profile-column' onClick={() => setProfileToggle(!profileToggle)}>
+              <img className="location-icon" src="profile.png"/>
+              {profileToggle ? 
+                <div className="profile-dropdown">
+                  <Link to="/login" className="loginicon">Login</Link>
+                  <Link to="/signup" className="loginicon">SignUp</Link>
+                </div>
+              :
+                ""}                
+            </div>
+            )
+          }
+          
           </div>
-          )
-        }
         
-        </div>
-        
-  </nav>
+        </nav>
       </header>
     );
   }
