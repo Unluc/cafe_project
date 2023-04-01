@@ -22,6 +22,8 @@ django-solo = "*"
 django-treebeard = "*"
 djangorestframework-simplejwt = "*"
 django-des = "*"
+django-environ = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
