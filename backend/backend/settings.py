@@ -15,6 +15,11 @@ from pathlib import Path
 
 from django_jinja.builtins import DEFAULT_EXTENSIONS
 
+
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,12 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4*fm01#1r5mk#jc(vomn)(d*a5q!kr5n=t-o8&1wx#2l%_zt-s'
+SECRET_KEY = str(os.getenv('SECRET_KEY')),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "172.19.0.4:3000", "172.19.0.4", "0.0.0.0", "db", "172.20.0.4", "cafe-project-backend"]
+# ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -69,7 +75,8 @@ CONSTANCE_IGNORE_ADMIN_VERSION_CHECK = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
@@ -104,19 +111,26 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
+     'http://172.19.0.4:3000',
+     'http://172.20.0.4:3000',
      'http://localhost:8000',
+    #  "*"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    'http://172.19.0.4:3000',
+    'http://172.20.0.4:3000',
     "http://localhost:8000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
+    "http://0.0.0.0:8000",
+#     "*"
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 # Access-Control-Allow-Origin: *
 CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUSTED_ORIGINS = ['localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['localhost:3000', "localhost:3030", "172.20.0.4:3000"]
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -204,29 +218,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cafe_project_db',
-        'USER': 'satisfaction',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': str(os.getenv('DB_NAME')),
+        'USER': str(os.getenv('DB_USER')),
+        'PASSWORD': str(os.getenv('DB_PASSWORD')),
+        'HOST': str(os.getenv('DB_HOST')),
+        # 'HOST': "localhost",
+        'PORT': str(os.getenv('DB_PORT')),
 
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
     }, 
-    # 'new': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'test',
-    #     'USER': 'admin',
-    #     'PASSWORD': 'admin',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    # }
 }
 
 
@@ -288,9 +296,4 @@ DES_TEST_SUBJECT = "My New Subject"
 JET_SIDE_MENU_COMPACT = True
 # DES_TEST_TEXT_TEMPLATE = "markup/templates/test_email.txt"
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'inappropriatesatisfaction@gmail.com'
-# EMAIL_HOST_PASSWORD = 'fsglxpfvcwpnpuiq'  # past the key or password app here
-# EMAIL_PORT = 465
-# EMAIL_USE_SSL = True
-# DEFAULT_FROM_EMAIL = 'My blog sender'
+

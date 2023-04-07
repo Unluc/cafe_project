@@ -67,19 +67,26 @@ class LoginView(GenericAPIView):
         user = self.serializer.validated_data['user']
         login(request=self.request, user=user)
         # print(self.request.data)
-        # self.request.data._mutable = True        
-        self.request.data["id"] = user.id
-        self.request.data["is_active"] = user.is_active
+        # self.request.data._mutable = True
+        data = self.request.data.copy()    
+        data["id"] = user.id
+        data["is_active"] = user.is_active
+        print(data)
+        print(self.request.user)
         # self.request.data._mutable = False
         # print(self.request.data)
-        return Response(data=self.request.data, status=status.HTTP_200_OK)
+        return Response(data=data, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
-    redirect_url = reverse_lazy('index')
+    # redirect_url = reverse_lazy('index')
 
     def post(self, *args, **kwargs):
+        print("self.request.user")
+        print(self.request.user)
+        print(self.request.user.is_authenticated)
+        print("self.request.user.is_authenticated")
         logout(self.request)
         return Response(status=status.HTTP_200_OK)
 

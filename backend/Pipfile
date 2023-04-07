@@ -1,0 +1,33 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.2.16"
+djangorestframework = "*"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
+django-jinja = "*"
+jinja2 = "*"
+django-rest-swagger = "*"
+django-jet = "*"
+drf-yasg = "*"
+django-jet2 = "*"
+django-cors-headers = "*"
+django-filter = "*"
+pyautogui = "*"
+django-unique-slugify = "*"
+pillow = "*"
+django-solo = "*"
+django-treebeard = "*"
+djangorestframework-simplejwt = "*"
+django-des = "*"
+django-environ = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+python-dotenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
