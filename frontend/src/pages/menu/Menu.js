@@ -62,13 +62,16 @@ export default function Menu() {
                         </>                       
                         
                     )}
-                
+                   
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
+                        
                         topCategory === undefined || Object.keys(topCategory.product_set).length === 0 ? ("") : (
                             <>
+                            
                             <div className="gallery-container">
-                            <h2 className="product-title category-title">{topCategory.name}</h2>
+                            <br></br>
+                            <h2 className="product-title category-title">List of products for "{topCategory.name}" category</h2>
                             {
                                     
                                 Array.prototype.map.call(topCategory.product_set, (product) => (
@@ -84,13 +87,16 @@ export default function Menu() {
                     )
                         }
                     
+                    
                     {
                     state === "Loading" ? (<h1>Loading</h1>) : (
                         topCategory === undefined || Object.keys(topCategory.sub_categories).length === 0 ? ("") : (
                             Array.prototype.map.call(topCategory.sub_categories, (category) => (
                                 // category.products_set === undefined ? (console.log("Ooops")) : (
                                     <>
-                                        <h2 className="product-title category-title">{category.name}</h2>
+                                        <div className="gallery-container">
+                                        <br></br>
+                                        <h2 className="product-title category-title">List of products for "{category.name}" category</h2>
                                         {
                                         category.product_set === undefined ? (<p className="product-title">No product in that category</p>) : (
                                             // console.log(category)
@@ -101,8 +107,11 @@ export default function Menu() {
                                                     <p className="product-title">{product.name} £{product.price}</p>
                                                 </Link>
                                             ))
+                                            
                                         )
+                                        
                                         }
+                                        </div>
                                     </>
                                     
                                     // console.log(category.products_set)

@@ -27,7 +27,7 @@ export default function Profile () {
       phone_number: phone_number.value,
     }
     // console.log(conFom);
-    axios.put(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_PROFILE_URL}`, {
+    axios.put(`${env.REACT_APP_API_PROFILE_URL}`, {
       "first_name": conFom.first_name,
       "last_name": conFom.last_name,
       // "email": conFom.email,
@@ -47,7 +47,7 @@ export default function Profile () {
 
   useEffect(() => {
     setState("Loading");
-    axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_PROFILE_URL}`, {"headers": {
+    axios.get(`${env.REACT_APP_API_PROFILE_URL}`, {"headers": {
       // "Access-Control-Allow-Origin": "*",
       
       'Content-Type': 'application/json',}}).then((res) => {

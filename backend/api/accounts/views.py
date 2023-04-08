@@ -71,8 +71,8 @@ class LoginView(GenericAPIView):
         data = self.request.data.copy()    
         data["id"] = user.id
         data["is_active"] = user.is_active
-        print(data)
-        print(self.request.user)
+        # print(data)
+        # print(self.request.user)
         # self.request.data._mutable = False
         # print(self.request.data)
         return Response(data=data, status=status.HTTP_200_OK)
@@ -83,10 +83,10 @@ class LogoutView(APIView):
     # redirect_url = reverse_lazy('index')
 
     def post(self, *args, **kwargs):
-        print("self.request.user")
-        print(self.request.user)
-        print(self.request.user.is_authenticated)
-        print("self.request.user.is_authenticated")
+        # print("self.request.user")
+        # print(self.request.user)
+        # print(self.request.user.is_authenticated)
+        # print("self.request.user.is_authenticated")
         logout(self.request)
         return Response(status=status.HTTP_200_OK)
 
