@@ -16,10 +16,9 @@
 
 # Ex 2: A collection of hosts belonging to the 'webservers' group
 
-[webservers]
+## [webservers]
 
-# ubuntu@ec2-35-171-151-247.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/django_react.pem      		Example
-ec2-user@ec2-16-16-92-203.eu-north-1.compute.amazonaws.com ansible_ssh_private_key_file=~/.ssh/my_django.pem 
+# ubuntu@ec2-35-171-151-247.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/django_react.pem      		Example 
 # If you have multiple hosts following a pattern you can specify
 # them like this:
 

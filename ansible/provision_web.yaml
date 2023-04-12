@@ -41,6 +41,3 @@
         for container in $(sudo docker ps | grep basic | awk '{print $1}'); do sudo docker exec $container python3 manage.py migrate; done
       become: yes
       
-      
-
-      become: yes
