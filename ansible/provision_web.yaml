@@ -32,7 +32,8 @@
 
     - name: Run Image
       shell: |
-        docker run -it -d -e "DATABASE_URL=postgres://postgres:@mydb.cq2kjrywzryv.eu-north-1.rds.amazonaws.com:5432/postgres" -p 80:8000 cafe_project_backend:latest
+        docker run -it -d -e "DATABASE_URL=postgres://postgres:@mydb.cq2kjrywzryv.eu-north-1.rds.amazonaws.com:5432/postgres" -p 80:8000 rootsatisfaction/cafe_project_backend:latest
+        docker run --dit --name "cafe_project-frontend" -p 3000:3000 rootsatisfaction/cafe_project_frontend:latest
        #cafe_project_backend:latest
       become: yes
     
@@ -40,4 +41,6 @@
       shell: |
         for container in $(sudo docker ps | grep basic | awk '{print $1}'); do sudo docker exec $container python3 manage.py migrate; done
       become: yes
+      
+      
       

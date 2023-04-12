@@ -31,3 +31,4 @@
 /backend/contenttypes.json
 
 /ansible/example-hosts-file
+/ansible/provision_web.yaml
