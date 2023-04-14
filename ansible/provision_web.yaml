@@ -30,11 +30,20 @@
         systemctl enable docker
       become: yes
 
-    - name: Run Image
+    - name: Login Docker
+      docker_login:
+        username: rootsatisfaction
+        password: P1o2i3u4y5#
+      become: yes
+
+    - name: Run Backend Image
       shell: |
         docker run -it -d -e "DATABASE_URL=postgres://postgres:@mydb.cq2kjrywzryv.eu-north-1.rds.amazonaws.com:5432/postgres" -p 80:8000 rootsatisfaction/cafe_project_backend:latest
-        docker run --dit --name "cafe_project-frontend" -p 3000:3000 rootsatisfaction/cafe_project_frontend:latest
-       #cafe_project_backend:latest
+      become: yes
+
+    - name: Run Frontend Image
+      shell: |
+        docker run -it -d -p 3000:3000 rootsatisfaction/cafe_project_frontend:latest
       become: yes
     
     - name: migrate

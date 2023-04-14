@@ -31,10 +31,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY')),
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.getenv('SECRET_KEY')),
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "172.19.0.4:3000", "172.19.0.4", "0.0.0.0", "db", "172.20.0.4", "cafe-project-backend"]
-# ALLOWED_HOSTS = ["*"]
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -166,12 +166,7 @@ TEMPLATES = [
 
             'filters': {},
 
-            'globals': {
-                # 'channels': 'shared.jinja_func.channels.channels',
-                # 'get_connection_token': 'shared.jinja_func.get_connection_token.get_connection_token',
-                # 'increment': 'shared.jinja_func.retarded_func.increment',
-                # 'get_presence': 'shared.jinja_func.get_connection_token.get_presence',
-            },
+            'globals': {},
 
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -229,7 +224,6 @@ DATABASES = {
         'USER': str(os.getenv('DB_USER')),
         'PASSWORD': str(os.getenv('DB_PASSWORD')),
         'HOST': str(os.getenv('DB_HOST')),
-        # 'HOST': "localhost",
         'PORT': str(os.getenv('DB_PORT')),
 
         # 'ENGINE': 'django.db.backends.sqlite3',
@@ -294,6 +288,3 @@ DES_TEST_SUBJECT = "My New Subject"
 
 
 JET_SIDE_MENU_COMPACT = True
-# DES_TEST_TEXT_TEMPLATE = "markup/templates/test_email.txt"
-
-
