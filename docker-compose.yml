@@ -8,11 +8,11 @@ services:
     #   - '5432:5432'
 
     environment:
-      # - POSTGRES_PASSWORD=admin
-      # - POSTGRES_USER=satisfaction
-      # - POSTGRES_DB=cafe_project_db
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=satisfaction
+      - POSTGRES_DB=cafe_project_db
 
-      - DJANGO_DB_URL=psql://satisfaction:admin@db:5432/cafe_project_db
+      # - DJANGO_DB_URL=psql://satisfaction:admin@db:5432/cafe_project_db
     expose:
       - 5432
     volumes:
@@ -40,17 +40,18 @@ services:
       - db-net
 
   backend:
-    # command: python3 manage.py runserver 0.0.0.0:8000
+    command: >
+      bash -c "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
     build: 
       context: ./backend
       dockerfile: Dockerfile
 
     environment:
-    # - POSTGRES_PASSWORD=admin
-    # - POSTGRES_USER=satisfaction
-    # - POSTGRES_DB=cafe_project_db
+      # - POSTGRES_PASSWORD=admin
+      # - POSTGRES_USER=satisfaction
+      # - POSTGRES_DB=cafe_project_db
 
-    - DJANGO_DB_URL=psql://satisfaction:admin@db:5432/cafe_project_db
+      - DJANGO_DB_URL=psql://satisfaction:admin@db:5432/cafe_project_db
 
     ports:
       - '8000:8000'
