@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./GalleryDetail.css"
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 export default function GalleryDetail() {
     axios.defaults.xsrfCookieName = 'csrftoken';
@@ -38,7 +38,7 @@ export default function GalleryDetail() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_GALLERY_URL}${slug}/`, {responseType: "json"}).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_GALLERY_URL}${slug}/`, {responseType: "json"}).then((res) => {
             // console.log(res.data.image_set);
             setState("Success");
             

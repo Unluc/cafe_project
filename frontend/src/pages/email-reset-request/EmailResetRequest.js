@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 export default function EmailResetRequest() {
     
@@ -38,7 +38,7 @@ export default function EmailResetRequest() {
     // console.log(user);
     // console.log(user.id);
     // console.log(conFom);
-    axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_RESET_EMAIL_REQUEST_URL}`, {
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_RESET_EMAIL_REQUEST_URL}`, {
       "email": conFom.email,
       // "email": conFom.email,
       // "message": conFom.message

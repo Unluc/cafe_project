@@ -6,7 +6,7 @@ import { useNavigate, BrowserRouter as Router, Routes, Route, Link } from "react
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 
-import env from "react-dotenv";
+// import env from "react-dotenv";
 
 
 export default function Header() {
@@ -26,7 +26,7 @@ export default function Header() {
     
       // axios.post(`${env.REACT_APP_API_BASE_URL}/${env.REACT_APP_API_LOGOUT_URL}`, {
       // axios.post(`/api/v1/accounts/logout/`, {
-      axios.post(`${env.REACT_APP_API_LOGOUT_URL}`, {
+      axios.post(`${process.env.REACT_APP_API_LOGOUT_URL}`, {
         "headers": {
           'Content-Type': 'application/json',
           // 'Authorization': `${JSON.parse(localStorage.getItem('auth'))}`

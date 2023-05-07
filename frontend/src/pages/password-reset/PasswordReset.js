@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../contact-us/ContactUs.css";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 export default function PasswordReset() {
 
@@ -76,7 +76,7 @@ export default function PasswordReset() {
       // console.log(conFom)
       
       // console.log(conFom);
-      axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_RESET_PASSWORD_URL}${id}/${slug}`, {
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_RESET_PASSWORD_URL}${id}/${slug}`, {
         // "old_password": conFom.oldPassword,
         "new_password1": conFom.newPassword1,
         "new_password2": conFom.newPassword2,

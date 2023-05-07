@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import "./Location.css";
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 
 
@@ -15,7 +15,7 @@ export default function Location() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_ORG_URL}`, {responseType: "json"}).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_ORG_URL}`, {responseType: "json"}).then((res) => {
             // console.log(res.data);
             setState("Success");
             // setApiData(res.data);

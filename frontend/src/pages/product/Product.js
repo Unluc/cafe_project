@@ -3,9 +3,9 @@ import axios from "axios";
 import "./Product.css"
 import { useParams, BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
-const Product = () => {
+export default function Product() {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -17,7 +17,7 @@ const Product = () => {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_PRODUCT_URL}${slug}/`, {responseType: "json"}).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_PRODUCT_URL}${slug}/`, {responseType: "json"}).then((res) => {
             // console.log(res.data);
             setState("Success");
             setApiData(res.data);
@@ -64,5 +64,3 @@ const Product = () => {
         
     );
 }
-
-export default Product;

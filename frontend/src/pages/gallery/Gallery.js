@@ -3,9 +3,9 @@ import axios from "axios";
 import Footer from "../../components/footer/Footer.js";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
-function Gallery() {
+export default function Gallery() {
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -14,7 +14,7 @@ function Gallery() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_ALL_GALLERY_URL}`, {responseType: "json"}).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_ALL_GALLERY_URL}`, {responseType: "json"}).then((res) => {
             // console.log(res.data);
             setState("Success");
             setApiData(res.data);
@@ -47,4 +47,3 @@ function Gallery() {
     );
 }
 
-export default Gallery;

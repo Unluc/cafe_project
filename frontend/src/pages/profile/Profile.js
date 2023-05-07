@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 export default function Profile () {
     
@@ -27,7 +27,7 @@ export default function Profile () {
       phone_number: phone_number.value,
     }
     // console.log(conFom);
-    axios.put(`${env.REACT_APP_API_PROFILE_URL}`, {
+    axios.put(`${process.env.REACT_APP_API_PROFILE_URL}`, {
       "first_name": conFom.first_name,
       "last_name": conFom.last_name,
       // "email": conFom.email,
@@ -47,7 +47,7 @@ export default function Profile () {
 
   useEffect(() => {
     setState("Loading");
-    axios.get(`${env.REACT_APP_API_PROFILE_URL}`, {"headers": {
+    axios.get(`${process.env.REACT_APP_API_PROFILE_URL}`, {"headers": {
       // "Access-Control-Allow-Origin": "*",
       
       'Content-Type': 'application/json',}}).then((res) => {

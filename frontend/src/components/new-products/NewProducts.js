@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 function NewProducts() {
     axios.defaults.xsrfCookieName = 'csrftoken';
@@ -13,7 +13,7 @@ function NewProducts() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_NEW_PRODUCTS_URL}`, {responseType: "json"}).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_NEW_PRODUCTS_URL}`, {responseType: "json"}).then((res) => {
             // console.log(res.data);
             setState("Success");
             setApiData(res.data);

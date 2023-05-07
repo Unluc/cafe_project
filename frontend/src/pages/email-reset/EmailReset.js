@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 // import {  } from "react-router-dom";
 import "../contact-us/ContactUs.css";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 export default function EnailReset() {
 
@@ -80,7 +80,7 @@ export default function EnailReset() {
       // console.log(conFom)
       
       // console.log(conFom);
-      axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_RESET_EMAIL_URL}${id}/${slug}`, {
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_RESET_EMAIL_URL}${id}/${slug}`, {
         // "old_password": conFom.oldPassword,
         "new_email": conFom.newEmail,
         // "new_password2": conFom.newPassword2,

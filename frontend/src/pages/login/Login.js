@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../contact-us/ContactUs.css";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 const Login = (props) => {
 
@@ -44,7 +44,7 @@ const Login = (props) => {
       }
       // console.log(conFom);
       // axios.post(`/api/v1/accounts/login/`, {
-      axios.post(`${env.REACT_APP_API_LOGIN_URL}`, {
+      axios.post(`${process.env.REACT_APP_API_LOGIN_URL}`, {
       // axios.post(`${env.REACT_APP_API_BASE_URL}/${env.REACT_APP_API_LOGIN_URL}`, {
         "email": conFom.email,
         "password": conFom.password

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./ContactUs.css"
-import env from "react-dotenv";
+// import env from "react-dotenv";
 
 const ContactForm = () => {
     
@@ -22,7 +22,7 @@ const ContactForm = () => {
         message: message.value,
     }
     // console.log(conFom);
-    axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_CONTACT_URL}`, {
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_CONTACT_URL}`, {
       "name": conFom.name,
       "email": conFom.email,
       "message": conFom.message

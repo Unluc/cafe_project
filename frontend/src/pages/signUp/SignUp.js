@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css"
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 const SignUp = (props) => {
 
@@ -62,7 +62,7 @@ const SignUp = (props) => {
       }
       
       // console.log(conFom);
-      axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_REGISTER_URL}`, {
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_REGISTER_URL}`, {
         "email": conFom.email,
         "password": conFom.password
       }, {

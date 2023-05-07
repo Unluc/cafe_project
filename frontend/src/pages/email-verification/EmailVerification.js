@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
-const EmailVerification = () => {
+export default function EmailVerification() {
     
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -30,7 +30,7 @@ const EmailVerification = () => {
     // console.log(user);
     // console.log(user.id);
     // console.log(conFom);
-    axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_CONFIRM_EMAIL_URL}${user.id}`, {
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_CONFIRM_EMAIL_URL}${user.id}`, {
       "code": conFom.code,
       // "email": conFom.email,
       // "message": conFom.message
@@ -75,6 +75,5 @@ const EmailVerification = () => {
   );
 }
 
-export default EmailVerification;
 
 // todo: Make errors for code

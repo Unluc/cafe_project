@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer.js";
 import "./Menu.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 // import { addAbortSignal } from "form-data";
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 
 export default function Menu() {
@@ -20,7 +20,7 @@ export default function Menu() {
 
     useEffect(() => {
         setState("Loading");
-        axios.get(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_ALL_CATEGORIES_URL}`, {responseType: "json"}).then((res) => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_ALL_CATEGORIES_URL}`, {responseType: "json"}).then((res) => {
             // console.log("Res data");
             setTopCategory(res.data[0]);
             // console.log(topCategory);

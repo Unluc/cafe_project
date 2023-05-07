@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../signUp/SignUp.css"
 
-import env from "react-dotenv"
+// import env from "react-dotenv"
 
 
 const ChangePassword = () => {
@@ -71,7 +71,7 @@ const ChangePassword = () => {
       // console.log(conFom)
       
       // console.log(conFom);
-      axios.post(`${env.REACT_APP_API_BASE_URL}${env.REACT_APP_API_CHANGE_PASSWORD_URL}`, {
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_CHANGE_PASSWORD_URL}`, {
         "old_password": conFom.oldPassword,
         "new_password1": conFom.newPassword1,
         "new_password2": conFom.newPassword2,
