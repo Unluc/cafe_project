@@ -5,7 +5,7 @@ WORKDIR /app/frontend/
 COPY package*.json /app/frontend/
 # COPY ./frontend/package.json ./
 # COPY ./frontend/package-lock.json ./
-# RUN npm install
+# RUN npm install react-scripts
 RUN npm ci --silent
 
 COPY . /app/frontend/
