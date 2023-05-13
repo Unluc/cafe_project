@@ -1,0 +1,240 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* #nav-list {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.9;
+  overflow-x: hidden;
+  transition: 0.5s;
+} */
+
+.App{
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* background-color: green; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .closebtn {
+  display: block;
+} */
+
+
+.Page-logo img {
+  width: 200px;
+}
+
+
+@media only screen and (min-width: 1001px) {
+  /* .App{
+    width: 1000px;
+    align-self: center;
+  } */
+
+  .App > .Page-header > .Page-logo {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .Page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Navigation-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  
+  
+
+}
+
+
+
+
+
+/*          Login form and button         */
+
+.logfrm {
+  display: flex;
+  align-items: center;
+  padding-right: 5%;
+}
+
+/* .navbar {
+  position: absolute;
+  background-color: #24252A;
+  width: 100%;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+} */
+
+.loginicon {
+  /* position: absolute; */
+  width: 80px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  color: black;
+  height: 40px;
+  left: 85%;
+  top: 10px;
+  background:#e9bf34;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.loginicon:hover{
+  color: white;
+}
+
+.login-form{
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  bottom: 0;
+  left: 280%;
+  z-index: 1;
+}
+
+.form-box{
+  margin-top: 7vh;
+  opacity:80%;
+  background: black;
+  padding-right: 80px;
+  padding-left: 80px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.login-text{
+  width: 100%;
+  color: white;
+  border-bottom: 2px solid white;
+  line-height: 30px;
+  width: 100%;
+  font-weight: bolder;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vh;
+}
+
+label {
+  color:white;
+  width: 100%;
+  text-align: center;
+}
+
+.login-box{
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 2px;
+  padding-left: 10px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin: 5px;
+  font-size: 11pt;
+  background: transparent;
+  transition: 1s;
+  outline: none;
+}
+
+.login-btn{
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+  background-color: #e9bf34;
+  color: white;
+  margin-top: 5px;
+  border-radius: 20px;
+  border: none;
+  font-size: 15pt;
+  font-weight: 700;
+  transition: 1s;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.login-btn:hover{
+  transform: scale(1.03);
+  letter-spacing: 4px;
+  background-color: #7FFFD4;
+  color: #1E90FF;
+}
+
+.show {
+  display: block;
+  transition: 800ms;
+  opacity: 1;
+
+  bottom: 0;
+  z-index: 1;
+  position:fixed;
+}
+
+.show.active {
+  transform: translateY(100px) scale(0) rotateY(180deg);
+  opacity: 0;
+}

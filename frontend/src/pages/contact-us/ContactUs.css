@@ -1,0 +1,42 @@
+form {
+    margin: 2rem auto;
+    width: 100%;
+}
+
+form > label {
+    color: black;
+}
+
+.btn-submit {
+    width: 100%;
+}
+
+.content-section > .contact-form > h2,
+.content-section > .contact-form > p {
+    text-align: center;
+}
+
+.imap {
+    width: 500px;
+}
+.myset {
+    display: flex;
+    /* column-gap: ; */
+    /* justify-content: space-between; */
+}
+/* .height {
+    height: 63.8vh;
+} */
+@media only screen and (min-width: 550px) and (max-width: 1000px) {
+    form {
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1001px) {
+    form {
+        width: 50%;
+    }
+
+    
+}

@@ -1,0 +1,24 @@
+.hero-abt-us {
+    background-color: #d32405;
+    background-image: url("../../../public/coffee-hero-pic.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-height {
+    height: 71vh;
+}
+
+@media only screen and (min-width: 1001px) {
+
+    .hero-abt-us > .btn-primary {
+        margin: 0 auto;
+        width: 275px;
+    }
+    
+}

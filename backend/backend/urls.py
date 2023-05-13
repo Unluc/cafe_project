@@ -16,6 +16,79 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls import url, include
+from django.conf.urls.i18n import i18n_patterns
+from django.contrib import admin
+from django.contrib.staticfiles.urls import static
+from django.urls import path, re_path
+from rest_framework import permissions
+
+from des import urls as des_urls
+# from drf_yasg.views import get_schema_view
+# from drf_yasg import openapi
+
+# from des import urls as des_urls
+
+# from accounts.views import IndexView, AuthView
+
+# schema_view = get_schema_view(
+#     openapi.Info(
+#         title="API",
+#         default_version='v1',
+#         description="Test description",
+#     ),
+#     public=False,
+#     permission_classes=(permissions.AllowAny,),
+# )
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    url(r'^django-des/', include(des_urls)),
+    url(r'^jet/', include('jet.urls', 'jet')),
+    path('api/v1/', include([
+        path('accounts/', include('api.accounts.urls')),
+        path("contact_us/", include('api.contact_us.urls')),
+        path("product/", include('api.product.urls')),
+        path("gallery/", include('api.gallery.urls')),
+        path("org/", include('api.organization.urls')),
+        path("category/", include('api.category.urls')),
+    ])),
+]+ static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+) + static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
+)
+
+# urlpatterns = [
+    # url('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # url(r'^admin/', admin.site.urls),
+    # url(r'', include('apps.frontend.urls')),
+    # url('i18n', include('django.conf.urls.i18n')),
+    
+    # url(r'^django-des/', include(des_urls)),
+
+# if settings.DEBUG:
+#     urlpatterns += [url(r'^', include('markup.urls'))]
+#     urlpatterns += (
+#             static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +
+#             static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#     )
+
+#     if 'debug_toolbar' in settings.INSTALLED_APPS:
+#         import debug_toolbar
+
+#         urlpatterns += [
+#             url(r'^__debug__/', include(debug_toolbar.urls)),
+#         ]
+
+# urlpatterns += i18n_patterns(
+#     # path('social_auth/', include('social_django.urls', namespace='social')),
+#     # path('', IndexView.as_view(), name='index'),
+#     # re_path('auth/', AuthView.as_view(), name='auth'),
+#     # path('api/', include('rest_framework.urls', namespace='rest_framework')),
+
+
+# )

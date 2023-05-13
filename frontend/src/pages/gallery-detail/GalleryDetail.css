@@ -1,0 +1,155 @@
+h1 {
+    text-align: center;
+}
+
+.gallery-card {
+    width:  300px;
+    height: 200px;
+    /* object-fit:scale-down; */
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .close {
+    color: white;
+    position: fixed;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .lightbox-image {
+    position: relative;
+    opacity: 100;
+    max-width: 70%;
+    margin-left:5%;
+    border: 3px black;
+    border-radius: 20px;
+  }
+  
+  .lightbox-figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .top-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    /* background-color: green; */
+  }
+
+  .lightbox-btn {
+    display: flex;
+    /* top: 10px; */
+    /* left: 2%; */
+    /* align-self: flex-end; */
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  #lightbox-caption {
+    /* display: fixed; */
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+  }
+
+
+
+  .lb-container{
+    z-index: 50000;
+    position: absolute;
+    position: fixed;
+    left:0px;
+    top:0px;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+}
+.lb-container .lb-header{
+    height: 50px;
+    background: #000;
+    background: rgba(0,0,0,0.9);
+    box-shadow: 0px 1px 5px 0px #111;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    z-index: 10;
+}
+.lb-header .lb-button{
+    padding: 10px 25px;
+    background-size: 40% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.lb-header .lb-button:not(:last-child){
+    margin-right: 3px;
+}
+.lb-header .lb-button:hover{
+    background-color:#777;
+}
+
+.lb-header .lb-button.rotater{
+    transform: rotateY(180deg);
+}
+.lb-header .lb-button.next{
+    transform: rotateY(180deg);
+}
+.lb-header .lb-title{
+    flex: 1;
+    align-items: center;
+    color: white;
+    font-size: 1.1em;
+    padding: 0em 0.8em;
+    overflow: hidden;
+}
+.lb-header .lb-title span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.lb-container .lb-canvas{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+}
+.lb-canvas .lb-img{
+    max-width: 80vw;
+    max-height: 80vh;
+    min-width: 100px;
+    min-height: 100px;
+    /* transition: all 0.1s; */
+    cursor: grab;
+    background-size: 50px;
+    transform-origin: center center;
+}

@@ -1,0 +1,41 @@
+- name: Provision Web Servers
+  hosts: webservers
+  tasks:
+
+    - name: install pip3
+      yum:
+        update_cache: yes
+        name: python3-pip
+      become: yes
+
+    #- name: update yum
+     # yum:
+     #   name: update
+     # become: yes
+
+    #- name: set up repository
+     # shell:
+      #  name: yum-config-manager \ --add-repo \ https://download.docker.com/linux/centos/docker-ce.repo
+      #become: yes
+      
+    - name: Install Docker
+      yum:
+        #name: docker.io
+        name: docker
+      become: yes
+
+    - name: Start Docker
+      shell: |
+        systemctl start docker
+        systemctl enable docker
+      become: yes
+
+
+    
+    - name: migrate
+      shell: |
+        for container in $(sudo docker ps | grep basic | awk '{print $1}'); do sudo docker exec $container python3 manage.py migrate; done
+      become: yes
+      
+      
+      
