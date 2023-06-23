@@ -13,7 +13,7 @@ from django.dispatch import receiver
 from shared.rest.file_cleanup import post_save_image, pre_save_image
 
 class Product(models.Model):
-    preview = models.ImageField(upload_to="shared/media/", null=True, blank=True, verbose_name='Product preview')
+    preview = models.ImageField(null=True, blank=True, verbose_name='Product preview')
     img_alt = models.CharField(
         max_length=25, 
         null=True, 
