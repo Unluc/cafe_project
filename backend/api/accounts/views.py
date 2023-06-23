@@ -88,6 +88,9 @@ class LogoutView(APIView):
         # print(self.request.user.is_authenticated)
         # print("self.request.user.is_authenticated")
         logout(self.request)
+        if(True):
+            type = 1
+        print(type)
         return Response(status=status.HTTP_200_OK)
 
 

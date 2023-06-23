@@ -8,6 +8,9 @@ from django_unique_slugify import unique_slugify
 from category.models import Category
 # from seo.mixins.models import SeoTagsMixin
 
+from django.db.models.signals import pre_save, post_delete
+from django.dispatch import receiver
+from shared.rest.file_cleanup import post_save_image, pre_save_image
 
 class Product(models.Model):
     preview = models.ImageField(upload_to="shared/media/", null=True, blank=True, verbose_name='Product preview')
@@ -139,3 +142,5 @@ class Product(models.Model):
 #         return f'{self.image}'
 
 
+pre_save.connect(pre_save_image, sender=Product)
+post_delete.connect(post_save_image, sender=Product)
