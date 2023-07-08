@@ -7,6 +7,10 @@ services:
     # ports:
     #   - '5432:5432'
 
+    # build: 
+    #   context: ./docker_db
+    #   dockerfile: Dockerfile
+
     environment:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_USER=satisfaction
@@ -17,7 +21,8 @@ services:
       - 5432
     volumes:
       # - ./data/db:/var/lib/postgresql/data/
-      - ./backend/:/db.sqlite3
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      # - ./docker_db/:/db.sqlite3
     networks:
       - db-net
 
