@@ -1025,7 +1025,7 @@ ALTER TABLE ONLY public.product_product_related_products ALTER COLUMN id SET DEF
 --
 
 COPY public.accounts_user (id, password, last_login, is_superuser, first_name, last_name, is_staff, is_active, date_joined, email, new_email, phone_number, token, code) FROM stdin;
-1	pbkdf2_sha256$260000$LTQSGEWLKkZsLaz8tCN0BB$7t6bZ8fdqLRtjKggPBYj9ed+HBBy31CjxSF4x9EEp4I=	2023-06-27 13:39:04.437291+00	t			t	t	2023-06-27 13:38:58.701132+00	admin@admin.com	\N	\N	2c290da5-d733-4fb7-a64d-71ca3a0d56d5	\N
+1	pbkdf2_sha256$260000$LTQSGEWLKkZsLaz8tCN0BB$7t6bZ8fdqLRtjKggPBYj9ed+HBBy31CjxSF4x9EEp4I=	2023-07-09 14:46:26.701744+00	t			t	t	2023-06-27 13:38:58.701132+00	admin@admin.com	\N	\N	2c290da5-d733-4fb7-a64d-71ca3a0d56d5	\N
 \.
 
 
@@ -1146,6 +1146,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.category_category (id, path, depth, numchild, preview, alt, name, slug, short_overview, visibility) FROM stdin;
+1	0001	1	0	puma-ag-u11.jpeg	dfgsdfgsdfg	sdfgsd	sdfg	sdfg	t
 \.
 
 
@@ -1171,6 +1172,8 @@ COPY public.des_dynamicemailconfiguration (id, host, port, from_email, username,
 
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
 1	2023-06-27 13:39:42.847544+00	1	adfgafg	1	[{"added": {}}, {"added": {"name": "image", "object": "adfgdafg"}}, {"added": {"name": "image", "object": "adfgadfg"}}, {"added": {"name": "image", "object": "adfgadfg"}}]	12	1
+2	2023-07-09 14:11:12.448791+00	1	sdfgsd	1	[{"added": {}}]	18	1
+3	2023-07-09 15:33:25.931399+00	2	Wedding pic	1	[{"added": {}}, {"added": {"name": "image", "object": "qweasd"}}, {"added": {"name": "image", "object": "qweasd"}}, {"added": {"name": "image", "object": "qweasd"}}, {"added": {"name": "image", "object": "qweasd"}}]	12	1
 \.
 
 
@@ -1248,6 +1251,22 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 41	product	0008_alter_product_preview	2023-06-25 17:14:13.16561+00
 42	sessions	0001_initial	2023-06-25 17:14:13.179265+00
 43	jet	0003_auto_20230627_1337	2023-06-27 13:37:07.220568+00
+44	jet	0003_auto_20230627_1515	2023-06-27 15:15:06.421641+00
+45	jet	0003_auto_20230627_1520	2023-06-27 15:20:38.900853+00
+46	jet	0003_auto_20230627_1523	2023-06-27 15:23:26.00602+00
+47	jet	0003_auto_20230705_1456	2023-07-05 14:56:33.069371+00
+48	jet	0003_auto_20230705_1458	2023-07-05 14:58:19.752611+00
+49	jet	0003_auto_20230705_1502	2023-07-05 15:02:44.659302+00
+50	jet	0003_auto_20230705_1511	2023-07-05 15:11:02.674057+00
+51	jet	0003_auto_20230705_1524	2023-07-05 15:24:27.504342+00
+52	jet	0003_auto_20230705_1525	2023-07-05 15:25:07.339584+00
+53	jet	0003_auto_20230705_1529	2023-07-05 15:29:41.198623+00
+54	jet	0003_auto_20230705_1539	2023-07-05 15:39:56.670039+00
+55	jet	0003_auto_20230708_1259	2023-07-08 12:59:21.705863+00
+56	jet	0003_auto_20230709_1410	2023-07-09 14:10:46.835826+00
+57	jet	0003_auto_20230709_1411	2023-07-09 14:11:31.226681+00
+58	jet	0003_auto_20230709_1445	2023-07-09 14:45:59.815422+00
+59	jet	0003_auto_20230714_1403	2023-07-14 14:03:49.619866+00
 \.
 
 
@@ -1257,6 +1276,10 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 n7ypds531tqtsz36scgla70ev7fe9mdj	.eJxVjEEOwiAQRe_C2hDKwFRcuvcMZJhBqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqkBnX43RLxI9cNyJ3qrWludZmnpDdF77TrS5P8PO_u30GhXr41EFhvfE7GERlgOJJjRgMyIlhk69AGRLkmtilnCo4ceEQ_JgjiB_X-ANBiN1w:1qE8uO:n3MgceC1tNBPw0zFNUoa52DJsmZUfRPd_WgSybf2n70	2023-07-11 13:39:04.442284+00
+q0jyfrpfvie35iawriyozzuft2dgwz7e	.eJxVjEEOwiAQRe_C2hDKwFRcuvcMZJhBqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqkBnX43RLxI9cNyJ3qrWludZmnpDdF77TrS5P8PO_u30GhXr41EFhvfE7GERlgOJJjRgMyIlhk69AGRLkmtilnCo4ceEQ_JgjiB_X-ANBiN1w:1qEAXY:Oa5mWaMQqOsrCpaBH2PreqKneBVJ4urKxWPbGWuOOVw	2023-07-11 15:23:36.943952+00
+x5hjua38rj86mecu8xdisgoh0ewgh002	.eJxVjEEOwiAQRe_C2hDKwFRcuvcMZJhBqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqkBnX43RLxI9cNyJ3qrWludZmnpDdF77TrS5P8PO_u30GhXr41EFhvfE7GERlgOJJjRgMyIlhk69AGRLkmtilnCo4ceEQ_JgjiB_X-ANBiN1w:1qH3xd:qsbQpDfYkH7ndU21wmaiVOcdAMjtcnfDkBGQsgbfAg8	2023-07-19 14:58:29.297185+00
+aumv91wpny00leomvwl2ojmo54gg0dk0	.eJxVjEEOwiAQRe_C2hDKwFRcuvcMZJhBqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqkBnX43RLxI9cNyJ3qrWludZmnpDdF77TrS5P8PO_u30GhXr41EFhvfE7GERlgOJJjRgMyIlhk69AGRLkmtilnCo4ceEQ_JgjiB_X-ANBiN1w:1qI7g9:KOeYBb0Ly76CT2j1RTBhK_zr8ouc1iicOc8QqeNjVpQ	2023-07-22 13:08:49.08522+00
+mnw7eup6igl7qwkw5tflnb8stvpom8rn	.eJxVjEEOwiAQRe_C2hDKwFRcuvcMZJhBqRpISrsy3l2bdKHb_977LxVpXUpce57jJOqkBnX43RLxI9cNyJ3qrWludZmnpDdF77TrS5P8PO_u30GhXr41EFhvfE7GERlgOJJjRgMyIlhk69AGRLkmtilnCo4ceEQ_JgjiB_X-ANBiN1w:1qIVgA:_csMjzB4MyKb9m4AW2qFzht7wdVfnFp6hyerCtFCNzA	2023-07-23 14:46:26.70846+00
 \.
 
 
@@ -1266,6 +1289,7 @@ n7ypds531tqtsz36scgla70ev7fe9mdj	.eJxVjEEOwiAQRe_C2hDKwFRcuvcMZJhBqRpISrsy3l2bdK
 
 COPY public.gallery_gallery (id, preview, alt, title, slug) FROM stdin;
 1	nike-sportwear-logo.png	adfgafg	ggfrsdfg	dafgadfg
+2	wedding1.jpg	Wedding pic	Wedding	wedding
 \.
 
 
@@ -1277,6 +1301,10 @@ COPY public.gallery_image (id, image, alt, my_order, gallery_id) FROM stdin;
 1	brand_adidas.png	adfgdafg	0	1
 2	Fila-Logo-Small.jpg	adfgadfg	0	1
 3	underarmour.webp	adfgadfg	0	1
+4	Untitled.jpeg	qweasd	0	2
+5	Untitled1.jpeg	qweasd	0	2
+6	Untitled2.jpeg	qweasd	0	2
+7	Untitled3.jpeg	qweasd	0	2
 \.
 
 
@@ -1390,7 +1418,7 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 72, true);
 -- Name: category_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: satisfaction
 --
 
-SELECT pg_catalog.setval('public.category_category_id_seq', 1, false);
+SELECT pg_catalog.setval('public.category_category_id_seq', 1, true);
 
 
 --
@@ -1411,7 +1439,7 @@ SELECT pg_catalog.setval('public.des_dynamicemailconfiguration_id_seq', 1, false
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: satisfaction
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 3, true);
 
 
 --
@@ -1425,21 +1453,21 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 18, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: satisfaction
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 43, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 59, true);
 
 
 --
 -- Name: gallery_gallery_id_seq; Type: SEQUENCE SET; Schema: public; Owner: satisfaction
 --
 
-SELECT pg_catalog.setval('public.gallery_gallery_id_seq', 1, true);
+SELECT pg_catalog.setval('public.gallery_gallery_id_seq', 2, true);
 
 
 --
 -- Name: gallery_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: satisfaction
 --
 
-SELECT pg_catalog.setval('public.gallery_image_id_seq', 3, true);
+SELECT pg_catalog.setval('public.gallery_image_id_seq', 7, true);
 
 
 --
