@@ -12,7 +12,7 @@ fi
 
 
 
-domains=(ec2-13-51-250-1.eu-north-1.compute.amazonaws.com www.ec2-13-51-250-1.eu-north-1.compute.amazonaws.com)
+domains=() #Put your domain in here
 
 rsa_key_size=4096
 
