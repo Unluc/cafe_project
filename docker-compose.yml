@@ -49,10 +49,6 @@ services:
       dockerfile: Dockerfile
 
     environment:
-      # - POSTGRES_PASSWORD=admin
-      # - POSTGRES_USER=satisfaction
-      # - POSTGRES_DB=cafe_project_db
-
       - DJANGO_DB_URL=psql://satisfaction:admin@db:5432/cafe_project_db
 
     ports:
