@@ -111,16 +111,12 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
-     'http://172.19.0.4:3000',
-     'http://172.20.0.4:3000',
      'http://localhost:8000',
     #  "*"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    'http://172.19.0.4:3000',
-    'http://172.20.0.4:3000',
     "http://localhost:8000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
@@ -130,7 +126,7 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_ALLOW_ALL = True
 # Access-Control-Allow-Origin: *
 CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUSTED_ORIGINS = ['localhost:3000', "localhost:3030", "172.20.0.4:3000"]
+CSRF_TRUSTED_ORIGINS = ['localhost:3000', "localhost:3030"]
 
 ROOT_URLCONF = 'backend.urls'
 
