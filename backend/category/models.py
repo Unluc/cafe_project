@@ -6,6 +6,9 @@ from django_unique_slugify import unique_slugify
 from treebeard.mp_tree import MP_Node, MP_MoveHandler
 from django.db import transaction
 
+from django.db.models.signals import pre_save, post_delete
+from django.dispatch import receiver
+from shared.rest.file_cleanup import post_save_image, pre_save_image
 
 class Category(MP_Node):
     preview = models.ImageField(null=True, blank=True)
@@ -98,3 +101,6 @@ class Category(MP_Node):
         #                                                       'sub_category': view.kwargs['sub_category']})
         # except KeyError:
         #     return reverse_lazy('main_catalog_filter', kwargs={'category': view.kwargs['category']})
+
+pre_save.connect(pre_save_image, sender=Category)
+post_delete.connect(post_save_image, sender=Category)

@@ -1,6 +1,9 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+from django.db.models.signals import pre_save, post_delete
+from django.dispatch import receiver
+from shared.rest.file_cleanup import post_save_image, pre_save_image
 
 class Singleton(models.Model):
     class Meta:
@@ -82,3 +85,29 @@ class SocialMedia(models.Model):
 
     def __str__(self):
         return self.social_media_title
+
+
+@receiver(post_delete, sender=SocialMedia)
+def post_save_image(sender, instance, *args, **kwargs):
+    """ Clean Old Image file """
+    try:
+        instance.social_media_picture.delete(save=False)
+    except:
+        pass
+
+
+@receiver(pre_save, sender=SocialMedia)
+def pre_save_image(sender, instance, *args, **kwargs):
+    """ instance old image file will delete from os """
+    try:
+        old_img = instance.__class__.objects.get(id=instance.id).social_media_picture.path
+        try:
+            new_img = instance.social_media_picture.path
+        except:
+            new_img = None
+        if new_img != old_img:
+            import os
+            if os.path.exists(old_img):
+                os.remove(old_img)
+    except:
+        pass
