@@ -6,8 +6,9 @@ In the project directory, you can run:
 
 ### `sudo sh ubuntu_install.sh`
 
-This command should be called from "apps_instalation" folder.
-If you have Ubntu or any other Linux system that uses apt for apps installation this command instals every app that you will need for booting this project.
+To install all the necessary apps for booting your project on a Linux system, such as Ubuntu, that utilizes the apt package manager, you can execute the following command from the "apps_installation" folder. It will ensure that all the required apps are installed.Please make sure that you are in the "apps_installation" folder before executing this command. Additionally, ensure that you have a file named "ubuntu_install.sh" in the same folder, which contains a list of all the required app names, with each app name on a new line.
+
+Once you execute this command, it will automatically install all the apps listed in the "ubuntu_install.sh" file, allowing you to set up your project with the necessary dependencies efficiently.
 
 ### `make start`
 
