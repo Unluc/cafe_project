@@ -16,7 +16,7 @@ Once you execute this command, it will automatically install all the apps listed
 
 ### `sudo make start`
 
-This command will start the project and start frontend and backend wiht Dockers help. To access project in you browser you should type "localhost:3000" in your url fild.
+This command initiates the project and launches both the frontend and backend using Docker. To access the project in your browser, simply enter "localhost:3000" in the URL field.
 
 ### `npm run build`
 
