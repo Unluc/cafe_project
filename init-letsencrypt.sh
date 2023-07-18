@@ -12,7 +12,8 @@ fi
 
 
 
-domains=() #Domain
+
+domains=() #Put your domain in here
 
 rsa_key_size=4096
 
