@@ -18,6 +18,8 @@ Once you execute this command, it will automatically install all the apps listed
 
 This command initiates the project and launches both the frontend and backend using Docker. To access the project in your browser, simply enter "localhost:3000" in the URL field.
 
+You don't need to worry about adding content or creating a database as the necessary data has already been set up. When you start the project, you'll be able to access this pre-existing data right away.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
