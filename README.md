@@ -14,10 +14,9 @@ Additionally, ensure that you have a file named "ubuntu_install.sh" in the same 
 
 Once you execute this command, it will automatically install all the apps listed in the "ubuntu_install.sh" file, allowing you to set up your project with the necessary dependencies efficiently.
 
-### `make start`
+### `sudo make start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This command will start the project and start frontend and backend wiht Dockers help. To access project in you browser you should type "localhost:3000" in your url fild.
 
 ### `npm run build`
 
